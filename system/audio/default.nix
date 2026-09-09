@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  services.playerctld.enable = true;
   services.pipewire = {
     enable = true;
     alsa = {
@@ -14,6 +15,7 @@
             "bluez5.enable-sbc-xq" = true;
             "bluez5.enable-msbc" = true;
             "bluez5.enable-hw-volume" = true;
+            "bluez5.a2dp.ldac.quality" = "sq";
             "bluez5.codecs" = [
               "sbc"
               "sbc_xq"
@@ -27,17 +29,22 @@
       };
     };
     pulse.enable = true;
-    jack.enable = true;
   };
 
   programs.noisetorch.enable = true;
   hardware = {
-    pulseaudio.support32Bit = true;
 
     bluetooth = {
       enable = true;
       powerOnBoot = true;
       package = pkgs.bluez5-experimental;
+      settings = {
+        General = {
+          ControllerMode = "bredr";
+
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
     };
   };
 }

@@ -28,14 +28,14 @@
 
   services.upower.enable = true;
   services.fwupd.enable = lib.mkForce false;
-      services.pipewire.extraConfig.pipewire = {
-        # https://www.reddit.com/r/linux_gaming/comments/1gy347h/comment/lylqijj/
-        "10-clock-min-quantum" = {
-            "context.properties" = {
-                "default.clock.min-quantum" = "1024";
-            };
-        };
+  services.pipewire.extraConfig.pipewire = {
+    # https://www.reddit.com/r/linux_gaming/comments/1gy347h/comment/lylqijj/
+    "10-clock-min-quantum" = {
+      "context.properties" = {
+        "default.clock.min-quantum" = "1024";
+      };
     };
+  };
 
   environment = {
     systemPackages = lib.attrValues {

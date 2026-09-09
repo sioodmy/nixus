@@ -7,27 +7,25 @@ rec {
     {
       zsh = callPackage ./wrapped/zsh { };
       tmux = callPackage ./wrapped/tmux { };
-      foot = callPackage ./wrapped/foot { };
-      helix = callPackage ./wrapped/helix { inherit inputs; };
-      quickshell = callPackage ./wrapped/quickshell { inherit inputs; };
+      kitty = callPackage ./wrapped/kitty { inherit inputs;};
       tofi = callPackage ./wrapped/tofi { };
-      bat = callPackage ./wrapped/bat { };
+      bat = pkgs.bat;
       zathura = callPackage ./wrapped/zathura { };
     };
 
   shell =
-    pkgs:
+    { pkgs, inputs }:
+    let
+      userPackages = packages { inherit pkgs inputs; };
+    in
     pkgs.mkShell {
       name = "sioodmy-devshell";
       shellHook = ''
         zsh
       '';
-      buildInputs = builtins.attrValues {
-        inherit (packages pkgs)
-          nvim
-          zsh
-          ;
-      };
+      buildInputs = [
+        userPackages.zsh
+      ];
     };
   module =
     { pkgs, inputs, ... }:

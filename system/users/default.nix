@@ -12,7 +12,7 @@
       sioodmy = {
         isNormalUser = true;
         homix = true;
-        shell = flake.packages.${pkgs.system}.zsh;
+        shell = flake.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
         ignoreShellProgramCheck = true;
 
         hashedPasswordFile = "/persist/secrets/sioodmy";
@@ -30,6 +30,8 @@
           "power"
           "nix"
           "adbusers"
+          "libvirtd"
+          "kvm"
         ];
         uid = 1000;
       };
@@ -67,7 +69,7 @@
       };
       services =
         let
-          fprint = !config.hardware.asahi.enable;
+          fprint = !(config.hardware ? asahi && config.hardware.asahi.enable);
         in
         {
           login = {
@@ -83,6 +85,7 @@
             setEnvironment = true;
             pamMount = false;
           };
+          quickshell = { };
           swaylock.fprintAuth = fprint;
         };
 

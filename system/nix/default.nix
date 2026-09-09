@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -12,12 +11,19 @@
       nix-fast-build
       ;
   };
+  documentation = {
+    enable = false;
+    man.enable = false;
+    dev.enable = false;
+    info.enable = false;
+    nixos.enable = false;
+  };
   nix = {
     # gc kills ssds
     gc.automatic = false;
 
     # nix but cooler
-    package = pkgs.lixPackageSets.git.lix;
+    package = pkgs.lixPackageSets.stable.lix;
 
     # Make builds run with low priority so my system stays responsive
     daemonCPUSchedPolicy = "idle";
@@ -66,12 +72,6 @@
   };
 
   programs.nix-ld.enable = false;
-  #   programs.nix-ld.libraries = with pkgs; [
-  #   stdenv.cc.cc
-  #   openssl
-  #   curl
-  #   glib
-  # ];
 
   programs.nh = {
     enable = true;

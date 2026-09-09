@@ -15,6 +15,7 @@
       "/var/lib/fprint"
       "/var/lib/pipewire"
       "/var/lib/bluetooth"
+      "/var/lib/postgresql"
     ];
   };
 

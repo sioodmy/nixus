@@ -1,8 +1,5 @@
 {
   pkgs,
-  flake,
-  lib,
-  inputs,
   ...
 }:
 {
@@ -11,23 +8,24 @@
   ];
   hardware = {
     graphics.enable = true;
-    brillo.enable = true;
   };
 
   environment = {
-    systemPackages = let
+    systemPackages =
+      let
 
         run-as-service = pkgs.writeShellScriptBin "run-as-service" ''
-    exec ${pkgs.systemd}/bin/systemd-run \
-      --slice=app-manual.slice \
-      --property=ExitType=cgroup \
-      --user \
-      --wait \
-      bash -lc "exec $@"
-  '';
-      in [
+          exec ${pkgs.systemd}/bin/systemd-run \
+            --slice=app-manual.slice \
+            --property=ExitType=cgroup \
+            --user \
+            --wait \
+            bash -lc "exec $@"
+        '';
+      in
+      [
         run-as-service
-    ];
+      ];
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
       XDG_CURRENT_DESKTOP = "niri";
@@ -76,13 +74,14 @@
     gnome.glib-networking.enable = true;
     logind = {
       settings.Login = {
-        HandleLidSwitchExternalPower = "suspend";
+        HandleLidSwitchExternalPower = "lock";
         # TODO: switch to hibernate once available on asahi
         # prolly not coming soon tho :c
         HandleLidSwitch = "suspend";
       };
     };
   };
+  programs.kdeconnect.enable = true;
 
   xdg.portal = {
     enable = true;

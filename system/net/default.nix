@@ -20,7 +20,7 @@ in
         "rndis0"
       ];
       wifi = {
-        macAddress = mkIf (!config.hardware.asahi.enable) "random";
+        macAddress = mkIf (!(config.hardware ? asahi && config.hardware.asahi.enable)) "random";
         powersave = true;
       };
     };
@@ -28,6 +28,10 @@ in
       enable = true;
       allowPing = false;
       logReversePathDrops = true;
+      allowedTCPPorts = [
+        45454
+        45455
+      ];
     };
   };
 

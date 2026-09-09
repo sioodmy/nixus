@@ -44,7 +44,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
-          default = user.shell pkgs;
+          default = user.shell { inherit pkgs inputs; };
         }
       );
       nixosModules = {
@@ -66,11 +66,18 @@
 
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     vim = {
       url = "path:/home/sioodmy/dev/vim/";
-      # url = "github:sioodmy/vim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    backendqs = {
+      url = "github:sioodmy/quickshell/dupa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helix = {
+      url = "github:sioodmy/helix/sioodmy";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helium-browser = {
@@ -79,7 +86,7 @@
     };
 
     quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      url = "github:noctalia-dev/noctalia-qs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -88,16 +95,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
-    quickshell-config = {
-      url = "github:sioodmy/quickshell";
-      flake = false;
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    glide-browser = {
-      url = "github:glide-browser/glide.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 }

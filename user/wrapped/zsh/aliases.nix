@@ -3,8 +3,8 @@ let
   inherit (pkgs.lib) getExe;
 in
 rec {
-  l = "${getExe pkgs.eza} --icons";
-  e = "${getExe pkgs.eza} --icons -lha --git";
+  l = "${getExe pkgs.eza} --icons auto";
+  e = "${getExe pkgs.eza} --icons auto -lha --git";
 
   ls = l;
   la = e;

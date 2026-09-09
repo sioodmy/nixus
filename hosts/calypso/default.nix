@@ -65,10 +65,10 @@
   hardware.cpu.intel.updateMicrocode = true;
   hardware.graphics.extraPackages = builtins.attrValues {
     inherit (pkgs)
-      vaapiIntel
+      intel-vaapi-driver
       libva
       libvdpau-va-gl
-      vaapiVdpau
+      libva-vdpau-driver
       ocl-icd
       intel-compute-runtime
       ;

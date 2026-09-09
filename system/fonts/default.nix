@@ -10,6 +10,7 @@ in
         inherit (pkgs)
           material-icons
           material-design-icons
+          material-symbols
           roboto
           roboto-mono
           roboto-slab
@@ -33,6 +34,8 @@ in
       }
       ++ [
         pkgs.nerd-fonts.jetbrains-mono
+        pkgs.nerd-fonts.iosevka
+        pkgs.lexend
         pkgs.maple-mono.NF
       ];
 
@@ -42,10 +45,11 @@ in
     fontconfig = {
       defaultFonts = {
         monospace = [
-          "Maple Mono NF"
+          "Iosevka Nerd Font"
           "Noto Color Emoji"
         ];
         sansSerif = [
+          # "Lexend Nerd Font"
           "Lexend"
           "Noto Color Emoji"
         ];

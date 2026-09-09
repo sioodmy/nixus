@@ -4,43 +4,40 @@
   ...
 }:
 let
-  inherit (builtins)
-    attrValues
-    readDir
-    readFile
-    attrNames
-    ;
-  inherit (pkgs.lib) forEach;
-  scripts =
-    readDir ./scripts |> attrNames |> map (x: pkgs.writeShellScriptBin x (readFile ./scripts/${x}));
+  inherit (builtins) attrValues;
 in
 {
   environment.systemPackages =
     attrValues {
       inherit (pkgs)
-        waybar
-        ags
         deluge
         clang-tools
-        antigravity
+        tesseract
+        ffmpegthumbnailer
+        brightnessctl
+        yt-dlp
+        cava
+        bottom
+        mpv
+        antigravity-cli
+        libnotify
+        wlsunset
+        poppler-utils
         code-cursor
+        opencode
         rink
-        prismlauncher
-        ironbar
-        glfw3-minecraft
+        thunderbird
         jdk17
         jre21_minimal
-        brave
         rust-analyzer
         firefox-devedition
         bear
+        ferdium
         pastel
         nixfmt
         nixfmt-tree
         yazi
         alejandra
-        wmenu
-        ollama
         pandoc
         texliveMedium
         vscode-langservers-extracted
@@ -49,7 +46,6 @@ in
         texlab
         powershell
         niri
-        audacity
         geteduroam-cli
         ttyper
         pwvucontrol
@@ -58,18 +54,17 @@ in
         slurp
         wl-clipboard
         flare-signal
-        vencord
+        wf-recorder
         rnote
-        caprine
         swaybg
         transmission_4-gtk
         nicotine-plus
         imv
         signal-desktop
-        vesktop
         gimp3
         inkscape
         keepassxc
+        kpcli
         clang
         gnumake
         cargo
@@ -98,16 +93,17 @@ in
         qrencode
         unzip
         ;
-      inherit (inputs.glide-browser.packages.${pkgs.stdenv.system})
-        glide-browser-bin
-        ;
-      inherit (inputs.qml-niri.packages.${pkgs.stdenv.system})
+      inherit (inputs.qml-niri.packages.${pkgs.stdenv.hostPlatform.system})
         quickshell
         ;
-      inherit (inputs.vim.packages.${pkgs.stdenv.system})
+      inherit (inputs.helix.packages.${pkgs.stdenv.hostPlatform.system})
+        helix
+        ;
+      inherit (inputs.vim.packages.${pkgs.stdenv.hostPlatform.system})
         default
         ;
     }
-    ++ [ inputs.helium-browser.packages.${pkgs.system}.default ]
-    ++ scripts;
+    ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
+    ++ [ inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+
 }

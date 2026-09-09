@@ -10,7 +10,6 @@
     ./printing
     ./wayland
     ./nix
-    #    ./security
     ./services
   ];
 
