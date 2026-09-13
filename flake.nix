@@ -92,7 +92,7 @@
     };
 
     qml-niri = {
-      url = "github:imiric/qml-niri/main";
+      url = "github:imiric/qml-niri/93e603901bed2c4465d5675ae43fd52b7f7c4adf";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
