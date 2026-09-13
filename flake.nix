@@ -73,8 +73,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     backendqs = {
-      url = "github:sioodmy/quickshell/dupa";
+      url = "git+file:///home/sioodmy/.config/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
     };
     helix = {
       url = "github:sioodmy/helix/sioodmy";
@@ -86,7 +87,7 @@
     };
 
     quickshell = {
-      url = "github:noctalia-dev/noctalia-qs";
+      url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

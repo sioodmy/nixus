@@ -93,8 +93,8 @@ in
         qrencode
         unzip
         ;
-      inherit (inputs.qml-niri.packages.${pkgs.stdenv.hostPlatform.system})
-        quickshell
+      inherit (inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system})
+        leninshell
         ;
       inherit (inputs.helix.packages.${pkgs.stdenv.hostPlatform.system})
         helix
