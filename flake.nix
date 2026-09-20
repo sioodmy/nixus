@@ -68,10 +68,6 @@
       url = "github:nix-community/nixos-apple-silicon";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    vim = {
-      url = "path:/home/sioodmy/dev/vim/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     backendqs = {
       url = "git+file:///home/sioodmy/.config/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";

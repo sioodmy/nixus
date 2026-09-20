@@ -18,12 +18,12 @@ in
         yt-dlp
         cava
         bottom
-        mpv
+        #mpv
         antigravity-cli
         libnotify
         wlsunset
         poppler-utils
-        code-cursor
+        #code-cursor
         opencode
         rink
         thunderbird
@@ -83,7 +83,7 @@ in
         glow
         hyperfine
         imagemagick
-        ffmpeg-full
+        # ffmpeg-full
         nmap
         xh
         grex
@@ -98,9 +98,6 @@ in
         ;
       inherit (inputs.helix.packages.${pkgs.stdenv.hostPlatform.system})
         helix
-        ;
-      inherit (inputs.vim.packages.${pkgs.stdenv.hostPlatform.system})
-        default
         ;
     }
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
