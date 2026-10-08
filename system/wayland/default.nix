@@ -105,6 +105,7 @@ in
     gnome.glib-networking.enable = true;
     logind = {
       settings.Login = {
+        HandlePowerKey = "suspend";
         HandleLidSwitchExternalPower = "lock";
         # TODO: switch to hibernate once available on asahi
         # prolly not coming soon tho :c

@@ -7,6 +7,7 @@
 {
   users = {
     mutableUsers = false;
+    groups.adbusers = { };
     users = {
       root.hashedPasswordFile = "/persist/secrets/root";
       sioodmy = {
@@ -56,6 +57,7 @@
                 "nix-env"
                 "bandwhich"
                 "systemctl"
+                "shutdown"
               ];
           groups = [ "wheel" ];
         }

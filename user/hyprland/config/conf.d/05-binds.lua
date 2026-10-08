@@ -2,9 +2,9 @@
 -- 05-binds.lua
 --
 -- Ported from the niri `binds` block, key for key where Hyprland has an
--- equivalent. Because the scrolling layout maps left/right to "next/previous
--- column" and up/down to "previous/next window in column", the arrow and vim
--- bindings behave exactly like niri's.
+-- equivalent. Tiled focus goes through the scrolling layout's own `focus`
+-- message (left/right = previous/next column, up/down = within the column),
+-- which is the direct analogue of niri's focus-column/window keys.
 --
 -- Where Hyprland genuinely has no equivalent, the closest thing is bound and
 -- marked with a NOTE. Modifier lists are ` + `-separated, e.g. "SUPER + SHIFT".
@@ -50,22 +50,35 @@ hl.bind(MOD .. " + F1", hl.dsp.exec_cmd("keylit"))
 
 -- --- window focus / movement -----------------------------------------------
 --
--- Matches GrajAP's hyprland binds:
--- - Focus: MOD + H/J/K/L (repeating)
+-- Tiled focus uses the scrolling layout's `focus` message, deliberately NOT
+-- the generic `movefocus` dispatcher. movefocus searches neighbouring windows
+-- by geometry and gives up exactly where it matters: when the focused window
+-- spans the whole monitor (an early return skips the search), when the
+-- neighbour sits fully off-screen, and whenever any window on the workspace
+-- is fullscreened (the query then skips every candidate). `layoutmsg focus`
+-- walks the tape's column list instead, so SUPER+L reaches the 30% column
+-- next to a 100% one, and keeps working after SUPER+F.
+--
+-- Two things this loses on purpose, both matching niri, where hjkl never
+-- leaves the monitor either: floating windows are not on the tape, so they
+-- are skipped here (MOD+SHIFT+V cycles everything, mouse still works), and
+-- focus wraps around the tape instead of jumping to the next monitor
+-- (MOD+ALT+arrows still do that).
+--
 -- - Move window: MOD + SHIFT + H/L
 -- - Move window across workspaces: MOD + SHIFT + J (+1) / MOD + SHIFT + K (-1)
 -- - Resize active window: MOD + CTRL + H/J/K/L (repeating)
 
 -- Focus (repeating = true, like GrajAP's binde)
-hl.bind(MOD .. " + H", hl.dsp.focus({ direction = "left" }),  { repeating = true })
-hl.bind(MOD .. " + J", hl.dsp.focus({ direction = "down" }),  { repeating = true })
-hl.bind(MOD .. " + K", hl.dsp.focus({ direction = "up" }),    { repeating = true })
-hl.bind(MOD .. " + L", hl.dsp.focus({ direction = "right" }), { repeating = true })
+hl.bind(MOD .. " + H", hl.dsp.layout("focus l"), { repeating = true })
+hl.bind(MOD .. " + J", hl.dsp.layout("focus d"), { repeating = true })
+hl.bind(MOD .. " + K", hl.dsp.layout("focus u"), { repeating = true })
+hl.bind(MOD .. " + L", hl.dsp.layout("focus r"), { repeating = true })
 
-hl.bind(MOD .. " + Left",  hl.dsp.focus({ direction = "left" }),  { repeating = true })
-hl.bind(MOD .. " + Down",  hl.dsp.focus({ direction = "down" }),  { repeating = true })
-hl.bind(MOD .. " + Up",    hl.dsp.focus({ direction = "up" }),    { repeating = true })
-hl.bind(MOD .. " + Right", hl.dsp.focus({ direction = "right" }), { repeating = true })
+hl.bind(MOD .. " + Left",  hl.dsp.layout("focus l"), { repeating = true })
+hl.bind(MOD .. " + Down",  hl.dsp.layout("focus d"), { repeating = true })
+hl.bind(MOD .. " + Up",    hl.dsp.layout("focus u"), { repeating = true })
+hl.bind(MOD .. " + Right", hl.dsp.layout("focus r"), { repeating = true })
 
 -- Move window left / right
 hl.bind(MOD .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
@@ -89,13 +102,14 @@ hl.bind(MOD .. " + CTRL + Down",  hl.dsp.window.resize({ x = 0, y = 80, relative
 hl.bind(MOD .. " + CTRL + Up",    hl.dsp.window.resize({ x = 0, y = -80, relative = true }), { repeating = true })
 hl.bind(MOD .. " + CTRL + Right", hl.dsp.window.resize({ x = 80, y = 0, relative = true }),  { repeating = true })
 
--- First / last column in scrolling layout
-hl.bind(MOD .. " + Home", hl.dsp.focus({ direction = "left" }))
-hl.bind(MOD .. " + End",  hl.dsp.focus({ direction = "right" }))
+-- Step one column towards the tape edge (same as H / L above; kept as
+-- separate keys so they stay free for a jump-to-first/last if the layout
+-- ever grows one).
+hl.bind(MOD .. " + Home", hl.dsp.layout("focus l"))
+hl.bind(MOD .. " + End",  hl.dsp.layout("focus r"))
 
 hl.bind(MOD .. " + Q", hl.dsp.window.kill())
 hl.bind(MOD .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(MOD .. " + W", hl.dsp.group.toggle())
 
 -- NOTE: niri's "switch focus between floating and tiling" has no direct
 -- equivalent; cycling through every window (tiled and floating) is the closest

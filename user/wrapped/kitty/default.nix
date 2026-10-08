@@ -186,7 +186,7 @@ let
 in
 pkgs.symlinkJoin {
   name = "kitty-wrapped";
-  paths = [pkgs.kitty];
+  paths = [ pkgs.kitty ];
   buildInputs = [ pkgs.makeWrapper ];
   postBuild = ''
     wrapProgram $out/bin/kitty --add-flags "--config=${config}"

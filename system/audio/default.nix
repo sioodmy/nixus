@@ -40,7 +40,7 @@
       package = pkgs.bluez5-experimental;
       settings = {
         General = {
-          ControllerMode = "bredr";
+          ControllerMode = "dual";
 
           Enable = "Source,Sink,Media,Socket";
         };

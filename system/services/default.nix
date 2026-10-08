@@ -36,5 +36,8 @@
     killall
   ];
 
+  systemd.services.postgresql.serviceConfig.TimeoutStopSec = "10s";
+  systemd.services.syncthing.serviceConfig.TimeoutStopSec = "10s";
+
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
 }

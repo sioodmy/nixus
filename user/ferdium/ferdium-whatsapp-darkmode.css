@@ -1,0 +1,723 @@
+/* ==========================================================================
+   Catppuccin Mocha Blue Theme for WhatsApp Web - compiled for Ferdium & Web
+   Source: catppuccin-userstyles.json ("WhatsApp Web Catppuccin")
+   Compiled with Mocha flavor, Blue accent, and lighterMessages=0
+   ========================================================================== */
+:root,
+html,
+body {
+  color-scheme: dark !important;
+}
+
+/* ==UserStyle==
+@name WhatsApp Web Catppuccin
+@namespace github.com/catppuccin/userstyles/styles/whatsapp-web
+@homepageURL https://github.com/catppuccin/userstyles/tree/main/styles/whatsapp-web
+@version 2026.08.16
+@updateURL https://github.com/catppuccin/userstyles/raw/main/styles/whatsapp-web/catppuccin.user.less
+@supportURL https://github.com/catppuccin/userstyles/issues?q=is%3Aopen+is%3Aissue+label%3Awhatsapp-web
+@description Soothing pastel theme for WhatsApp Web
+@author Catppuccin
+@license MIT
+
+@preprocessor less
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select accentColor "Accent" ["rosewater:Rosewater", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve*", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "blue:Blue", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+
+@var checkbox lighterMessages "Elevated incoming messages" 0
+==/UserStyle== */
+/* deno-fmt-ignore */
+/* deno-fmt-ignore */
+
+  /* Note: Some variables appear to be applied on :root,
+  but without using :has there doesn't seem to be a good
+  way to target the root whenever a certain theme is applied.
+  */
+:root:has( > :not(.dark)),
+:root .color-refresh,
+.color-refresh,
+.app-wrapper-web.app-wrapper-web,
+.app-wrapper-web.app-wrapper-web:root {
+  color-scheme: dark;
+  --WDS-accent: #89b4fa;
+  --WDS-accent-RGB: 137, 180, 250;
+  --WDS-accent-rgb: 137, 180, 250;
+  --WDS-accent-deemphasized: rgba(137, 180, 250, 0.3);
+  --WDS-accent-deemphasized-RGB: 137, 180, 250;
+  --WDS-accent-deemphasized-rgb: 137, 180, 250;
+  --WDS-accent-emphasized: #bad3fc;
+  --WDS-accent-emphasized-RGB: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-accent-emphasized-rgb: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-secondary-negative: #f38ba8;
+  --WDS-secondary-negative-RGB: 243, 139, 168;
+  --WDS-secondary-negative-rgb: 243, 139, 168;
+  --WDS-secondary-negative-deemphasized: rgba(243, 139, 168, 0.3);
+  --WDS-secondary-negative-deemphasized-RGB: 243, 139, 168;
+  --WDS-secondary-negative-deemphasized-rgb: 243, 139, 168;
+  --WDS-secondary-negative-emphasized: #f38ba8;
+  --WDS-secondary-negative-emphasized-RGB: 243, 139, 168;
+  --WDS-secondary-negative-emphasized-rgb: 243, 139, 168;
+  --WDS-secondary-positive: #a6e3a1;
+  --WDS-secondary-positive-RGB: 166, 227, 161;
+  --WDS-secondary-positive-rgb: 166, 227, 161;
+  --WDS-secondary-positive-deemphasized: rgba(166, 227, 161, 0.3);
+  --WDS-secondary-positive-deemphasized-RGB: 166, 227, 161;
+  --WDS-secondary-positive-deemphasized-rgb: 166, 227, 161;
+  --WDS-secondary-warning: #f9e2af;
+  --WDS-secondary-warning-RGB: 249, 226, 175;
+  --WDS-secondary-warning-rgb: 249, 226, 175;
+  --WDS-secondary-warning-deemphasized: rgba(249, 226, 175, 0.3);
+  --WDS-secondary-warning-deemphasized-RGB: 249, 226, 175;
+  --WDS-secondary-warning-deemphasized-rgb: 249, 226, 175;
+  --WDS-content-default: #cdd6f4;
+  --WDS-content-default-RGB: 205, 214, 244;
+  --WDS-content-default-rgb: 205, 214, 244;
+  --WDS-content-deemphasized: #9399b2;
+  --WDS-content-deemphasized-RGB: 147, 153, 178;
+  --WDS-content-deemphasized-rgb: 147, 153, 178;
+  --WDS-content-disabled: rgba(205, 214, 244, 0.5);
+  --WDS-content-disabled-RGB: 205, 214, 244;
+  --WDS-content-disabled-rgb: 205, 214, 244;
+  --WDS-content-on-accent: #11111b;
+  --WDS-content-on-accent-RGB: 17, 17, 27;
+  --WDS-content-on-accent-rgb: 17, 17, 27;
+  --WDS-content-action-default: #89b4fa;
+  --WDS-content-action-default-RGB: 137, 180, 250;
+  --WDS-content-action-default-rgb: 137, 180, 250;
+  --WDS-content-action-emphasized: #bad3fc;
+  --WDS-content-action-emphasized-RGB: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-content-action-emphasized-rgb: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-content-external-link: #89b4fa;
+  --WDS-content-external-link-RGB: 137, 180, 250;
+  --WDS-content-external-link-rgb: 137, 180, 250;
+  --WDS-content-inverse: #11111b;
+  --WDS-content-inverse-RGB: 17, 17, 27;
+  --WDS-content-inverse-rgb: 17, 17, 27;
+  --WDS-content-read: #89b4fa;
+  --WDS-content-read-RGB: 137, 180, 250;
+  --WDS-content-read-rgb: 137, 180, 250;
+  --WDS-background-wash-inset: #11111b;
+  --WDS-background-wash-inset-RGB: 17, 17, 27;
+  --WDS-background-wash-inset-rgb: 17, 17, 27;
+  --WDS-background-wash-plain: #11111b;
+  --WDS-background-wash-plain-RGB: 17, 17, 27;
+  --WDS-background-wash-plain-rgb: 17, 17, 27;
+  --WDS-background-elevated-wash-plain: #11111b;
+  --WDS-background-elevated-wash-plain-RGB: 17, 17, 27;
+  --WDS-background-elevated-wash-plain-rgb: 17, 17, 27;
+  --WDS-background-elevated-wash-inset: #11111b;
+  --WDS-background-elevated-wash-inset-RGB: 17, 17, 27;
+  --WDS-background-elevated-wash-inset-rgb: 17, 17, 27;
+  --WDS-background-dimmer: rgba(0, 0, 0, 0.3);
+  --WDS-background-dimmer-RGB: 0, 0, 0;
+  --WDS-background-dimmer-rgb: 0, 0, 0;
+  --WDS-modal-backdrop-solid: #11111b;
+  --WDS-modal-backdrop-solid-RGB: 17, 17, 27;
+  --WDS-modal-backdrop-solid-rgb: 17, 17, 27;
+  --WDS-surface-default: #181825;
+  --WDS-surface-default-RGB: 24, 24, 37;
+  --WDS-surface-default-rgb: 24, 24, 37;
+  --background-default: var(--WDS-surface-default);
+  --search-container-background: var(--WDS-surface-default);
+  --WDS-surface-emphasized: #1e1e2e;
+  --WDS-surface-emphasized-RGB: 30, 30, 46;
+  --WDS-surface-emphasized-rgb: 30, 30, 46;
+  --WDS-surface-elevated-default: #1e1e2e;
+  --WDS-surface-elevated-default-RGB: 30, 30, 46;
+  --WDS-surface-elevated-default-rgb: 30, 30, 46;
+  --WDS-surface-elevated-emphasized: #303042;
+  --WDS-surface-elevated-emphasized-RGB: 47.5, 48.4, 65.8;
+  --WDS-surface-elevated-emphasized-rgb: 47.5, 48.4, 65.8;
+  --WDS-surface-highlight: rgba(205, 214, 244, 0.2);
+  --WDS-surface-highlight-RGB: 205, 214, 244;
+  --WDS-surface-highlight-rgb: 205, 214, 244;
+  --WDS-surface-inverse: #cdd6f4;
+  --WDS-surface-inverse-RGB: 205, 214, 244;
+  --WDS-surface-inverse-rgb: 205, 214, 244;
+  --WDS-surface-pressed: rgba(205, 214, 244, 0.2);
+  --WDS-surface-pressed-RGB: 205, 214, 244;
+  --WDS-surface-pressed-rgb: 205, 214, 244;
+  --WDS-lines-divider: rgba(205, 214, 244, 0.1);
+  --WDS-lines-divider-RGB: 205, 214, 244;
+  --WDS-lines-divider-rgb: 205, 214, 244;
+  --WDS-lines-outline-default: #6c7086;
+  --WDS-lines-outline-default-RGB: 108, 112, 134;
+  --WDS-lines-outline-default-rgb: 108, 112, 134;
+  --WDS-lines-outline-deemphasized: rgba(205, 214, 244, 0.3);
+  --WDS-lines-outline-deemphasized-RGB: 205, 214, 244;
+  --WDS-lines-outline-deemphasized-rgb: 205, 214, 244;
+  --WDS-persistent-activity-indicator: rgba(166, 227, 161, 0.9);
+  --WDS-persistent-activity-indicator-RGB: 166, 227, 161;
+  --WDS-persistent-activity-indicator-rgb: 166, 227, 161;
+  --WDS-persistent-always-black: #000;
+  --WDS-persistent-always-black-RGB: 0, 0, 0;
+  --WDS-persistent-always-black-rgb: 0, 0, 0;
+  --WDS-persistent-always-white: #fff;
+  --WDS-persistent-always-white-RGB: 255, 255, 255;
+  --WDS-persistent-always-white-rgb: 255, 255, 255;
+  --WDS-persistent-always-branded: #89b4fa;
+  --WDS-persistent-always-branded-RGB: 137, 180, 250;
+  --WDS-persistent-always-branded-rgb: 137, 180, 250;
+  --WDS-systems-bubble-surface-incoming: #1e1e2e;
+  --WDS-systems-bubble-surface-incoming-RGB: 30, 30, 46;
+  --WDS-systems-bubble-surface-incoming-rgb: 30, 30, 46;
+  --WDS-systems-bubble-surface-outgoing: #333c57;
+  --WDS-systems-bubble-surface-outgoing-RGB: 51.4, 60, 86.8;
+  --WDS-systems-bubble-surface-outgoing-rgb: 51.4, 60, 86.8;
+  --WDS-systems-bubble-content-deemphasized: rgba(205, 214, 244, 0.5);
+  --WDS-systems-bubble-content-deemphasized-RGB: 205, 214, 244;
+  --WDS-systems-bubble-content-deemphasized-rgb: 205, 214, 244;
+  --WDS-systems-bubble-surface-overlay: #181825;
+  --WDS-systems-bubble-surface-overlay-RGB: 24, 24, 37;
+  --WDS-systems-bubble-surface-overlay-rgb: 24, 24, 37;
+  --WDS-systems-bubble-surface-system: #181825;
+  --WDS-systems-bubble-surface-system-RGB: 24, 24, 37;
+  --WDS-systems-bubble-surface-system-rgb: 24, 24, 37;
+  --WDS-systems-bubble-surface-e2e: #454041;
+  --WDS-systems-bubble-surface-e2e-RGB: 69, 64.4, 64.6;
+  --WDS-systems-bubble-surface-e2e-rgb: 69, 64.4, 64.6;
+  --WDS-systems-bubble-content-e2e: #f9e2af;
+  --WDS-systems-bubble-content-e2e-RGB: 249, 226, 175;
+  --WDS-systems-bubble-content-e2e-rgb: 249, 226, 175;
+  --WDS-systems-bubble-surface-business: #314048;
+  --WDS-systems-bubble-surface-business-RGB: 48.8, 64.4, 72.2;
+  --WDS-systems-bubble-surface-business-rgb: 48.8, 64.4, 72.2;
+  --WDS-systems-chat-surface-composer: #1e1e2e;
+  --WDS-systems-chat-surface-composer-RGB: 30, 30, 46;
+  --WDS-systems-chat-surface-composer-rgb: 30, 30, 46;
+  --WDS-systems-chat-background-wallpaper: #11111b;
+  --WDS-systems-chat-background-wallpaper-RGB: 17, 17, 27;
+  --WDS-systems-chat-background-wallpaper-rgb: 17, 17, 27;
+  --WDS-systems-chat-foreground-wallpaper: #181825;
+  --WDS-systems-chat-foreground-wallpaper-RGB: 24, 24, 37;
+  --WDS-systems-chat-foreground-wallpaper-rgb: 24, 24, 37;
+  --WDS-systems-chat-surface-tray: #1e1e2e;
+  --WDS-systems-chat-surface-tray-RGB: 30, 30, 46;
+  --WDS-systems-chat-surface-tray-rgb: 30, 30, 46;
+  --WDS-systems-status-seen: rgba(205, 214, 244, 0.5);
+  --WDS-systems-status-seen-RGB: 205, 214, 244;
+  --WDS-systems-status-seen-rgb: 205, 214, 244;
+  --WDS-components-platform-gesture-bar: rgba(17, 17, 27, 0.5);
+  --WDS-components-platform-gesture-bar-RGB: 17, 17, 27;
+  --WDS-components-platform-gesture-bar-rgb: 17, 17, 27;
+  --WDS-components-platform-status-bar: rgba(17, 17, 27, 0.8);
+  --WDS-components-platform-status-bar-RGB: 17, 17, 27;
+  --WDS-components-platform-status-bar-rgb: 17, 17, 27;
+  --WDS-components-surface-nav-bar: #1e1e2e;
+  --WDS-components-surface-nav-bar-RGB: 30, 30, 46;
+  --WDS-components-surface-nav-bar-rgb: 30, 30, 46;
+  --WDS-app-wash: #313244;
+  --WDS-app-wash-RGB: 49, 50, 68;
+  --WDS-app-wash-rgb: 49, 50, 68;
+  --WDS-white: #11111b;
+  --WDS-white-RGB: 17, 17, 27;
+  --WDS-white-rgb: 17, 17, 27;
+  --white: #11111b;
+  --white-rgb: 17, 17, 27;
+  --attachment-type-stickers-color: #a6e3a1;
+  --attachment-type-stickers-color-rgb: 166, 227, 161;
+  --attachment-type-polls-color: #f9e2af;
+  --attachment-type-polls-color-rgb: 249, 226, 175;
+  --attachment-type-contacts-color: #89dceb;
+  --attachment-type-contacts-color-rgb: 137, 220, 235;
+  --attachment-type-camera-color: #f5c2e7;
+  --attachment-type-camera-color-rgb: 245, 194, 231;
+  --attachment-type-photos-color: #89b4fa;
+  --attachment-type-photos-color-rgb: 137, 180, 250;
+  --attachment-type-documents-color: #cba6f7;
+  --attachment-type-documents-color-rgb: 203, 166, 247;
+  --attachment-type-audio-color: #fab387;
+  --attachment-type-audio-color-rgb: 250, 179, 135;
+  /* \/ Note: Seems to be overwritten by a generated
+    CSS variable, so has no effect :( */
+  --attachment-type-event-color: #f5c2e7;
+  --attachment-type-event-color-rgb: 245, 194, 231;
+  --toast-background: #45475a;
+  --toast-background-rgb: 69, 71, 90;
+  --toast-text: #cdd6f4;
+  --toast-text-rgb: 205, 214, 244;
+  --picker-background: #45475a;
+  --picker-background-rgb: 69, 71, 90;
+  --butterbar-blue-nux-background: #89dceb;
+  --butterbar-blue-nux-background-rgb: 137, 220, 235;
+  --butterbar-blue-nux-icon-background: #20a3bb;
+  --butterbar-blue-nux-icon-background-rgb: 31.73913043, 163.45652174, 187.26086957;
+  --blue-light: #89b4fa;
+  --blue-light-rgb: 137, 180, 250;
+  --gray-500: #9399b2;
+  --gray-500-rgb: 147, 153, 178;
+  --focus-animation: #495a80;
+  --focus-animation-rgb: 72.8, 90, 127.6;
+  --focus-animation-deeper: #3e4b6b;
+  --focus-animation-deeper-rgb: 62.1, 75, 107.2;
+  --startup-icon: #45475a;
+  --startup-icon-rgb: 69, 71, 90;
+  --startup-background: #11111b;
+  --startup-background-rgb: 17, 17, 27;
+  --progress-background: #313244;
+  --progress-background-rgb: 49, 50, 68;
+  /* "About AI messages" icon */
+  /* TODO: Meta AI/other bot colours */
+  /* Toasts */
+  /* Date picker */
+  --date-picker-text-color: #cdd6f4;
+  --date-picker-text-color-rgb: 205, 214, 244;
+}
+:root:has( > :not(.dark)) ::selection,
+:root .color-refresh ::selection,
+.color-refresh ::selection,
+.app-wrapper-web.app-wrapper-web ::selection,
+.app-wrapper-web.app-wrapper-web:root ::selection {
+  background-color: rgba(137, 180, 250, 0.3);
+}
+:root:has( > :not(.dark)) input::placeholder,
+:root .color-refresh input::placeholder,
+.color-refresh input::placeholder,
+.app-wrapper-web.app-wrapper-web input::placeholder,
+.app-wrapper-web.app-wrapper-web:root input::placeholder,
+:root:has( > :not(.dark)) textarea::placeholder,
+:root .color-refresh textarea::placeholder,
+.color-refresh textarea::placeholder,
+.app-wrapper-web.app-wrapper-web textarea::placeholder,
+.app-wrapper-web.app-wrapper-web:root textarea::placeholder {
+  color: #a6adc8 !important;
+}
+:root:has( > :not(.dark)) .st0,
+:root .color-refresh .st0,
+.color-refresh .st0,
+.app-wrapper-web.app-wrapper-web .st0,
+.app-wrapper-web.app-wrapper-web:root .st0 {
+  fill: #89b4fa !important;
+  stroke: #313244;
+}
+:root:has( > :not(.dark)) input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+:root .color-refresh input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.color-refresh input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+:root:has( > :not(.dark)) input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+:root .color-refresh input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.color-refresh input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+:root:has( > :not(.dark)) input[type="time"]::-webkit-datetime-edit-second-field:focus,
+:root .color-refresh input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.color-refresh input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-second-field:focus,
+:root:has( > :not(.dark)) input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+:root .color-refresh input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.color-refresh input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+:root:has( > :not(.dark)) input[type="date"]::-webkit-datetime-edit-year-field:focus,
+:root .color-refresh input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.color-refresh input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-year-field:focus,
+:root:has( > :not(.dark)) input[type="date"]::-webkit-datetime-edit-month-field:focus,
+:root .color-refresh input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.color-refresh input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-month-field:focus,
+:root:has( > :not(.dark)) input[type="date"]::-webkit-datetime-edit-day-field:focus,
+:root .color-refresh input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.color-refresh input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-day-field:focus {
+  background-color: #89b4fa;
+  color: #11111b;
+}
+:root:has( > :not(.dark)) [data-icon="wa-wordmark-refreshed"] path,
+:root .color-refresh [data-icon="wa-wordmark-refreshed"] path,
+.color-refresh [data-icon="wa-wordmark-refreshed"] path,
+.app-wrapper-web.app-wrapper-web [data-icon="wa-wordmark-refreshed"] path,
+.app-wrapper-web.app-wrapper-web:root [data-icon="wa-wordmark-refreshed"] path {
+  fill: currentcolor;
+}
+:root:has( > :not(.dark)) #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+:root .color-refresh #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.color-refresh #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.app-wrapper-web.app-wrapper-web #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.app-wrapper-web.app-wrapper-web:root #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])) {
+  color: var(--WDS-accent-emphasized);
+}
+:root:has( > :not(.dark)) .react-calendar__tile:disabled,
+:root .color-refresh .react-calendar__tile:disabled,
+.color-refresh .react-calendar__tile:disabled,
+.app-wrapper-web.app-wrapper-web .react-calendar__tile:disabled,
+.app-wrapper-web.app-wrapper-web:root .react-calendar__tile:disabled {
+  color: #a6adc8;
+}
+:root:has( > :not(.dark)) .react-calendar__month-view__days__day--neighboringMonth,
+:root .color-refresh .react-calendar__month-view__days__day--neighboringMonth,
+.color-refresh .react-calendar__month-view__days__day--neighboringMonth,
+.app-wrapper-web.app-wrapper-web .react-calendar__month-view__days__day--neighboringMonth,
+.app-wrapper-web.app-wrapper-web:root .react-calendar__month-view__days__day--neighboringMonth {
+  color: #9399b2;
+}
+:root:has(> .dark),
+.dark.color-refresh,
+.color-refresh.dark,
+.dark .app-wrapper-web.app-wrapper-web,
+.dark .app-wrapper-web.app-wrapper-web:root {
+  color-scheme: dark;
+  --WDS-accent: #89b4fa;
+  --WDS-accent-RGB: 137, 180, 250;
+  --WDS-accent-rgb: 137, 180, 250;
+  --WDS-accent-deemphasized: rgba(137, 180, 250, 0.3);
+  --WDS-accent-deemphasized-RGB: 137, 180, 250;
+  --WDS-accent-deemphasized-rgb: 137, 180, 250;
+  --WDS-accent-emphasized: #bad3fc;
+  --WDS-accent-emphasized-RGB: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-accent-emphasized-rgb: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-secondary-negative: #f38ba8;
+  --WDS-secondary-negative-RGB: 243, 139, 168;
+  --WDS-secondary-negative-rgb: 243, 139, 168;
+  --WDS-secondary-negative-deemphasized: rgba(243, 139, 168, 0.3);
+  --WDS-secondary-negative-deemphasized-RGB: 243, 139, 168;
+  --WDS-secondary-negative-deemphasized-rgb: 243, 139, 168;
+  --WDS-secondary-negative-emphasized: #f38ba8;
+  --WDS-secondary-negative-emphasized-RGB: 243, 139, 168;
+  --WDS-secondary-negative-emphasized-rgb: 243, 139, 168;
+  --WDS-secondary-positive: #a6e3a1;
+  --WDS-secondary-positive-RGB: 166, 227, 161;
+  --WDS-secondary-positive-rgb: 166, 227, 161;
+  --WDS-secondary-positive-deemphasized: rgba(166, 227, 161, 0.3);
+  --WDS-secondary-positive-deemphasized-RGB: 166, 227, 161;
+  --WDS-secondary-positive-deemphasized-rgb: 166, 227, 161;
+  --WDS-secondary-warning: #f9e2af;
+  --WDS-secondary-warning-RGB: 249, 226, 175;
+  --WDS-secondary-warning-rgb: 249, 226, 175;
+  --WDS-secondary-warning-deemphasized: rgba(249, 226, 175, 0.3);
+  --WDS-secondary-warning-deemphasized-RGB: 249, 226, 175;
+  --WDS-secondary-warning-deemphasized-rgb: 249, 226, 175;
+  --WDS-content-default: #cdd6f4;
+  --WDS-content-default-RGB: 205, 214, 244;
+  --WDS-content-default-rgb: 205, 214, 244;
+  --WDS-content-deemphasized: #9399b2;
+  --WDS-content-deemphasized-RGB: 147, 153, 178;
+  --WDS-content-deemphasized-rgb: 147, 153, 178;
+  --WDS-content-disabled: rgba(205, 214, 244, 0.5);
+  --WDS-content-disabled-RGB: 205, 214, 244;
+  --WDS-content-disabled-rgb: 205, 214, 244;
+  --WDS-content-on-accent: #11111b;
+  --WDS-content-on-accent-RGB: 17, 17, 27;
+  --WDS-content-on-accent-rgb: 17, 17, 27;
+  --WDS-content-action-default: #89b4fa;
+  --WDS-content-action-default-RGB: 137, 180, 250;
+  --WDS-content-action-default-rgb: 137, 180, 250;
+  --WDS-content-action-emphasized: #bad3fc;
+  --WDS-content-action-emphasized-RGB: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-content-action-emphasized-rgb: 185.92682927, 211.09756098, 252.07317073;
+  --WDS-content-external-link: #89b4fa;
+  --WDS-content-external-link-RGB: 137, 180, 250;
+  --WDS-content-external-link-rgb: 137, 180, 250;
+  --WDS-content-inverse: #11111b;
+  --WDS-content-inverse-RGB: 17, 17, 27;
+  --WDS-content-inverse-rgb: 17, 17, 27;
+  --WDS-content-read: #89b4fa;
+  --WDS-content-read-RGB: 137, 180, 250;
+  --WDS-content-read-rgb: 137, 180, 250;
+  --WDS-background-wash-inset: #11111b;
+  --WDS-background-wash-inset-RGB: 17, 17, 27;
+  --WDS-background-wash-inset-rgb: 17, 17, 27;
+  --WDS-background-wash-plain: #11111b;
+  --WDS-background-wash-plain-RGB: 17, 17, 27;
+  --WDS-background-wash-plain-rgb: 17, 17, 27;
+  --WDS-background-elevated-wash-plain: #11111b;
+  --WDS-background-elevated-wash-plain-RGB: 17, 17, 27;
+  --WDS-background-elevated-wash-plain-rgb: 17, 17, 27;
+  --WDS-background-elevated-wash-inset: #11111b;
+  --WDS-background-elevated-wash-inset-RGB: 17, 17, 27;
+  --WDS-background-elevated-wash-inset-rgb: 17, 17, 27;
+  --WDS-background-dimmer: rgba(0, 0, 0, 0.3);
+  --WDS-background-dimmer-RGB: 0, 0, 0;
+  --WDS-background-dimmer-rgb: 0, 0, 0;
+  --WDS-modal-backdrop-solid: #11111b;
+  --WDS-modal-backdrop-solid-RGB: 17, 17, 27;
+  --WDS-modal-backdrop-solid-rgb: 17, 17, 27;
+  --WDS-surface-default: #181825;
+  --WDS-surface-default-RGB: 24, 24, 37;
+  --WDS-surface-default-rgb: 24, 24, 37;
+  --background-default: var(--WDS-surface-default);
+  --search-container-background: var(--WDS-surface-default);
+  --WDS-surface-emphasized: #1e1e2e;
+  --WDS-surface-emphasized-RGB: 30, 30, 46;
+  --WDS-surface-emphasized-rgb: 30, 30, 46;
+  --WDS-surface-elevated-default: #1e1e2e;
+  --WDS-surface-elevated-default-RGB: 30, 30, 46;
+  --WDS-surface-elevated-default-rgb: 30, 30, 46;
+  --WDS-surface-elevated-emphasized: #303042;
+  --WDS-surface-elevated-emphasized-RGB: 47.5, 48.4, 65.8;
+  --WDS-surface-elevated-emphasized-rgb: 47.5, 48.4, 65.8;
+  --WDS-surface-highlight: rgba(205, 214, 244, 0.2);
+  --WDS-surface-highlight-RGB: 205, 214, 244;
+  --WDS-surface-highlight-rgb: 205, 214, 244;
+  --WDS-surface-inverse: #cdd6f4;
+  --WDS-surface-inverse-RGB: 205, 214, 244;
+  --WDS-surface-inverse-rgb: 205, 214, 244;
+  --WDS-surface-pressed: rgba(205, 214, 244, 0.2);
+  --WDS-surface-pressed-RGB: 205, 214, 244;
+  --WDS-surface-pressed-rgb: 205, 214, 244;
+  --WDS-lines-divider: rgba(205, 214, 244, 0.1);
+  --WDS-lines-divider-RGB: 205, 214, 244;
+  --WDS-lines-divider-rgb: 205, 214, 244;
+  --WDS-lines-outline-default: #6c7086;
+  --WDS-lines-outline-default-RGB: 108, 112, 134;
+  --WDS-lines-outline-default-rgb: 108, 112, 134;
+  --WDS-lines-outline-deemphasized: rgba(205, 214, 244, 0.3);
+  --WDS-lines-outline-deemphasized-RGB: 205, 214, 244;
+  --WDS-lines-outline-deemphasized-rgb: 205, 214, 244;
+  --WDS-persistent-activity-indicator: rgba(166, 227, 161, 0.9);
+  --WDS-persistent-activity-indicator-RGB: 166, 227, 161;
+  --WDS-persistent-activity-indicator-rgb: 166, 227, 161;
+  --WDS-persistent-always-black: #000;
+  --WDS-persistent-always-black-RGB: 0, 0, 0;
+  --WDS-persistent-always-black-rgb: 0, 0, 0;
+  --WDS-persistent-always-white: #fff;
+  --WDS-persistent-always-white-RGB: 255, 255, 255;
+  --WDS-persistent-always-white-rgb: 255, 255, 255;
+  --WDS-persistent-always-branded: #89b4fa;
+  --WDS-persistent-always-branded-RGB: 137, 180, 250;
+  --WDS-persistent-always-branded-rgb: 137, 180, 250;
+  --WDS-systems-bubble-surface-incoming: #1e1e2e;
+  --WDS-systems-bubble-surface-incoming-RGB: 30, 30, 46;
+  --WDS-systems-bubble-surface-incoming-rgb: 30, 30, 46;
+  --WDS-systems-bubble-surface-outgoing: #333c57;
+  --WDS-systems-bubble-surface-outgoing-RGB: 51.4, 60, 86.8;
+  --WDS-systems-bubble-surface-outgoing-rgb: 51.4, 60, 86.8;
+  --WDS-systems-bubble-content-deemphasized: rgba(205, 214, 244, 0.5);
+  --WDS-systems-bubble-content-deemphasized-RGB: 205, 214, 244;
+  --WDS-systems-bubble-content-deemphasized-rgb: 205, 214, 244;
+  --WDS-systems-bubble-surface-overlay: #181825;
+  --WDS-systems-bubble-surface-overlay-RGB: 24, 24, 37;
+  --WDS-systems-bubble-surface-overlay-rgb: 24, 24, 37;
+  --WDS-systems-bubble-surface-system: #181825;
+  --WDS-systems-bubble-surface-system-RGB: 24, 24, 37;
+  --WDS-systems-bubble-surface-system-rgb: 24, 24, 37;
+  --WDS-systems-bubble-surface-e2e: #454041;
+  --WDS-systems-bubble-surface-e2e-RGB: 69, 64.4, 64.6;
+  --WDS-systems-bubble-surface-e2e-rgb: 69, 64.4, 64.6;
+  --WDS-systems-bubble-content-e2e: #f9e2af;
+  --WDS-systems-bubble-content-e2e-RGB: 249, 226, 175;
+  --WDS-systems-bubble-content-e2e-rgb: 249, 226, 175;
+  --WDS-systems-bubble-surface-business: #314048;
+  --WDS-systems-bubble-surface-business-RGB: 48.8, 64.4, 72.2;
+  --WDS-systems-bubble-surface-business-rgb: 48.8, 64.4, 72.2;
+  --WDS-systems-chat-surface-composer: #1e1e2e;
+  --WDS-systems-chat-surface-composer-RGB: 30, 30, 46;
+  --WDS-systems-chat-surface-composer-rgb: 30, 30, 46;
+  --WDS-systems-chat-background-wallpaper: #11111b;
+  --WDS-systems-chat-background-wallpaper-RGB: 17, 17, 27;
+  --WDS-systems-chat-background-wallpaper-rgb: 17, 17, 27;
+  --WDS-systems-chat-foreground-wallpaper: #181825;
+  --WDS-systems-chat-foreground-wallpaper-RGB: 24, 24, 37;
+  --WDS-systems-chat-foreground-wallpaper-rgb: 24, 24, 37;
+  --WDS-systems-chat-surface-tray: #1e1e2e;
+  --WDS-systems-chat-surface-tray-RGB: 30, 30, 46;
+  --WDS-systems-chat-surface-tray-rgb: 30, 30, 46;
+  --WDS-systems-status-seen: rgba(205, 214, 244, 0.5);
+  --WDS-systems-status-seen-RGB: 205, 214, 244;
+  --WDS-systems-status-seen-rgb: 205, 214, 244;
+  --WDS-components-platform-gesture-bar: rgba(17, 17, 27, 0.5);
+  --WDS-components-platform-gesture-bar-RGB: 17, 17, 27;
+  --WDS-components-platform-gesture-bar-rgb: 17, 17, 27;
+  --WDS-components-platform-status-bar: rgba(17, 17, 27, 0.8);
+  --WDS-components-platform-status-bar-RGB: 17, 17, 27;
+  --WDS-components-platform-status-bar-rgb: 17, 17, 27;
+  --WDS-components-surface-nav-bar: #1e1e2e;
+  --WDS-components-surface-nav-bar-RGB: 30, 30, 46;
+  --WDS-components-surface-nav-bar-rgb: 30, 30, 46;
+  --WDS-app-wash: #313244;
+  --WDS-app-wash-RGB: 49, 50, 68;
+  --WDS-app-wash-rgb: 49, 50, 68;
+  --WDS-white: #11111b;
+  --WDS-white-RGB: 17, 17, 27;
+  --WDS-white-rgb: 17, 17, 27;
+  --white: #11111b;
+  --white-rgb: 17, 17, 27;
+  --attachment-type-stickers-color: #a6e3a1;
+  --attachment-type-stickers-color-rgb: 166, 227, 161;
+  --attachment-type-polls-color: #f9e2af;
+  --attachment-type-polls-color-rgb: 249, 226, 175;
+  --attachment-type-contacts-color: #89dceb;
+  --attachment-type-contacts-color-rgb: 137, 220, 235;
+  --attachment-type-camera-color: #f5c2e7;
+  --attachment-type-camera-color-rgb: 245, 194, 231;
+  --attachment-type-photos-color: #89b4fa;
+  --attachment-type-photos-color-rgb: 137, 180, 250;
+  --attachment-type-documents-color: #cba6f7;
+  --attachment-type-documents-color-rgb: 203, 166, 247;
+  --attachment-type-audio-color: #fab387;
+  --attachment-type-audio-color-rgb: 250, 179, 135;
+  /* \/ Note: Seems to be overwritten by a generated
+    CSS variable, so has no effect :( */
+  --attachment-type-event-color: #f5c2e7;
+  --attachment-type-event-color-rgb: 245, 194, 231;
+  --toast-background: #45475a;
+  --toast-background-rgb: 69, 71, 90;
+  --toast-text: #cdd6f4;
+  --toast-text-rgb: 205, 214, 244;
+  --picker-background: #45475a;
+  --picker-background-rgb: 69, 71, 90;
+  --butterbar-blue-nux-background: #89dceb;
+  --butterbar-blue-nux-background-rgb: 137, 220, 235;
+  --butterbar-blue-nux-icon-background: #20a3bb;
+  --butterbar-blue-nux-icon-background-rgb: 31.73913043, 163.45652174, 187.26086957;
+  --blue-light: #89b4fa;
+  --blue-light-rgb: 137, 180, 250;
+  --gray-500: #9399b2;
+  --gray-500-rgb: 147, 153, 178;
+  --focus-animation: #495a80;
+  --focus-animation-rgb: 72.8, 90, 127.6;
+  --focus-animation-deeper: #3e4b6b;
+  --focus-animation-deeper-rgb: 62.1, 75, 107.2;
+  --startup-icon: #45475a;
+  --startup-icon-rgb: 69, 71, 90;
+  --startup-background: #11111b;
+  --startup-background-rgb: 17, 17, 27;
+  --progress-background: #313244;
+  --progress-background-rgb: 49, 50, 68;
+  /* "About AI messages" icon */
+  /* TODO: Meta AI/other bot colours */
+  /* Toasts */
+  /* Date picker */
+  --date-picker-text-color: #cdd6f4;
+  --date-picker-text-color-rgb: 205, 214, 244;
+}
+:root:has(> .dark) ::selection,
+.dark.color-refresh ::selection,
+.color-refresh.dark ::selection,
+.dark .app-wrapper-web.app-wrapper-web ::selection,
+.dark .app-wrapper-web.app-wrapper-web:root ::selection {
+  background-color: rgba(137, 180, 250, 0.3);
+}
+:root:has(> .dark) input::placeholder,
+.dark.color-refresh input::placeholder,
+.color-refresh.dark input::placeholder,
+.dark .app-wrapper-web.app-wrapper-web input::placeholder,
+.dark .app-wrapper-web.app-wrapper-web:root input::placeholder,
+:root:has(> .dark) textarea::placeholder,
+.dark.color-refresh textarea::placeholder,
+.color-refresh.dark textarea::placeholder,
+.dark .app-wrapper-web.app-wrapper-web textarea::placeholder,
+.dark .app-wrapper-web.app-wrapper-web:root textarea::placeholder {
+  color: #a6adc8 !important;
+}
+:root:has(> .dark) .st0,
+.dark.color-refresh .st0,
+.color-refresh.dark .st0,
+.dark .app-wrapper-web.app-wrapper-web .st0,
+.dark .app-wrapper-web.app-wrapper-web:root .st0 {
+  fill: #89b4fa !important;
+  stroke: #313244;
+}
+:root:has(> .dark) input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.dark.color-refresh input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.color-refresh.dark input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+:root:has(> .dark) input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.dark.color-refresh input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.color-refresh.dark input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-minute-field:focus,
+:root:has(> .dark) input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.dark.color-refresh input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.color-refresh.dark input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-second-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-second-field:focus,
+:root:has(> .dark) input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.dark.color-refresh input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.color-refresh.dark input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="time"]::-webkit-datetime-edit-ampm-field:focus,
+:root:has(> .dark) input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.dark.color-refresh input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.color-refresh.dark input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-year-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-year-field:focus,
+:root:has(> .dark) input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.dark.color-refresh input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.color-refresh.dark input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-month-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-month-field:focus,
+:root:has(> .dark) input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.dark.color-refresh input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.color-refresh.dark input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.dark .app-wrapper-web.app-wrapper-web input[type="date"]::-webkit-datetime-edit-day-field:focus,
+.dark .app-wrapper-web.app-wrapper-web:root input[type="date"]::-webkit-datetime-edit-day-field:focus {
+  background-color: #89b4fa;
+  color: #11111b;
+}
+:root:has(> .dark) [data-icon="wa-wordmark-refreshed"] path,
+.dark.color-refresh [data-icon="wa-wordmark-refreshed"] path,
+.color-refresh.dark [data-icon="wa-wordmark-refreshed"] path,
+.dark .app-wrapper-web.app-wrapper-web [data-icon="wa-wordmark-refreshed"] path,
+.dark .app-wrapper-web.app-wrapper-web:root [data-icon="wa-wordmark-refreshed"] path {
+  fill: currentcolor;
+}
+:root:has(> .dark) #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.dark.color-refresh #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.color-refresh.dark #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.dark .app-wrapper-web.app-wrapper-web #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])),
+.dark .app-wrapper-web.app-wrapper-web:root #wa-popovers-bucket + span > div button:nth-of-type(1):not(:has(> [data-icon="x-alt"])) {
+  color: var(--WDS-accent-emphasized);
+}
+:root:has(> .dark) .react-calendar__tile:disabled,
+.dark.color-refresh .react-calendar__tile:disabled,
+.color-refresh.dark .react-calendar__tile:disabled,
+.dark .app-wrapper-web.app-wrapper-web .react-calendar__tile:disabled,
+.dark .app-wrapper-web.app-wrapper-web:root .react-calendar__tile:disabled {
+  color: #a6adc8;
+}
+:root:has(> .dark) .react-calendar__month-view__days__day--neighboringMonth,
+.dark.color-refresh .react-calendar__month-view__days__day--neighboringMonth,
+.color-refresh.dark .react-calendar__month-view__days__day--neighboringMonth,
+.dark .app-wrapper-web.app-wrapper-web .react-calendar__month-view__days__day--neighboringMonth,
+.dark .app-wrapper-web.app-wrapper-web:root .react-calendar__month-view__days__day--neighboringMonth {
+  color: #9399b2;
+}
+[style^="--splashscreen-startup-background: #F7F5F3;"] {
+  --splashscreen-startup-background: #11111b !important;
+  --splashscreen-startup-background-rgb: 17, 17, 27 !important;
+  --splashscreen-startup-icon: #313244 !important;
+  --splashscreen-startup-icon-rgb: 49, 50, 68 !important;
+  --splashscreen-primary-title: #cdd6f4 !important;
+  --splashscreen-primary-title-rgb: 205, 214, 244 !important;
+  --splashscreen-progress-primary: #89b4fa !important;
+  --splashscreen-progress-primary-rgb: 137, 180, 250 !important;
+  --splashscreen-progress-background: #45475a !important;
+  --splashscreen-progress-background-rgb: 69, 71, 90 !important;
+  --splashscreen-secondary-lighter: #9399b2 !important;
+  --splashscreen-secondary-lighter-rgb: 147, 153, 178 !important;
+  --startup-icon: #45475a !important;
+  --startup-icon-rgb: 69, 71, 90 !important;
+  --startup-background: #11111b !important;
+  --startup-background-rgb: 17, 17, 27 !important;
+  --progress-background: #6c7086 !important;
+  --progress-background-rgb: 108, 112, 134 !important;
+}
+[style^="--splashscreen-startup-background: #0A1014;"] {
+  --splashscreen-startup-background: #11111b !important;
+  --splashscreen-startup-background-rgb: 17, 17, 27 !important;
+  --splashscreen-startup-icon: #313244 !important;
+  --splashscreen-startup-icon-rgb: 49, 50, 68 !important;
+  --splashscreen-primary-title: #cdd6f4 !important;
+  --splashscreen-primary-title-rgb: 205, 214, 244 !important;
+  --splashscreen-progress-primary: #89b4fa !important;
+  --splashscreen-progress-primary-rgb: 137, 180, 250 !important;
+  --splashscreen-progress-background: #45475a !important;
+  --splashscreen-progress-background-rgb: 69, 71, 90 !important;
+  --splashscreen-secondary-lighter: #9399b2 !important;
+  --splashscreen-secondary-lighter-rgb: 147, 153, 178 !important;
+  --startup-icon: #45475a !important;
+  --startup-icon-rgb: 69, 71, 90 !important;
+  --startup-background: #11111b !important;
+  --startup-background-rgb: 17, 17, 27 !important;
+  --progress-background: #6c7086 !important;
+  --progress-background-rgb: 108, 112, 134 !important;
+}
+

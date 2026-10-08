@@ -12,7 +12,7 @@
 -- niri: window-rule { match app-id="com.github.flxzt.rnote"; open-maximized true }
 hl.window_rule({
     name  = "rnote-maximized",
-    match = { class = "^com%.github%.flxzt%.rnote$" },
+    match = { class = "^com\\.github\\.flxzt\\.rnote$" },
     maximize = true,
 })
 
@@ -21,7 +21,7 @@ hl.window_rule({
 -- deny list short matters: every blurred window costs a backdrop pass.
 hl.window_rule({
     name  = "rnote-no-blur",
-    match = { class = "^com%.github%.flxzt%.rnote$" },
+    match = { class = "^com\\.github\\.flxzt\\.rnote$" },
     no_blur = true,
 })
 
@@ -31,10 +31,6 @@ hl.window_rule({
 --
 -- The gtk backend sets a class, but xdg-desktop-portal-hyprland's own chooser
 -- sets none at all, so the screencast picker has to be matched on its title.
---
--- NOTE: unlike the permission rules further down, window-rule matching does not
--- accept the `%-` escape -- a rule using it silently never matches. Keep the
--- regexes here plain.
 local function floating_dialog(name, match, size)
     hl.window_rule({
         name   = name,
@@ -74,10 +70,10 @@ local function glass_layer(name, namespace)
     })
 end
 
-glass_layer("dock-blur",            "^quickshell%-dock$")
-glass_layer("launcher-blur",        "^quickshell%-launcher$")
-glass_layer("keepass-blur",         "^quickshell%-keepass$")
-glass_layer("screenshot-editor-blur", "^quickshell%-screenshot%-editor$")
+glass_layer("dock-blur",              "^quickshell-dock$")
+glass_layer("launcher-blur",          "^quickshell-launcher$")
+glass_layer("keepass-blur",           "^quickshell-keepass$")
+glass_layer("screenshot-editor-blur", "^quickshell-screenshot-editor$")
 glass_layer("fullscreen-media",     "^fullscreen_media$")
 glass_layer("rsvp-reader",          "^rsvp_reader$")
 
@@ -105,15 +101,15 @@ hl.layer_rule({
 
 local ALLOW_SCREENCOPY = {
     "grim",
-    "wf%-recorder",
-    "wl%-screenrec",
+    "wf-recorder",
+    "wl-screenrec",
     "hyprshot",
     "ffmpeg",
     "obs",
     "wayvnc",
-    "xdg%-desktop%-portal%-hyprland",
-    "xdg%-desktop%-portal%-gnome",
-    "gnome%-screenshot",
+    "xdg-desktop-portal-hyprland",
+    "xdg-desktop-portal-gnome",
+    "gnome-screenshot",
     "flameshot",
     "spectacle",
     "kooha",
@@ -123,7 +119,7 @@ for _, bin in ipairs(ALLOW_SCREENCOPY) do
     hl.permission("/.*/" .. bin .. "$", "screencopy", "allow")
 end
 
-for _, bin in ipairs({ "keepassxc", "seahorse", "gnome%-passwords" }) do
+for _, bin in ipairs({ "keepassxc", "seahorse", "gnome-passwords" }) do
     hl.permission("/.*/" .. bin .. "$", "screencopy", "deny")
 end
 
@@ -134,3 +130,12 @@ end
 for _, bin in ipairs({ "ydotool", "wtype", "dotool" }) do
     hl.permission("/.*/" .. bin .. "$", "keyboard", "allow")
 end
+
+-- Plugins. `ecosystem:enforce_permissions` gates dlopen too, and a
+-- config-loaded plugin is matched against its *path* or the caller binary
+-- ("config"). The store paths change on every version bump, so allow the shape:
+-- anything under /nix/store ending in .so, as well as config-loaded plugins.
+--
+-- Needs a Hyprland restart when added, same as the rules above.
+hl.permission("/nix/store/.*\\.so", "plugin", "allow")
+hl.permission("config", "plugin", "allow")

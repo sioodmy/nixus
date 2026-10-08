@@ -1,0 +1,418 @@
+/* ==UserStyle==
+@name Ferdium Catppuccin
+@namespace github.com/grajpap/ferdium-catppuccin
+@homepageURL https://github.com/grajpap/ferdium-catppuccin
+@version 2026.09.15
+@description Soothing pastel theme for Ferdium
+@author grajpap
+@license MIT
+
+@preprocessor less
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select accentColor "Accent" ["rosewater:Rosewater", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve*", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "blue:Blue", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+==/UserStyle== */
+
+@import "https://userstyles.catppuccin.com/lib/std/v1.less";
+
+@-moz-document regexp("ferdium://.*"), regexp("https?://app\\.ferdium\\.org/.*") {
+  :root {
+    @media (prefers-color-scheme: light) {
+      #catppuccin(@lightFlavor);
+    }
+    @media (prefers-color-scheme: dark) {
+      #catppuccin(@darkFlavor);
+    }
+  }
+
+  #catppuccin(@flavor) {
+    #lib.palette();
+    #lib.defaults();
+
+    /* -----------------------------------------------------------
+       Proton-style semantic CSS custom properties
+       ----------------------------------------------------------- */
+    & {
+      #lightenOrDarken(@color, @value) {
+        @result: if(
+          @flavor = latte,
+          lighten(@color, @value),
+          darken(@color, @value)
+        );
+      }
+
+      #darkenOrLighten(@color, @value) {
+        @result: if(
+          @flavor = latte,
+          darken(@color, @value),
+          lighten(@color, @value)
+        );
+      }
+
+      --ctp-primary: @accent;
+      --ctp-primary-contrast: @crust;
+      --ctp-surface: @base;
+      --ctp-surface-dim: @mantle;
+      --ctp-surface-bright: @crust;
+      --ctp-surface-container: @surface0;
+      --ctp-surface-container-high: @surface1;
+      --ctp-surface-container-highest: @surface2;
+      --ctp-on-surface: @text;
+      --ctp-on-surface-variant: @subtext1;
+      --ctp-outline: @overlay0;
+      --ctp-outline-variant: @surface0;
+      --ctp-danger: @red;
+      --ctp-warning: @peach;
+      --ctp-success: @green;
+      --ctp-info: @blue;
+    }
+
+    /* ===== App root ===== */
+    body,
+    html {
+      background-color: @base !important;
+      color: @text !important;
+    }
+
+    * {
+      text-shadow: none !important;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar,
+    .sidebar-component,
+    [class*="sidebar"] {
+      background-color: @mantle !important;
+    }
+
+    /* Service icons in sidebar */
+    .sidebar .service-icon,
+    .sidebar-component .service-icon,
+    [class*="sidebar"] [class*="service-icon"] {
+      border-color: @surface0;
+    }
+
+    /* Active service indicator */
+    .sidebar .service-icon--active,
+    .sidebar-component .service-icon--active,
+    [class*="sidebar"] [class*="active"] {
+      border-color: @accent;
+    }
+
+    /* Sidebar settings button */
+    .sidebar .sidebar__button,
+    .sidebar-component [class*="button"] {
+      color: @subtext1;
+
+      &:hover {
+        color: @text;
+        background-color: @surface0;
+      }
+    }
+
+    /* ===== Header bar ===== */
+    .header,
+    .app-header,
+    [class*="header"] {
+      background-color: @mantle !important;
+      color: @text !important;
+      border-bottom-color: @surface0 !important;
+    }
+
+    .header button,
+    .app-header button,
+    [class*="header"] button {
+      color: @text;
+
+      &:hover {
+        background-color: @surface0;
+      }
+    }
+
+    /* ===== Tab bar ===== */
+    .tab-bar,
+    [class*="tabBar"],
+    [class*="tab-bar"] {
+      background-color: @mantle;
+    }
+
+    .tab-bar .tab,
+    [class*="tabBar"] [class*="tab"] {
+      color: @subtext1;
+      border-bottom-color: transparent;
+
+      &:hover {
+        color: @text;
+        background-color: @surface0;
+      }
+
+      &--active,
+      &[class*="active"] {
+        color: @text;
+        border-bottom-color: @accent;
+      }
+    }
+
+    /* ===== Service webview container ===== */
+    .service {
+      background-color: @base;
+    }
+
+    /* ===== Settings panel ===== */
+    .settings,
+    .settings-dialog,
+    [class*="settings"] {
+      background-color: @base !important;
+      color: @text !important;
+    }
+
+    .settings h1,
+    .settings h2,
+    .settings h3,
+    .settings-dialog h1,
+    .settings-dialog h2,
+    .settings-dialog h3,
+    [class*="settings"] h1,
+    [class*="settings"] h2,
+    [class*="settings"] h3 {
+      color: @text;
+    }
+
+    .settings label,
+    .settings-dialog label,
+    [class*="settings"] label {
+      color: @subtext1;
+    }
+
+    /* Settings inputs */
+    .settings input[type="text"],
+    .settings input[type="email"],
+    .settings input[type="password"],
+    .settings input[type="search"],
+    .settings textarea,
+    .settings select,
+    .settings-dialog input[type="text"],
+    .settings-dialog input[type="email"],
+    .settings-dialog input[type="password"],
+    .settings-dialog input[type="search"],
+    .settings-dialog textarea,
+    .settings-dialog select,
+    [class*="settings"] input[type="text"],
+    [class*="settings"] input[type="email"],
+    [class*="settings"] input[type="password"],
+    [class*="settings"] input[type="search"],
+    [class*="settings"] textarea,
+    [class*="settings"] select {
+      background-color: @mantle;
+      color: @text;
+      border-color: @surface0;
+      border-style: solid;
+      border-width: 1px;
+
+      &:focus {
+        border-color: @accent;
+        outline: none;
+      }
+    }
+
+    /* Settings checkbox/radio */
+    .settings input[type="checkbox"],
+    .settings input[type="radio"],
+    .settings-dialog input[type="checkbox"],
+    .settings-dialog input[type="radio"],
+    [class*="settings"] input[type="checkbox"],
+    [class*="settings"] input[type="radio"] {
+      accent-color: @accent;
+    }
+
+    /* Settings toggles / switches */
+    .settings .toggle,
+    .settings [class*="toggle"],
+    .settings-dialog .toggle,
+    [class*="settings"] [class*="toggle"] {
+      background-color: @surface0;
+
+      &--checked,
+      &[class*="checked"] {
+        background-color: @accent;
+      }
+    }
+
+    /* Settings navigation links */
+    .settings-nav,
+    [class*="settingsNav"],
+    [class*="settings-nav"] {
+      background-color: @mantle;
+    }
+
+    .settings-nav a,
+    .settings-nav button,
+    [class*="settingsNav"] a,
+    [class*="settingsNav"] button,
+    [class*="settings-nav"] a,
+    [class*="settings-nav"] button {
+      color: @subtext1;
+
+      &:hover,
+      &--active,
+      &[class*="active"] {
+        color: @text;
+        background-color: @surface0;
+      }
+    }
+
+    /* Settings divider */
+    .settings hr,
+    .settings-dialog hr,
+    [class*="settings"] hr {
+      border-color: @surface0;
+    }
+
+    /* ===== Buttons ===== */
+    button,
+    .btn,
+    [class*="button"] {
+      color: @text;
+    }
+
+    /* Primary button */
+    .btn-primary,
+    button[class*="primary"],
+    [class*="buttonPrimary"],
+    [class*="button--primary"] {
+      background-color: @accent !important;
+      color: @crust !important;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+
+    /* Secondary button */
+    .btn-secondary,
+    button[class*="secondary"],
+    [class*="buttonSecondary"],
+    [class*="button--secondary"] {
+      background-color: @surface0;
+      color: @text;
+
+      &:hover {
+        background-color: @surface1;
+      }
+    }
+
+    /* Danger button */
+    .btn-danger,
+    button[class*="danger"],
+    [class*="buttonDanger"],
+    [class*="button--danger"] {
+      background-color: @red;
+      color: @crust;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: @mantle;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: @surface1;
+      border-radius: 4px;
+
+      &:hover {
+        background: @surface2;
+      }
+    }
+
+    /* ===== Modals / dialogs ===== */
+    .modal,
+    .dialog,
+    [class*="modal"],
+    [class*="dialog"] {
+      background-color: @base !important;
+      color: @text !important;
+    }
+
+    .modal-backdrop,
+    .dialog-backdrop,
+    [class*="modal-backdrop"],
+    [class*="dialog-backdrop"] {
+      background-color: fade(@crust, 50%);
+    }
+
+    /* ===== Notifications / toasts ===== */
+    .notification,
+    .toast,
+    [class*="notification"],
+    [class*="toast"] {
+      background-color: @mantle;
+      color: @text;
+      border-color: @surface0;
+    }
+
+    /* ===== Progress bars ===== */
+    progress {
+      background-color: @surface0;
+      color: @accent;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: @surface0;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: @accent;
+    }
+
+    /* ===== Service settings / recipe details ===== */
+    .service-settings,
+    [class*="serviceSettings"],
+    [class*="service-settings"] {
+      background-color: @base;
+      color: @text;
+    }
+
+    .service-settings label,
+    [class*="serviceSettings"] label,
+    [class*="service-settings"] label {
+      color: @subtext1;
+    }
+
+    /* ===== Workspace switcher ===== */
+    .workspace,
+    [class*="workspace"] {
+      color: @subtext1;
+
+      &--active,
+      &[class*="active"] {
+        color: @text;
+        background-color: @surface0;
+      }
+    }
+
+    /* ===== Drag-and-drop overlay ===== */
+    .drag-overlay,
+    [class*="dragOverlay"],
+    [class*="drag-overlay"] {
+      background-color: fade(@accent, 20%);
+      border-color: @accent;
+    }
+
+    /* ===== Update notification ===== */
+    .update-notification,
+    [class*="updateNotification"],
+    [class*="update-notification"] {
+      background-color: @accent;
+      color: @crust;
+    }
+  }
+}

@@ -71,7 +71,10 @@
     };
   };
 
-  programs.nix-ld.enable = false;
+  # Włączone: runtime t3code pod ~/.t3 to zwykłe drzewo npm, więc binarki
+  # providerów (m.in. Antigravity ACP) potrzebują loadera Niksa także poza
+  # shellem logowania. Bez tego systemd unit t3code nie widzi glibc.
+  programs.nix-ld.enable = true;
 
   programs.nh = {
     enable = true;

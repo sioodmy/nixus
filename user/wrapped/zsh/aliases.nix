@@ -17,6 +17,8 @@ rec {
 
   macos = "sudo asahi-bless -n --set-boot-macos";
 
+  cleaner = "du -sh */ | sort -hr | head -n 10";
+
   # imagine using mp3
   ytopus = "yt-dlp -x --embed-metadata --audio-quality 0 --audio-format opus --embed-metadata --embed-thumbnail";
 

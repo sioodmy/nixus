@@ -10,21 +10,26 @@ in
   environment.systemPackages =
     attrValues {
       inherit (pkgs)
+        android-tools
         deluge
         clang-tools
+        # t3code idzie przez ./t3code (wrapper z CA bundle na Antigravity 502)
         tesseract
         ffmpegthumbnailer
         brightnessctl
         yt-dlp
         cava
-        bottom
-        #mpv
+        btop
+        mpv
+        gh
         antigravity-cli
+        antigravity-acp
         libnotify
         wlsunset
         poppler-utils
         #code-cursor
-        opencode
+        cursor-cli
+
         rink
         thunderbird
         jdk17
@@ -45,7 +50,7 @@ in
         typst
         texlab
         powershell
-        niri
+        # Compositor comes from the hyprland module (user/hyprland).
         geteduroam-cli
         ttyper
         pwvucontrol
@@ -98,6 +103,9 @@ in
         ;
       inherit (inputs.helix.packages.${pkgs.stdenv.hostPlatform.system})
         helix
+        ;
+      inherit (inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system})
+        opencode
         ;
     }
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]

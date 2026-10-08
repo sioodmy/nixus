@@ -59,4 +59,5 @@ in
 
   # slows down boot time
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.wpa_supplicant.serviceConfig.TimeoutStopSec = "5s";
 }

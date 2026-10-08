@@ -1,0 +1,2543 @@
+/* ==========================================================================
+   Catppuccin Mocha Blue Theme for Gmail - compiled for Ferdium & Web
+   Source: catppuccin-userstyles.json ("Gmail Catppuccin") + gmail-catppuccin.user.less
+   Compiled with Mocha flavor, Blue accent
+   ========================================================================== */
+:root,
+html,
+body {
+  color-scheme: dark !important;
+}
+
+/* ==UserStyle==
+@name Gmail Catppuccin
+@namespace github.com/catppuccin/userstyles/styles/gmail
+@homepageURL https://github.com/catppuccin/userstyles/tree/main/styles/gmail
+@version 2026.08.16
+@updateURL https://github.com/catppuccin/userstyles/raw/main/styles/gmail/catppuccin.user.less
+@supportURL https://github.com/catppuccin/userstyles/issues?q=is%3Aopen+is%3Aissue+label%3Agmail
+@description Soothing pastel theme for Gmail
+@author Catppuccin
+@license MIT
+
+@preprocessor less
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select accentColor "Accent" ["rosewater:Rosewater", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve*", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "blue:Blue", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+==/UserStyle== */
+/* deno-fmt-ignore */
+/* deno-fmt-ignore */
+
+  @media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark;
+    /* Gmail logo */
+    /* Tooltips */
+    /* Buttons */
+    /* Solid primary */
+    /* Transparent primary */
+    /* Transparent secondary */
+    /* Header and sidebars */
+    /* Header icons */
+    /* Search mail input */
+    /* Search mail input on focus */
+    /* Active search / filter modal */
+    /* Pill filters */
+    /* Advanced search/filters modal */
+    /* Sidebar selected item */
+    /* Icons */
+    /* Compose email button */
+    /* Top section of inbox */
+    /* Inbox categories */
+    /* Icons */
+    /* Currently selected category */
+    /* Inbox categories hover */
+    /* Email count / pagination */
+    /* Inbox footer */
+    /* Storage progress bar */
+    /* External link icon */
+    /* Read emails */
+    /* Read email text */
+    /* Important icon filled, star icon filled */
+    /* Read email dates */
+    /* Read email summary truncated */
+    /* Selected unread emails */
+    /* Unsubscribe button */
+    /* Draft text */
+    /* No drafts message, trash 30 days message */
+    /* Your social/promotions/updates tab is empty */
+    /* You could lose access banner */
+    /* Attachments chips */
+    /* Floating menu */
+    /* Modal search input */
+    /* Magnifying glass icon */
+    /* Edit label modal */
+    /* Toast notifications */
+    /* Close icon */
+    /* Compose mail window */
+    /* Top header bar */
+    /* Bottom toolbar icons */
+    /* Floating toolbar (expanded window) */
+    /* Send button */
+    /* Contact autofill */
+    --pkw-background: #181825;
+    --pkw-outline: #313244;
+    --pkw-outline-variant: #313244;
+    --pkw-on-surface-variant: #cdd6f4;
+    /* Contact chip */
+    /* Settings */
+    /* Navigation header */
+    /* Main panel */
+    /* Labels page */
+    /* Confirm popup modal */
+  }
+  :root ::selection {
+    background-color: rgba(137, 180, 250, 0.3);
+  }
+  :root input::placeholder,
+  :root textarea::placeholder {
+    color: #a6adc8 !important;
+  }
+  :root input,
+  :root textarea {
+    caret-color: #cdd6f4;
+  }
+  :root #input-styling input,
+  :root #input-styling select,
+  :root #input-styling button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root * {
+    text-shadow: none !important;
+  }
+  :root [src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"],
+  :root [src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"] {
+    height: unset !important;
+    width: unset !important;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2217.727%2014.319%2030%2022.5%22%20width%3D%2230%22%20height%3D%2222.5%22%3E%3Cpath%20fill%3D%22%2389b4fa%22%20d%3D%22M19.773%2036.819h4.773V25.227l-6.819-5.114v14.659a2.044%202.044%200%200%200%202.045%202.045%22/%3E%3Cpath%20fill%3D%22%23a6e3a1%22%20d%3D%22M40.909%2036.819h4.773a2.044%202.044%200%200%200%202.045-2.045v-14.66l-6.819%205.114%22/%3E%3Cpath%20fill%3D%22%23f9e2af%22%20d%3D%22M40.909%2016.364v8.864l6.819-5.114v-2.727c0-2.529-2.888-3.971-4.909-2.455%22/%3E%3Cpath%20fill%3D%22%23f38ba8%22%20d%3D%22M24.545%2025.227v-8.863l8.181%206.136%208.181-6.136v8.864l-8.181%206.136m-15-13.977v2.727l6.819%205.114v-8.864l-1.909-1.431c-2.025-1.517-4.91-.075-4.91%202.455%22/%3E%3C/svg%3E");
+  }
+  :root .T-ays-iP,
+  :root .gb_Ac {
+    background-color: #11111b;
+    color: #cdd6f4;
+  }
+  :root .T-I-atl {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .l0,
+  :root div.b8 .a8k,
+  :root .bAo > .ad {
+    color: #89b4fa;
+  }
+  :root .l0::before,
+  :root div.b8 .a8k::before,
+  :root .bAo > .ad::before {
+    background-color: #89b4fa;
+  }
+  :root .bs0 > .acM,
+  :root .bti > .btg,
+  :root .a8Y > .T-I-ax7 {
+    color: #cdd6f4;
+    /* Disabled */
+  }
+  :root .bs0 > .acM.acN,
+  :root .bti > .btg.acN,
+  :root .a8Y > .T-I-ax7.acN {
+    color: #a6adc8;
+  }
+  :root .bs0 > .acM:hover::before,
+  :root .bti > .btg:hover::before,
+  :root .a8Y > .T-I-ax7:hover::before {
+    background-color: #9399b2;
+  }
+  :root .w-asV,
+  :root .bkL,
+  :root .bhZ.bym,
+  :root .bhZ.bjB,
+  :root .bhZ.bym.baA {
+    background-color: #181825;
+  }
+  :root .gb_Kc svg,
+  :root .gb_Pc.gb_Uc svg,
+  :root .gb_Lc .gb_rd .gb_sd,
+  :root .gb_Lc .gb_rd .gb_Kc,
+  :root .gb_Lc .gb_rd .gb_ud,
+  :root .gb_Pc.gb_Uc .gb_sd {
+    color: #cdd6f4;
+  }
+  :root .gb_Kc .gb_hd {
+    background-color: #45475a;
+  }
+  :root .gb_Kc .gb_hd .gb_je,
+  :root .gb_Kc .gb_hd .gb_qe,
+  :root .gb_Kc .gb_hd .gsan_a,
+  :root .gb_Kc .gb_hd .gsas_a,
+  :root .gb_Kc .gb_hd svg {
+    color: #cdd6f4;
+  }
+  :root .gb_hd.gb_id {
+    background-color: #1e1e2e;
+  }
+  :root .gssb_c {
+    /* Icons */
+    /* Recent searches */
+    /* Hovered recent searches */
+    /* Separator */
+    /* Search results */
+    /* Icons */
+    /* People involved */
+  }
+  :root .gssb_c button svg,
+  :root .gssb_c .asor {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .aRp,
+  :root .gssb_c .gssb_e,
+  :root .gssb_c .gssb_m {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .gssb_c .gssb_i {
+    background-color: #313244;
+    /* X icon */
+  }
+  :root .gssb_c .gssb_i > .gssb_a {
+    border-left-color: #89b4fa;
+  }
+  :root .gssb_c .gssb_i .gsaq_b {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .aSP,
+  :root .gssb_c .gssb_e {
+    border-color: #585b70;
+  }
+  :root .gssb_c .gssb_l {
+    background-color: #313244;
+  }
+  :root .gssb_c .gsoi_0,
+  :root .gssb_c .asor_o,
+  :root .gssb_c .gsoi_msra {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .asor_e {
+    color: #a6adc8;
+  }
+  :root .H2 {
+    background-color: #1e1e2e;
+    border-color: #313244;
+    color: #bac2de;
+    fill: #bac2de;
+  }
+  :root .H2:hover {
+    background-color: #181825;
+  }
+  :root .H2.bws {
+    background-color: #89b4fa;
+    color: #11111b;
+    fill: #11111b;
+  }
+  :root .H2.bws .HV {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .H2.bws:hover .H1 {
+    background-color: #71a4f9;
+  }
+  :root .aqc .H2 {
+    border-color: #cdd6f4;
+    color: #cdd6f4;
+  }
+  :root .aqc .H2.bws {
+    background-color: #585b70;
+    color: #181825;
+  }
+  :root .ZF-z6,
+  :root .ZF-zT,
+  :root .ZF-Av .lJ,
+  :root .ZF-Av .lN {
+    background-color: #1e1e2e;
+    /* Text inputs */
+    /* Calendar input */
+    /* Checkbox inputs */
+    /* Dropdown/select inputs */
+  }
+  :root .ZF-z6,
+  :root .ZF-zT,
+  :root .ZF-Av .lJ,
+  :root .ZF-Av .lN,
+  :root .ZF-z6 .boo > .ZG,
+  :root .ZF-zT .boo > .ZG,
+  :root .ZF-Av .lJ .boo > .ZG,
+  :root .ZF-Av .lN .boo > .ZG,
+  :root .ZF-z6 .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-z6 .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-z6 .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .ZE > .J-JN-M-I-Jm {
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .btl.acK,
+  :root .ZF-zT .btl.acK,
+  :root .ZF-Av .lJ .btl.acK,
+  :root .ZF-Av .lN .btl.acK,
+  :root .ZF-z6 .btn::before,
+  :root .ZF-zT .btn::before,
+  :root .ZF-Av .lJ .btn::before,
+  :root .ZF-Av .lN .btn::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .nr,
+  :root .ZF-zT .nr,
+  :root .ZF-Av .lJ .nr,
+  :root .ZF-Av .lN .nr {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .nr:focus,
+  :root .ZF-zT .nr:focus,
+  :root .ZF-Av .lJ .nr:focus,
+  :root .ZF-Av .lN .nr:focus {
+    box-shadow: inset 0 -1px 0 0 #89b4fa;
+  }
+  :root .ZF-z6 .bs5::after,
+  :root .ZF-zT .bs5::after,
+  :root .ZF-Av .lJ .bs5::after,
+  :root .ZF-Av .lN .bs5::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .J-JB-KA,
+  :root .ZF-zT .J-JB-KA,
+  :root .ZF-Av .lJ .J-JB-KA,
+  :root .ZF-Av .lN .J-JB-KA,
+  :root .ZF-z6 .J-JB-KA-JS,
+  :root .ZF-zT .J-JB-KA-JS,
+  :root .ZF-Av .lJ .J-JB-KA-JS,
+  :root .ZF-Av .lN .J-JB-KA-JS,
+  :root .ZF-z6 .J-JB-KA-Jk,
+  :root .ZF-zT .J-JB-KA-Jk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk,
+  :root .ZF-Av .lN .J-JB-KA-Jk,
+  :root .ZF-z6 .J-JB-KA-LG,
+  :root .ZF-zT .J-JB-KA-LG,
+  :root .ZF-Av .lJ .J-JB-KA-LG,
+  :root .ZF-Av .lN .J-JB-KA-LG {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-color: #313244;
+    /* Past days */
+    /* Future days */
+    /* Hovered day */
+    /* Selected day */
+    /* Unselected today */
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-Ku-Kk {
+    color: #a6adc8;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB {
+    color: #bac2de;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before {
+    background-color: rgba(137, 180, 250, 0.7);
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-KO {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-KO::before {
+    background-color: #89b4fa;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-K8 {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-K8::before {
+    background-color: #9399b2;
+  }
+  :root .ZF-z6 .bs1 + .bs3,
+  :root .ZF-zT .bs1 + .bs3,
+  :root .ZF-Av .lJ .bs1 + .bs3,
+  :root .ZF-Av .lN .bs1 + .bs3,
+  :root .ZF-z6 .btj + .aD,
+  :root .ZF-zT .btj + .aD,
+  :root .ZF-Av .lJ .btj + .aD,
+  :root .ZF-Av .lN .btj + .aD {
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .bs1 + .bs3::before,
+  :root .ZF-zT .bs1 + .bs3::before,
+  :root .ZF-Av .lJ .bs1 + .bs3::before,
+  :root .ZF-Av .lN .bs1 + .bs3::before,
+  :root .ZF-z6 .btj + .aD::before,
+  :root .ZF-zT .btj + .aD::before,
+  :root .ZF-Av .lJ .btj + .aD::before,
+  :root .ZF-Av .lN .btj + .aD::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .J-JN-M-I,
+  :root .ZF-zT .J-JN-M-I,
+  :root .ZF-Av .lJ .J-JN-M-I,
+  :root .ZF-Av .lN .J-JN-M-I {
+    color: #cdd6f4;
+  }
+  :root .TK .TO.nZ:active,
+  :root .TK .TO.ol:active,
+  :root .TK .TO.nZ,
+  :root .TK .TO.ol,
+  :root .byl .TK .nZ.aBP,
+  :root .byl .TK .nZ.aS3,
+  :root .byl .TK .nZ.aS4,
+  :root .byl .TK .nZ.aS5,
+  :root .byl .TK .nZ.aS6,
+  :root .VDSZAf.H5o3mc {
+    background-color: #313244;
+  }
+  :root .TO.NQ,
+  :root .n6 .ah9:hover,
+  :root .n6 .ah9.aiu:hover,
+  :root .n6 .ah9:focus,
+  :root .TK .TO:active,
+  :root .n6 .ah9.aiu:active,
+  :root .CL:hover,
+  :root .H5o3mc:not(.VDSZAf):hover,
+  :root .CL.NQ,
+  :root .H5o3mc:not(.VDSZAf).NQ {
+    background-color: #45475a;
+  }
+  :root .byl .TK .TO.nZ > .aHS-bnt .n0,
+  :root .TK .nZ > .aHS-bnt .bsU,
+  :root .byl .TK .nZ.aS3 .nU > .n0,
+  :root .TK .nZ.aS3 .bsU,
+  :root .byl .TK .nZ.aS4 .nU > .n0,
+  :root .TK .nZ.aS4 .bsU,
+  :root .byl .TK .nZ.aS5 .nU > .n0,
+  :root .TK .nZ.aS5 .bsU,
+  :root .byl .TK .nZ.aS6 .nU > .n0,
+  :root .TK .nZ.aS6 .bsU,
+  :root .TK .TO.nZ .nU > .n0,
+  :root .TK .ol.NQ .nU > .n0,
+  :root .TK .TO.ol .nU > .n0,
+  :root .TK .nZ .bsU,
+  :root .TK .ol .bsU,
+  :root .VDSZAf.H5o3mc > .Q7,
+  :root .TO .nU > .n0,
+  :root .TO.NQ .nU > .n0,
+  :root .TO.nZ .nU > .n0,
+  :root .ah9 > .CJ,
+  :root .n3 > .CL > .CK,
+  :root .aAv,
+  :root .bsU {
+    color: #cdd6f4;
+  }
+  :root .nZ > .TN.aHS-bnt .qj,
+  :root .TO:not(.nZ) > .TN > .qj:not([style*="background-color"]),
+  :root .n6 .n4 .G-asx,
+  :root .aAw .aAu,
+  :root .pM,
+  :root .TO.nZ > .TN > .qj,
+  :root .n3 .CL::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .z0 > .L3 {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .z0 > .L3:focus {
+    background-color: #cdd6f4;
+  }
+  :root .WR .z0 > .L3::before,
+  :root .WR.anZ .z0 > .L3::before {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .bkK > .nH {
+    background-color: #313244;
+    /* Icons */
+  }
+  :root .bkK > .nH .bzn,
+  :root .bkK > .nH .aqJ .amJ,
+  :root .bkK > .nH .adg .adk {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .aKx > .aKz {
+    color: #cdd6f4;
+  }
+  :root .aAy > div {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-KU-KO::before {
+    background-color: #cdd6f4;
+  }
+  :root .aRz.J-KU:hover {
+    background-color: #45475a;
+  }
+  :root div[aria-label="Show more messages"] .Dj {
+    color: #bac2de;
+  }
+  :root div[aria-label="Show more messages"]::before {
+    background-color: #cdd6f4;
+  }
+  :root .h0 {
+    color: #bac2de;
+  }
+  :root .md.mj,
+  :root .aeU .ma,
+  :root .ma .mb,
+  :root .ae3 .l6,
+  :root .l9,
+  :root .l8,
+  :root .aiD {
+    color: #bac2de;
+  }
+  :root .aiC {
+    background-color: #6c7086;
+  }
+  :root .aiC .aiA {
+    background-color: #a6adc8;
+  }
+  :root .aiz {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .yO {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    box-shadow: inset 0 -1px 0 0 #313244;
+  }
+  :root .yO:hover {
+    box-shadow: inset 1px 0 0 #313244, inset -1px 0 0 #313244, 0 0 4px 0 #45475a, 0 0 6px 2px #45475a;
+  }
+  :root .zE {
+    color: #cdd6f4;
+  }
+  :root .xY > .T-Jo,
+  :root td.apU > .T-KT.aXw::before,
+  :root .pG .a9q,
+  :root .aqN,
+  :root .bqY li {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ha .a9q.pH,
+  :root .a9q.pH,
+  :root .aoj,
+  :root td.apU > .T-KT.T-KT-Jp::before {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(27%) saturate(512%) hue-rotate(336deg) brightness(108%) contrast(96%);
+  }
+  :root .pG:hover > .a9q::before {
+    background-color: rgba(249, 226, 175, 0.3);
+  }
+  :root .yO > .xW {
+    color: #a6adc8;
+  }
+  :root .y2 {
+    color: #bac2de;
+  }
+  :root .x7 {
+    background-color: #89b4fa;
+    color: #181825;
+    /* Dates */
+  }
+  :root .x7 .xW {
+    color: #11111b;
+  }
+  :root .x7 .xY > .T-Jo,
+  :root .x7 td.apU > .T-KT.aXw::before,
+  :root .x7 .pG .a9q,
+  :root .x7 .aqN,
+  :root .x7 .bqY li {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .aOd.T-I {
+    color: #cdd6f4;
+    box-shadow: inset 0 0 0 1px #585b70;
+  }
+  :root .boq {
+    color: #f38ba8;
+  }
+  :root .TD,
+  :root .Tm .ya {
+    background-color: #45475a;
+    color: #cdd6f4;
+  }
+  :root .aRs {
+    background-color: #1e1e2e;
+    color: #a6adc8;
+  }
+  :root .aRs .aRv {
+    color: #cdd6f4;
+  }
+  :root .aRs .aRq {
+    color: #89b4fa;
+  }
+  :root .GR {
+    background-color: #1e1e2e;
+    /* Primary text */
+    /* Subtext */
+    /* Dismiss button */
+    /* Add recovery info button */
+  }
+  :root .GR .GX {
+    color: #cdd6f4;
+  }
+  :root .GR .GT {
+    color: #bac2de;
+  }
+  :root .GR .GW {
+    color: #cdd6f4;
+  }
+  :root .GR .GW::before {
+    background-color: #cdd6f4;
+  }
+  :root .GR .GV {
+    color: #89b4fa;
+  }
+  :root .GR .GV::before {
+    background-color: #89b4fa;
+  }
+  :root .brc {
+    box-shadow: inset 0 0 0 1px #313244;
+    color: #cdd6f4;
+  }
+  :root .brc:hover {
+    background-color: #313244;
+  }
+  :root .J-M,
+  :root .OO.Pa {
+    background-color: #45475a;
+    /* Menu section header */
+    /* Menu item */
+    /* Disabled */
+    /* Checkmark, arrow, checkbox, star, calendar icon */
+    /* Hovered menu item */
+    /* Menu section divider */
+  }
+  :root .J-M .J-awr,
+  :root .OO.Pa .J-awr,
+  :root .J-M .asc,
+  :root .OO.Pa .asc {
+    color: #bac2de;
+  }
+  :root .J-M .J-N,
+  :root .OO.Pa .J-N,
+  :root .J-M .J-Ks-KO .J-N-Jz,
+  :root .OO.Pa .J-Ks-KO .J-N-Jz,
+  :root .J-M .J-N-JT .J-N-Jz,
+  :root .OO.Pa .J-N-JT .J-N-Jz,
+  :root .J-M .J-N-JW .J-N-Jz,
+  :root .OO.Pa .J-N-JW .J-N-Jz,
+  :root .J-M .J-LC,
+  :root .OO.Pa .J-LC,
+  :root .J-M .J-JK,
+  :root .OO.Pa .J-JK,
+  :root .J-M .bmz,
+  :root .OO.Pa .bmz {
+    color: #cdd6f4;
+  }
+  :root .J-M .J-N-JE .J-N-atj,
+  :root .OO.Pa .J-N-JE .J-N-atj,
+  :root .J-M .J-N-JE .J-N-Jz,
+  :root .OO.Pa .J-N-JE .J-N-Jz {
+    color: #a6adc8 !important;
+  }
+  :root .J-M .J-Ks-KO .J-N-Jo,
+  :root .OO.Pa .J-Ks-KO .J-N-Jo,
+  :root .J-M .asi .J-Ks-KO::before,
+  :root .OO.Pa .asi .J-Ks-KO::before,
+  :root .J-M .J-Ph-hFsbo,
+  :root .OO.Pa .J-Ph-hFsbo,
+  :root .J-M .J-LC-Jo,
+  :root .OO.Pa .J-LC-Jo,
+  :root .J-M .bi4 > .T-KT:not(.T-KT-Jp, .byM)::before,
+  :root .OO.Pa .bi4 > .T-KT:not(.T-KT-Jp, .byM)::before,
+  :root .J-M .aaA.mYVwse,
+  :root .OO.Pa .aaA.mYVwse,
+  :root .J-M .J-N-JX,
+  :root .OO.Pa .J-N-JX {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-M .bmz.bjF::before,
+  :root .OO.Pa .bmz.bjF::before {
+    border-color: #a6adc8;
+  }
+  :root .J-M .J-N-JT,
+  :root .OO.Pa .J-N-JT,
+  :root .J-M .J-N-JW,
+  :root .OO.Pa .J-N-JW,
+  :root .J-M .J-LC-JT,
+  :root .OO.Pa .J-LC-JT,
+  :root .J-M .J-LC-JW,
+  :root .OO.Pa .J-LC-JW,
+  :root .J-M .J-JK-JT,
+  :root .OO.Pa .J-JK-JT,
+  :root .J-M .J-JK-JW,
+  :root .OO.Pa .J-JK-JW,
+  :root .J-M .bmz.bk5,
+  :root .OO.Pa .bmz.bk5 {
+    background-color: #585b70;
+    border-color: #7f849c;
+  }
+  :root .J-M .J-Kh,
+  :root .OO.Pa .J-Kh {
+    border-top-color: #585b70;
+  }
+  :root .agd .J-M-JJ input {
+    background-color: #45475a;
+    color: #cdd6f4;
+  }
+  :root .bqf {
+    box-shadow: inset 0 -2px 0 0 #585b70;
+  }
+  :root .bqf:focus {
+    box-shadow: inset 0 -2px 0 0 #89b4fa;
+  }
+  :root .A0 {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root div.Kj-JD {
+    background-color: #1e1e2e;
+    /* Edit label text */
+    /* Close X icon */
+    /* Input labels */
+    /* Cancel button */
+    /* Save button */
+  }
+  :root div.Kj-JD span.Kj-JD-K7-K0 {
+    color: #cdd6f4;
+  }
+  :root div.Kj-JD span.Kj-JD-K7-Jq::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root div.Kj-JD input,
+  :root div.Kj-JD select,
+  :root div.Kj-JD button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root div.Kj-JD div.Kj-JD-Jz {
+    color: #bac2de;
+  }
+  :root div.Kj-JD div.Kj-JD-Jl > button,
+  :root div.Kj-JD .bBh .Kj-JD-Jl > .J-at1-auR {
+    color: #bac2de;
+  }
+  :root div.Kj-JD div.Kj-JD-Jl > button.J-at1-atl,
+  :root div.Kj-JD div.Kj-JD-Jl > button.J-at1-auR {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .bAp.b8.UC .vh {
+    background-color: #11111b;
+    color: #cdd6f4;
+  }
+  :root .b8 .bBe .bBf {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .Hy.Hy .m,
+  :root .IG {
+    background-color: #181825;
+  }
+  :root .Hy.Hy .m .Hp,
+  :root .IG .Hp,
+  :root .Hy.Hy .m .zu,
+  :root .IG .zu,
+  :root .Hy.Hy .m .H,
+  :root .IG .H,
+  :root .Hy.Hy .m .Iy .az9,
+  :root .IG .Iy .az9 {
+    color: #cdd6f4;
+  }
+  :root .Hy.Hy .m .Hm img,
+  :root .IG .Hm img,
+  :root .Hy.Hy .m .SB,
+  :root .IG .SB,
+  :root .Hy.Hy .m .b7 .mK,
+  :root .IG .b7 .mK,
+  :root .Hy.Hy .m .bAm .aaq .mK,
+  :root .IG .bAm .aaq .mK,
+  :root .Hy.Hy .m .Un .mK,
+  :root .IG .Un .mK,
+  :root .Hy.Hy .m .HX .mK,
+  :root .IG .HX .mK,
+  :root .Hy.Hy .m .HQ .Un::after,
+  :root .IG .HQ .Un::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .aaZ,
+  :root .Ap,
+  :root .Am,
+  :root .aDg > .aDj,
+  :root .aoP .Ar,
+  :root .wO,
+  :root .aoT,
+  :root .agP,
+  :root .aGb,
+  :root .GQ {
+    color: #cdd6f4;
+    caret-color: #cdd6f4;
+  }
+  :root .aaZ,
+  :root .Ap,
+  :root .Am,
+  :root .aDg > .aDj,
+  :root .aoP .Ar,
+  :root .wO,
+  :root .aoT,
+  :root .agP,
+  :root .aGb,
+  :root .GQ,
+  :root .aaZ::before,
+  :root .Ap::before,
+  :root .Am::before,
+  :root .aDg > .aDj::before,
+  :root .aoP .Ar::before,
+  :root .wO::before,
+  :root .aoT::before,
+  :root .agP::before,
+  :root .aGb::before,
+  :root .GQ::before {
+    background: #1e1e2e;
+  }
+  :root .gQ,
+  :root .gO,
+  :root .oL {
+    color: #a6adc8;
+  }
+  :root .aaA,
+  :root .btC .dv,
+  :root .btC .og.T-I-J3,
+  :root .btC .J-N-JX.og.T-I-J3,
+  :root .btC .Y1,
+  :root .btC .Xv.T-I.J-JN-M-I > .J-JN-M-I-JG,
+  :root .J-JN-M-I-JG,
+  :root .J-Z-M-I-J6-H > .J-Z-M-I-JG {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-Z {
+    background-color: #181825;
+  }
+  :root .J-Z .J-Z-I,
+  :root .J-Z .J-Z-M-I {
+    color: #bac2de;
+  }
+  :root .gU .v7.T-I:not(.btz),
+  :root .gU .hG:not(.v6) {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .hG > .G-asx,
+  :root .SI .hG > .G-asx {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .afC,
+  :root .bvx {
+    background: #181825;
+    /* Contact list item */
+  }
+  :root .afC .agJ .aL8,
+  :root .bvx .agJ .aL8,
+  :root .afC .agJ .aXS,
+  :root .bvx .agJ .aXS {
+    color: #cdd6f4;
+  }
+  :root .afC .agJ:hover,
+  :root .bvx .agJ:hover {
+    background: #1e1e2e;
+  }
+  :root .agh,
+  :root .bbV {
+    background: #1e1e2e;
+  }
+  :root .agh .afV,
+  :root .bbV .afV {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .agh .afV:hover,
+  :root .bbV .afV:hover {
+    background: #313244;
+    color: #cdd6f4;
+  }
+  :root .dt {
+    color: #cdd6f4;
+  }
+  :root .v {
+    /* Tabs */
+    /* Currently selected tab */
+  }
+  :root .v .fY,
+  :root .v .f1 {
+    background-color: #313244;
+  }
+  :root .v .fY .f0,
+  :root .v .f1 .f0 {
+    color: #cdd6f4;
+  }
+  :root .v .fZ {
+    box-shadow: inset 0 -2px 0 0 #89b4fa;
+  }
+  :root .r4 {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    /* Dividers */
+    /* Links */
+    /* Some buttons */
+  }
+  :root .r4 .r7 td,
+  :root .r4 .Jb .J0:not(:last-child) {
+    border-bottom-color: #313244;
+  }
+  :root .r4 .r7 .e,
+  :root .r4 .sA,
+  :root .r4 .r4 .e,
+  :root .r4 .el {
+    color: #89b4fa;
+  }
+  :root .r4 input,
+  :root .r4 select,
+  :root .r4 button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root .r4 .qK,
+  :root .r4 .qL {
+    background-color: #181825;
+  }
+  :root .r4 .nr,
+  :root .r4 .Ar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-color: #313244 !important;
+  }
+  :root .r4 .Uu {
+    box-shadow: inset 0 0 0 1px #313244;
+    color: #89b4fa;
+  }
+  :root .alO {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    /* Table items */
+    /* Links */
+    /* Dividers */
+  }
+  :root .alO .rb {
+    color: #bac2de;
+  }
+  :root .alO .To.Ze {
+    background-color: #313244;
+  }
+  :root .alO .alP {
+    color: #89b4fa;
+  }
+  :root .alO .rZ {
+    background-color: #313244;
+  }
+  :root div[aria-modal="true"] {
+    --gm3-dialog-refactored-container-color: #1e1e2e;
+    --gm3-dialog-refactored-supporting-text-color: #cdd6f4;
+    --gm3-dialog-refactored-headline-color: #cdd6f4;
+    /* Buttons */
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="ok"] {
+    background-color: #89b4fa;
+    --gm3-button-text-label-text-color: #11111b;
+    --gm3-button-text-hover-label-text-color: #11111b;
+    --gm3-button-text-pressed-label-text-color: #11111b;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"] {
+    --gm3-button-text-label-text-color: #bac2de;
+    --gm3-button-text-hover-label-text-color: #cdd6f4;
+    --gm3-button-text-focus-label-text-color: #cdd6f4;
+    --gm3-button-text-pressed-label-text-color: #cdd6f4;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:hover,
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:focus,
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:active {
+    background-color: #313244;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    /* Gmail logo */
+    /* Tooltips */
+    /* Buttons */
+    /* Solid primary */
+    /* Transparent primary */
+    /* Transparent secondary */
+    /* Header and sidebars */
+    /* Header icons */
+    /* Search mail input */
+    /* Search mail input on focus */
+    /* Active search / filter modal */
+    /* Pill filters */
+    /* Advanced search/filters modal */
+    /* Sidebar selected item */
+    /* Icons */
+    /* Compose email button */
+    /* Top section of inbox */
+    /* Inbox categories */
+    /* Icons */
+    /* Currently selected category */
+    /* Inbox categories hover */
+    /* Email count / pagination */
+    /* Inbox footer */
+    /* Storage progress bar */
+    /* External link icon */
+    /* Read emails */
+    /* Read email text */
+    /* Important icon filled, star icon filled */
+    /* Read email dates */
+    /* Read email summary truncated */
+    /* Selected unread emails */
+    /* Unsubscribe button */
+    /* Draft text */
+    /* No drafts message, trash 30 days message */
+    /* Your social/promotions/updates tab is empty */
+    /* You could lose access banner */
+    /* Attachments chips */
+    /* Floating menu */
+    /* Modal search input */
+    /* Magnifying glass icon */
+    /* Edit label modal */
+    /* Toast notifications */
+    /* Close icon */
+    /* Compose mail window */
+    /* Top header bar */
+    /* Bottom toolbar icons */
+    /* Floating toolbar (expanded window) */
+    /* Send button */
+    /* Contact autofill */
+    --pkw-background: #181825;
+    --pkw-outline: #313244;
+    --pkw-outline-variant: #313244;
+    --pkw-on-surface-variant: #cdd6f4;
+    /* Contact chip */
+    /* Settings */
+    /* Navigation header */
+    /* Main panel */
+    /* Labels page */
+    /* Confirm popup modal */
+  }
+  :root ::selection {
+    background-color: rgba(137, 180, 250, 0.3);
+  }
+  :root input::placeholder,
+  :root textarea::placeholder {
+    color: #a6adc8 !important;
+  }
+  :root input,
+  :root textarea {
+    caret-color: #cdd6f4;
+  }
+  :root #input-styling input,
+  :root #input-styling select,
+  :root #input-styling button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root * {
+    text-shadow: none !important;
+  }
+  :root [src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"],
+  :root [src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"] {
+    height: unset !important;
+    width: unset !important;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2217.727%2014.319%2030%2022.5%22%20width%3D%2230%22%20height%3D%2222.5%22%3E%3Cpath%20fill%3D%22%2389b4fa%22%20d%3D%22M19.773%2036.819h4.773V25.227l-6.819-5.114v14.659a2.044%202.044%200%200%200%202.045%202.045%22/%3E%3Cpath%20fill%3D%22%23a6e3a1%22%20d%3D%22M40.909%2036.819h4.773a2.044%202.044%200%200%200%202.045-2.045v-14.66l-6.819%205.114%22/%3E%3Cpath%20fill%3D%22%23f9e2af%22%20d%3D%22M40.909%2016.364v8.864l6.819-5.114v-2.727c0-2.529-2.888-3.971-4.909-2.455%22/%3E%3Cpath%20fill%3D%22%23f38ba8%22%20d%3D%22M24.545%2025.227v-8.863l8.181%206.136%208.181-6.136v8.864l-8.181%206.136m-15-13.977v2.727l6.819%205.114v-8.864l-1.909-1.431c-2.025-1.517-4.91-.075-4.91%202.455%22/%3E%3C/svg%3E");
+  }
+  :root .T-ays-iP,
+  :root .gb_Ac {
+    background-color: #11111b;
+    color: #cdd6f4;
+  }
+  :root .T-I-atl {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .l0,
+  :root div.b8 .a8k,
+  :root .bAo > .ad {
+    color: #89b4fa;
+  }
+  :root .l0::before,
+  :root div.b8 .a8k::before,
+  :root .bAo > .ad::before {
+    background-color: #89b4fa;
+  }
+  :root .bs0 > .acM,
+  :root .bti > .btg,
+  :root .a8Y > .T-I-ax7 {
+    color: #cdd6f4;
+    /* Disabled */
+  }
+  :root .bs0 > .acM.acN,
+  :root .bti > .btg.acN,
+  :root .a8Y > .T-I-ax7.acN {
+    color: #a6adc8;
+  }
+  :root .bs0 > .acM:hover::before,
+  :root .bti > .btg:hover::before,
+  :root .a8Y > .T-I-ax7:hover::before {
+    background-color: #9399b2;
+  }
+  :root .w-asV,
+  :root .bkL,
+  :root .bhZ.bym,
+  :root .bhZ.bjB,
+  :root .bhZ.bym.baA {
+    background-color: #181825;
+  }
+  :root .gb_Kc svg,
+  :root .gb_Pc.gb_Uc svg,
+  :root .gb_Lc .gb_rd .gb_sd,
+  :root .gb_Lc .gb_rd .gb_Kc,
+  :root .gb_Lc .gb_rd .gb_ud,
+  :root .gb_Pc.gb_Uc .gb_sd {
+    color: #cdd6f4;
+  }
+  :root .gb_Kc .gb_hd {
+    background-color: #45475a;
+  }
+  :root .gb_Kc .gb_hd .gb_je,
+  :root .gb_Kc .gb_hd .gb_qe,
+  :root .gb_Kc .gb_hd .gsan_a,
+  :root .gb_Kc .gb_hd .gsas_a,
+  :root .gb_Kc .gb_hd svg {
+    color: #cdd6f4;
+  }
+  :root .gb_hd.gb_id {
+    background-color: #1e1e2e;
+  }
+  :root .gssb_c {
+    /* Icons */
+    /* Recent searches */
+    /* Hovered recent searches */
+    /* Separator */
+    /* Search results */
+    /* Icons */
+    /* People involved */
+  }
+  :root .gssb_c button svg,
+  :root .gssb_c .asor {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .aRp,
+  :root .gssb_c .gssb_e,
+  :root .gssb_c .gssb_m {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .gssb_c .gssb_i {
+    background-color: #313244;
+    /* X icon */
+  }
+  :root .gssb_c .gssb_i > .gssb_a {
+    border-left-color: #89b4fa;
+  }
+  :root .gssb_c .gssb_i .gsaq_b {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .aSP,
+  :root .gssb_c .gssb_e {
+    border-color: #585b70;
+  }
+  :root .gssb_c .gssb_l {
+    background-color: #313244;
+  }
+  :root .gssb_c .gsoi_0,
+  :root .gssb_c .asor_o,
+  :root .gssb_c .gsoi_msra {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .gssb_c .asor_e {
+    color: #a6adc8;
+  }
+  :root .H2 {
+    background-color: #1e1e2e;
+    border-color: #313244;
+    color: #bac2de;
+    fill: #bac2de;
+  }
+  :root .H2:hover {
+    background-color: #181825;
+  }
+  :root .H2.bws {
+    background-color: #89b4fa;
+    color: #11111b;
+    fill: #11111b;
+  }
+  :root .H2.bws .HV {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .H2.bws:hover .H1 {
+    background-color: #71a4f9;
+  }
+  :root .aqc .H2 {
+    border-color: #cdd6f4;
+    color: #cdd6f4;
+  }
+  :root .aqc .H2.bws {
+    background-color: #585b70;
+    color: #181825;
+  }
+  :root .ZF-z6,
+  :root .ZF-zT,
+  :root .ZF-Av .lJ,
+  :root .ZF-Av .lN {
+    background-color: #1e1e2e;
+    /* Text inputs */
+    /* Calendar input */
+    /* Checkbox inputs */
+    /* Dropdown/select inputs */
+  }
+  :root .ZF-z6,
+  :root .ZF-zT,
+  :root .ZF-Av .lJ,
+  :root .ZF-Av .lN,
+  :root .ZF-z6 .boo > .ZG,
+  :root .ZF-zT .boo > .ZG,
+  :root .ZF-Av .lJ .boo > .ZG,
+  :root .ZF-Av .lN .boo > .ZG,
+  :root .ZF-z6 .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .aQl > .J-JN-M-I-Jm,
+  :root .ZF-z6 .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .aaa > .J-JN-M-I-Jm,
+  :root .ZF-z6 .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-zT .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-Av .lJ .boo .ZE > .J-JN-M-I-Jm,
+  :root .ZF-Av .lN .boo .ZE > .J-JN-M-I-Jm {
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .btl.acK,
+  :root .ZF-zT .btl.acK,
+  :root .ZF-Av .lJ .btl.acK,
+  :root .ZF-Av .lN .btl.acK,
+  :root .ZF-z6 .btn::before,
+  :root .ZF-zT .btn::before,
+  :root .ZF-Av .lJ .btn::before,
+  :root .ZF-Av .lN .btn::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .nr,
+  :root .ZF-zT .nr,
+  :root .ZF-Av .lJ .nr,
+  :root .ZF-Av .lN .nr {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .nr:focus,
+  :root .ZF-zT .nr:focus,
+  :root .ZF-Av .lJ .nr:focus,
+  :root .ZF-Av .lN .nr:focus {
+    box-shadow: inset 0 -1px 0 0 #89b4fa;
+  }
+  :root .ZF-z6 .bs5::after,
+  :root .ZF-zT .bs5::after,
+  :root .ZF-Av .lJ .bs5::after,
+  :root .ZF-Av .lN .bs5::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .J-JB-KA,
+  :root .ZF-zT .J-JB-KA,
+  :root .ZF-Av .lJ .J-JB-KA,
+  :root .ZF-Av .lN .J-JB-KA,
+  :root .ZF-z6 .J-JB-KA-JS,
+  :root .ZF-zT .J-JB-KA-JS,
+  :root .ZF-Av .lJ .J-JB-KA-JS,
+  :root .ZF-Av .lN .J-JB-KA-JS,
+  :root .ZF-z6 .J-JB-KA-Jk,
+  :root .ZF-zT .J-JB-KA-Jk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk,
+  :root .ZF-Av .lN .J-JB-KA-Jk,
+  :root .ZF-z6 .J-JB-KA-LG,
+  :root .ZF-zT .J-JB-KA-LG,
+  :root .ZF-Av .lJ .J-JB-KA-LG,
+  :root .ZF-Av .lN .J-JB-KA-LG {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-color: #313244;
+    /* Past days */
+    /* Future days */
+    /* Hovered day */
+    /* Selected day */
+    /* Unselected today */
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-Ku-Kk {
+    color: #a6adc8;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-LH,
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-a1R-JB.J-JB-KA-Ku-Kk,
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB.J-JB-KA-a1R-JB {
+    color: #bac2de;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-JB:not(.J-JB-KA-K8, .J-JB-KA-KO):hover::before {
+    background-color: rgba(137, 180, 250, 0.7);
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-KO,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-KO,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-KO {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-KO::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-KO::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-KO::before {
+    background-color: #89b4fa;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-K8,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-K8,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-K8 {
+    color: #11111b;
+  }
+  :root .ZF-z6 .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-JS .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-Jk .J-JB-KA-K8::before,
+  :root .ZF-z6 .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-zT .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-Av .lJ .J-JB-KA-LG .J-JB-KA-K8::before,
+  :root .ZF-Av .lN .J-JB-KA-LG .J-JB-KA-K8::before {
+    background-color: #9399b2;
+  }
+  :root .ZF-z6 .bs1 + .bs3,
+  :root .ZF-zT .bs1 + .bs3,
+  :root .ZF-Av .lJ .bs1 + .bs3,
+  :root .ZF-Av .lN .bs1 + .bs3,
+  :root .ZF-z6 .btj + .aD,
+  :root .ZF-zT .btj + .aD,
+  :root .ZF-Av .lJ .btj + .aD,
+  :root .ZF-Av .lN .btj + .aD {
+    color: #cdd6f4;
+  }
+  :root .ZF-z6 .bs1 + .bs3::before,
+  :root .ZF-zT .bs1 + .bs3::before,
+  :root .ZF-Av .lJ .bs1 + .bs3::before,
+  :root .ZF-Av .lN .bs1 + .bs3::before,
+  :root .ZF-z6 .btj + .aD::before,
+  :root .ZF-zT .btj + .aD::before,
+  :root .ZF-Av .lJ .btj + .aD::before,
+  :root .ZF-Av .lN .btj + .aD::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ZF-z6 .J-JN-M-I,
+  :root .ZF-zT .J-JN-M-I,
+  :root .ZF-Av .lJ .J-JN-M-I,
+  :root .ZF-Av .lN .J-JN-M-I {
+    color: #cdd6f4;
+  }
+  :root .TK .TO.nZ:active,
+  :root .TK .TO.ol:active,
+  :root .TK .TO.nZ,
+  :root .TK .TO.ol,
+  :root .byl .TK .nZ.aBP,
+  :root .byl .TK .nZ.aS3,
+  :root .byl .TK .nZ.aS4,
+  :root .byl .TK .nZ.aS5,
+  :root .byl .TK .nZ.aS6,
+  :root .VDSZAf.H5o3mc {
+    background-color: #313244;
+  }
+  :root .TO.NQ,
+  :root .n6 .ah9:hover,
+  :root .n6 .ah9.aiu:hover,
+  :root .n6 .ah9:focus,
+  :root .TK .TO:active,
+  :root .n6 .ah9.aiu:active,
+  :root .CL:hover,
+  :root .H5o3mc:not(.VDSZAf):hover,
+  :root .CL.NQ,
+  :root .H5o3mc:not(.VDSZAf).NQ {
+    background-color: #45475a;
+  }
+  :root .byl .TK .TO.nZ > .aHS-bnt .n0,
+  :root .TK .nZ > .aHS-bnt .bsU,
+  :root .byl .TK .nZ.aS3 .nU > .n0,
+  :root .TK .nZ.aS3 .bsU,
+  :root .byl .TK .nZ.aS4 .nU > .n0,
+  :root .TK .nZ.aS4 .bsU,
+  :root .byl .TK .nZ.aS5 .nU > .n0,
+  :root .TK .nZ.aS5 .bsU,
+  :root .byl .TK .nZ.aS6 .nU > .n0,
+  :root .TK .nZ.aS6 .bsU,
+  :root .TK .TO.nZ .nU > .n0,
+  :root .TK .ol.NQ .nU > .n0,
+  :root .TK .TO.ol .nU > .n0,
+  :root .TK .nZ .bsU,
+  :root .TK .ol .bsU,
+  :root .VDSZAf.H5o3mc > .Q7,
+  :root .TO .nU > .n0,
+  :root .TO.NQ .nU > .n0,
+  :root .TO.nZ .nU > .n0,
+  :root .ah9 > .CJ,
+  :root .n3 > .CL > .CK,
+  :root .aAv,
+  :root .bsU {
+    color: #cdd6f4;
+  }
+  :root .nZ > .TN.aHS-bnt .qj,
+  :root .TO:not(.nZ) > .TN > .qj:not([style*="background-color"]),
+  :root .n6 .n4 .G-asx,
+  :root .aAw .aAu,
+  :root .pM,
+  :root .TO.nZ > .TN > .qj,
+  :root .n3 .CL::before {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .z0 > .L3 {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .z0 > .L3:focus {
+    background-color: #cdd6f4;
+  }
+  :root .WR .z0 > .L3::before,
+  :root .WR.anZ .z0 > .L3::before {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .bkK > .nH {
+    background-color: #313244;
+    /* Icons */
+  }
+  :root .bkK > .nH .bzn,
+  :root .bkK > .nH .aqJ .amJ,
+  :root .bkK > .nH .adg .adk {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .aKx > .aKz {
+    color: #cdd6f4;
+  }
+  :root .aAy > div {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-KU-KO::before {
+    background-color: #cdd6f4;
+  }
+  :root .aRz.J-KU:hover {
+    background-color: #45475a;
+  }
+  :root div[aria-label="Show more messages"] .Dj {
+    color: #bac2de;
+  }
+  :root div[aria-label="Show more messages"]::before {
+    background-color: #cdd6f4;
+  }
+  :root .h0 {
+    color: #bac2de;
+  }
+  :root .md.mj,
+  :root .aeU .ma,
+  :root .ma .mb,
+  :root .ae3 .l6,
+  :root .l9,
+  :root .l8,
+  :root .aiD {
+    color: #bac2de;
+  }
+  :root .aiC {
+    background-color: #6c7086;
+  }
+  :root .aiC .aiA {
+    background-color: #a6adc8;
+  }
+  :root .aiz {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .yO {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    box-shadow: inset 0 -1px 0 0 #313244;
+  }
+  :root .yO:hover {
+    box-shadow: inset 1px 0 0 #313244, inset -1px 0 0 #313244, 0 0 4px 0 #45475a, 0 0 6px 2px #45475a;
+  }
+  :root .zE {
+    color: #cdd6f4;
+  }
+  :root .xY > .T-Jo,
+  :root td.apU > .T-KT.aXw::before,
+  :root .pG .a9q,
+  :root .aqN,
+  :root .bqY li {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .ha .a9q.pH,
+  :root .a9q.pH,
+  :root .aoj,
+  :root td.apU > .T-KT.T-KT-Jp::before {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(27%) saturate(512%) hue-rotate(336deg) brightness(108%) contrast(96%);
+  }
+  :root .pG:hover > .a9q::before {
+    background-color: rgba(249, 226, 175, 0.3);
+  }
+  :root .yO > .xW {
+    color: #a6adc8;
+  }
+  :root .y2 {
+    color: #bac2de;
+  }
+  :root .x7 {
+    background-color: #89b4fa;
+    color: #181825;
+    /* Dates */
+  }
+  :root .x7 .xW {
+    color: #11111b;
+  }
+  :root .x7 .xY > .T-Jo,
+  :root .x7 td.apU > .T-KT.aXw::before,
+  :root .x7 .pG .a9q,
+  :root .x7 .aqN,
+  :root .x7 .bqY li {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .aOd.T-I {
+    color: #cdd6f4;
+    box-shadow: inset 0 0 0 1px #585b70;
+  }
+  :root .boq {
+    color: #f38ba8;
+  }
+  :root .TD,
+  :root .Tm .ya {
+    background-color: #45475a;
+    color: #cdd6f4;
+  }
+  :root .aRs {
+    background-color: #1e1e2e;
+    color: #a6adc8;
+  }
+  :root .aRs .aRv {
+    color: #cdd6f4;
+  }
+  :root .aRs .aRq {
+    color: #89b4fa;
+  }
+  :root .GR {
+    background-color: #1e1e2e;
+    /* Primary text */
+    /* Subtext */
+    /* Dismiss button */
+    /* Add recovery info button */
+  }
+  :root .GR .GX {
+    color: #cdd6f4;
+  }
+  :root .GR .GT {
+    color: #bac2de;
+  }
+  :root .GR .GW {
+    color: #cdd6f4;
+  }
+  :root .GR .GW::before {
+    background-color: #cdd6f4;
+  }
+  :root .GR .GV {
+    color: #89b4fa;
+  }
+  :root .GR .GV::before {
+    background-color: #89b4fa;
+  }
+  :root .brc {
+    box-shadow: inset 0 0 0 1px #313244;
+    color: #cdd6f4;
+  }
+  :root .brc:hover {
+    background-color: #313244;
+  }
+  :root .J-M,
+  :root .OO.Pa {
+    background-color: #45475a;
+    /* Menu section header */
+    /* Menu item */
+    /* Disabled */
+    /* Checkmark, arrow, checkbox, star, calendar icon */
+    /* Hovered menu item */
+    /* Menu section divider */
+  }
+  :root .J-M .J-awr,
+  :root .OO.Pa .J-awr,
+  :root .J-M .asc,
+  :root .OO.Pa .asc {
+    color: #bac2de;
+  }
+  :root .J-M .J-N,
+  :root .OO.Pa .J-N,
+  :root .J-M .J-Ks-KO .J-N-Jz,
+  :root .OO.Pa .J-Ks-KO .J-N-Jz,
+  :root .J-M .J-N-JT .J-N-Jz,
+  :root .OO.Pa .J-N-JT .J-N-Jz,
+  :root .J-M .J-N-JW .J-N-Jz,
+  :root .OO.Pa .J-N-JW .J-N-Jz,
+  :root .J-M .J-LC,
+  :root .OO.Pa .J-LC,
+  :root .J-M .J-JK,
+  :root .OO.Pa .J-JK,
+  :root .J-M .bmz,
+  :root .OO.Pa .bmz {
+    color: #cdd6f4;
+  }
+  :root .J-M .J-N-JE .J-N-atj,
+  :root .OO.Pa .J-N-JE .J-N-atj,
+  :root .J-M .J-N-JE .J-N-Jz,
+  :root .OO.Pa .J-N-JE .J-N-Jz {
+    color: #a6adc8 !important;
+  }
+  :root .J-M .J-Ks-KO .J-N-Jo,
+  :root .OO.Pa .J-Ks-KO .J-N-Jo,
+  :root .J-M .asi .J-Ks-KO::before,
+  :root .OO.Pa .asi .J-Ks-KO::before,
+  :root .J-M .J-Ph-hFsbo,
+  :root .OO.Pa .J-Ph-hFsbo,
+  :root .J-M .J-LC-Jo,
+  :root .OO.Pa .J-LC-Jo,
+  :root .J-M .bi4 > .T-KT:not(.T-KT-Jp, .byM)::before,
+  :root .OO.Pa .bi4 > .T-KT:not(.T-KT-Jp, .byM)::before,
+  :root .J-M .aaA.mYVwse,
+  :root .OO.Pa .aaA.mYVwse,
+  :root .J-M .J-N-JX,
+  :root .OO.Pa .J-N-JX {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-M .bmz.bjF::before,
+  :root .OO.Pa .bmz.bjF::before {
+    border-color: #a6adc8;
+  }
+  :root .J-M .J-N-JT,
+  :root .OO.Pa .J-N-JT,
+  :root .J-M .J-N-JW,
+  :root .OO.Pa .J-N-JW,
+  :root .J-M .J-LC-JT,
+  :root .OO.Pa .J-LC-JT,
+  :root .J-M .J-LC-JW,
+  :root .OO.Pa .J-LC-JW,
+  :root .J-M .J-JK-JT,
+  :root .OO.Pa .J-JK-JT,
+  :root .J-M .J-JK-JW,
+  :root .OO.Pa .J-JK-JW,
+  :root .J-M .bmz.bk5,
+  :root .OO.Pa .bmz.bk5 {
+    background-color: #585b70;
+    border-color: #7f849c;
+  }
+  :root .J-M .J-Kh,
+  :root .OO.Pa .J-Kh {
+    border-top-color: #585b70;
+  }
+  :root .agd .J-M-JJ input {
+    background-color: #45475a;
+    color: #cdd6f4;
+  }
+  :root .bqf {
+    box-shadow: inset 0 -2px 0 0 #585b70;
+  }
+  :root .bqf:focus {
+    box-shadow: inset 0 -2px 0 0 #89b4fa;
+  }
+  :root .A0 {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root div.Kj-JD {
+    background-color: #1e1e2e;
+    /* Edit label text */
+    /* Close X icon */
+    /* Input labels */
+    /* Cancel button */
+    /* Save button */
+  }
+  :root div.Kj-JD span.Kj-JD-K7-K0 {
+    color: #cdd6f4;
+  }
+  :root div.Kj-JD span.Kj-JD-K7-Jq::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root div.Kj-JD input,
+  :root div.Kj-JD select,
+  :root div.Kj-JD button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root div.Kj-JD div.Kj-JD-Jz {
+    color: #bac2de;
+  }
+  :root div.Kj-JD div.Kj-JD-Jl > button,
+  :root div.Kj-JD .bBh .Kj-JD-Jl > .J-at1-auR {
+    color: #bac2de;
+  }
+  :root div.Kj-JD div.Kj-JD-Jl > button.J-at1-atl,
+  :root div.Kj-JD div.Kj-JD-Jl > button.J-at1-auR {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .bAp.b8.UC .vh {
+    background-color: #11111b;
+    color: #cdd6f4;
+  }
+  :root .b8 .bBe .bBf {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .Hy.Hy .m,
+  :root .IG {
+    background-color: #181825;
+  }
+  :root .Hy.Hy .m .Hp,
+  :root .IG .Hp,
+  :root .Hy.Hy .m .zu,
+  :root .IG .zu,
+  :root .Hy.Hy .m .H,
+  :root .IG .H,
+  :root .Hy.Hy .m .Iy .az9,
+  :root .IG .Iy .az9 {
+    color: #cdd6f4;
+  }
+  :root .Hy.Hy .m .Hm img,
+  :root .IG .Hm img,
+  :root .Hy.Hy .m .SB,
+  :root .IG .SB,
+  :root .Hy.Hy .m .b7 .mK,
+  :root .IG .b7 .mK,
+  :root .Hy.Hy .m .bAm .aaq .mK,
+  :root .IG .bAm .aaq .mK,
+  :root .Hy.Hy .m .Un .mK,
+  :root .IG .Un .mK,
+  :root .Hy.Hy .m .HX .mK,
+  :root .IG .HX .mK,
+  :root .Hy.Hy .m .HQ .Un::after,
+  :root .IG .HQ .Un::after {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .aaZ,
+  :root .Ap,
+  :root .Am,
+  :root .aDg > .aDj,
+  :root .aoP .Ar,
+  :root .wO,
+  :root .aoT,
+  :root .agP,
+  :root .aGb,
+  :root .GQ {
+    color: #cdd6f4;
+    caret-color: #cdd6f4;
+  }
+  :root .aaZ,
+  :root .Ap,
+  :root .Am,
+  :root .aDg > .aDj,
+  :root .aoP .Ar,
+  :root .wO,
+  :root .aoT,
+  :root .agP,
+  :root .aGb,
+  :root .GQ,
+  :root .aaZ::before,
+  :root .Ap::before,
+  :root .Am::before,
+  :root .aDg > .aDj::before,
+  :root .aoP .Ar::before,
+  :root .wO::before,
+  :root .aoT::before,
+  :root .agP::before,
+  :root .aGb::before,
+  :root .GQ::before {
+    background: #1e1e2e;
+  }
+  :root .gQ,
+  :root .gO,
+  :root .oL {
+    color: #a6adc8;
+  }
+  :root .aaA,
+  :root .btC .dv,
+  :root .btC .og.T-I-J3,
+  :root .btC .J-N-JX.og.T-I-J3,
+  :root .btC .Y1,
+  :root .btC .Xv.T-I.J-JN-M-I > .J-JN-M-I-JG,
+  :root .J-JN-M-I-JG,
+  :root .J-Z-M-I-J6-H > .J-Z-M-I-JG {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(82%) saturate(1008%) hue-rotate(189deg) brightness(120%) contrast(90%);
+  }
+  :root .J-Z {
+    background-color: #181825;
+  }
+  :root .J-Z .J-Z-I,
+  :root .J-Z .J-Z-M-I {
+    color: #bac2de;
+  }
+  :root .gU .v7.T-I:not(.btz),
+  :root .gU .hG:not(.v6) {
+    background-color: #89b4fa;
+    color: #11111b;
+  }
+  :root .hG > .G-asx,
+  :root .SI .hG > .G-asx {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(549%) hue-rotate(204deg) brightness(18%) contrast(96%);
+  }
+  :root .afC,
+  :root .bvx {
+    background: #181825;
+    /* Contact list item */
+  }
+  :root .afC .agJ .aL8,
+  :root .bvx .agJ .aL8,
+  :root .afC .agJ .aXS,
+  :root .bvx .agJ .aXS {
+    color: #cdd6f4;
+  }
+  :root .afC .agJ:hover,
+  :root .bvx .agJ:hover {
+    background: #1e1e2e;
+  }
+  :root .agh,
+  :root .bbV {
+    background: #1e1e2e;
+  }
+  :root .agh .afV,
+  :root .bbV .afV {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .agh .afV:hover,
+  :root .bbV .afV:hover {
+    background: #313244;
+    color: #cdd6f4;
+  }
+  :root .dt {
+    color: #cdd6f4;
+  }
+  :root .v {
+    /* Tabs */
+    /* Currently selected tab */
+  }
+  :root .v .fY,
+  :root .v .f1 {
+    background-color: #313244;
+  }
+  :root .v .fY .f0,
+  :root .v .f1 .f0 {
+    color: #cdd6f4;
+  }
+  :root .v .fZ {
+    box-shadow: inset 0 -2px 0 0 #89b4fa;
+  }
+  :root .r4 {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    /* Dividers */
+    /* Links */
+    /* Some buttons */
+  }
+  :root .r4 .r7 td,
+  :root .r4 .Jb .J0:not(:last-child) {
+    border-bottom-color: #313244;
+  }
+  :root .r4 .r7 .e,
+  :root .r4 .sA,
+  :root .r4 .r4 .e,
+  :root .r4 .el {
+    color: #89b4fa;
+  }
+  :root .r4 input,
+  :root .r4 select,
+  :root .r4 button {
+    background-color: #181825;
+    color: #cdd6f4;
+    border-color: #313244;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+  }
+  :root .r4 .qK,
+  :root .r4 .qL {
+    background-color: #181825;
+  }
+  :root .r4 .nr,
+  :root .r4 .Ar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-color: #313244 !important;
+  }
+  :root .r4 .Uu {
+    box-shadow: inset 0 0 0 1px #313244;
+    color: #89b4fa;
+  }
+  :root .alO {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    /* Table items */
+    /* Links */
+    /* Dividers */
+  }
+  :root .alO .rb {
+    color: #bac2de;
+  }
+  :root .alO .To.Ze {
+    background-color: #313244;
+  }
+  :root .alO .alP {
+    color: #89b4fa;
+  }
+  :root .alO .rZ {
+    background-color: #313244;
+  }
+  :root div[aria-modal="true"] {
+    --gm3-dialog-refactored-container-color: #1e1e2e;
+    --gm3-dialog-refactored-supporting-text-color: #cdd6f4;
+    --gm3-dialog-refactored-headline-color: #cdd6f4;
+    /* Buttons */
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="ok"] {
+    background-color: #89b4fa;
+    --gm3-button-text-label-text-color: #11111b;
+    --gm3-button-text-hover-label-text-color: #11111b;
+    --gm3-button-text-pressed-label-text-color: #11111b;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"] {
+    --gm3-button-text-label-text-color: #bac2de;
+    --gm3-button-text-hover-label-text-color: #cdd6f4;
+    --gm3-button-text-focus-label-text-color: #cdd6f4;
+    --gm3-button-text-pressed-label-text-color: #cdd6f4;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:hover,
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:focus,
+  :root div[aria-modal="true"] [data-mdc-dialog-action="cancel"]:active {
+    background-color: #313244;
+  }
+}
+
+
+
+/* --- Proton-style Complement & Google Material 3 (GM3) Tokens --- */
+
+/* ==UserStyle==
+@name Gmail Catppuccin Proton Complement
+@namespace github.com/grajpap/gmail-catppuccin
+@homepageURL https://github.com/grajpap/gmail-catppuccin
+@version 2026.09.15
+@description Proton-style semantic CSS custom properties and extra selectors — use alongside the official catppuccin Gmail userstyle
+@author grajpap
+@license MIT
+
+@preprocessor less
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select accentColor "Accent" ["rosewater:Rosewater", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve*", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "blue:Blue", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+==/UserStyle== */
+/* deno-fmt-ignore */
+/* deno-fmt-ignore */
+
+  @media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark;
+    /* -----------------------------------------------------------
+       Proton-style semantic CSS custom properties
+       Exposes catppuccin palette as semantic tokens for any
+       custom Gmail extensions or userscripts to consume.
+       ----------------------------------------------------------- */
+    --ctp-primary: #89b4fa;
+    --ctp-primary-contrast: #11111b;
+    --ctp-surface: #1e1e2e;
+    --ctp-surface-dim: #181825;
+    --ctp-surface-bright: #11111b;
+    --ctp-surface-container: #313244;
+    --ctp-surface-container-high: #45475a;
+    --ctp-surface-container-highest: #585b70;
+    --ctp-on-surface: #cdd6f4;
+    --ctp-on-surface-variant: #bac2de;
+    --ctp-outline: #6c7086;
+    --ctp-outline-variant: #313244;
+    --ctp-danger: #f38ba8;
+    --ctp-warning: #fab387;
+    --ctp-success: #a6e3a1;
+    --ctp-info: #89b4fa;
+    --ctp-link: #89b4fa;
+    --ctp-link-hover: #b4befe;
+    --ctp-link-active: #89dceb;
+    /* Proton-style signal variants */
+    --ctp-danger-minor-1: #d01549;
+    --ctp-danger-minor-2: #a11139;
+    --ctp-danger-major-1: #f59db6;
+    --ctp-danger-major-2: #f7b0c4;
+    --ctp-warning-minor-1: #df5b09;
+    --ctp-warning-minor-2: #ae4707;
+    --ctp-warning-major-1: #fbbf9b;
+    --ctp-warning-major-2: #fcccae;
+    --ctp-success-minor-1: #40b536;
+    --ctp-success-minor-2: #328e2a;
+    --ctp-success-major-1: #b5e8b1;
+    --ctp-success-major-2: #c4ecc0;
+    --ctp-info-minor-1: #0a5be0;
+    --ctp-info-minor-2: #0747b0;
+    --ctp-info-major-1: #9dc0fb;
+    --ctp-info-major-2: #b0cdfc;
+    /* -----------------------------------------------------------
+       Extra selectors not covered by the official catppuccin Gmail
+       userstyle — fills gaps for a more complete theme.
+       ----------------------------------------------------------- */
+    /* Email bodies: light surface + dark text so newsletters stay readable
+       (transparent-bg mails would show the dark UI through dark text). */
+    /* Input caret */
+    /* Kill text shadows */
+    /* Gmail logo replacement (substring match: covers 1x/2x retina assets) */
+    /* Compose FAB — extra emphasis */
+    /* Draft text */
+    /* Compose window backgrounds */
+    /* Contact chip */
+    /* Unread email row — slightly tinted */
+    /* Attachment hover */
+    /* Settings page — extra overrides */
+    /* Material 3 dialog buttons */
+    /* Checkbox/radio inputs in settings */
+    /* Scrollbar theming */
+  }
+  :root ::selection {
+    background-color: rgba(137, 180, 250, 0.3);
+  }
+  :root input::placeholder,
+  :root textarea::placeholder {
+    color: #a6adc8 !important;
+  }
+  :root .a3s {
+    background-color: #eff1f5 !important;
+    color: #4c4f69 !important;
+  }
+  :root input,
+  :root textarea {
+    caret-color: #cdd6f4;
+  }
+  :root * {
+    text-shadow: none !important;
+  }
+  :root [src*="logo_gmail_lockup_default_"],
+  :root [src*="logo_gmail_lockup_dark_"] {
+    height: unset !important;
+    width: unset !important;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2217.727%2014.319%2030%2022.5%22%20width%3D%2230%22%20height%3D%2222.5%22%3E%3Cpath%20fill%3D%22%2389b4fa%22%20d%3D%22M19.773%2036.819h4.773V25.227l-6.819-5.114v14.659a2.044%202.044%200%200%200%202.045%202.045%22/%3E%3Cpath%20fill%3D%22%23a6e3a1%22%20d%3D%22M40.909%2036.819h4.773a2.044%202.044%200%200%200%202.045-2.045v-14.66l-6.819%205.114%22/%3E%3Cpath%20fill%3D%22%23f9e2af%22%20d%3D%22M40.909%2016.364v8.864l6.819-5.114v-2.727c0-2.529-2.888-3.971-4.909-2.455%22/%3E%3Cpath%20fill%3D%22%23f38ba8%22%20d%3D%22M24.545%2025.227v-8.863l8.181%206.136%208.181-6.136v8.864l-8.181%206.136m-15-13.977v2.727l6.819%205.114v-8.864l-1.909-1.431c-2.025-1.517-4.91-.075-4.91%202.455%22/%3E%3C/svg%3E");
+  }
+  :root .z0 > .L3:focus {
+    background-color: #75a8f9;
+  }
+  :root .boq {
+    color: #f38ba8;
+  }
+  :root .Hy.Hy .m,
+  :root .IG {
+    background-color: #181825;
+  }
+  :root .agh,
+  :root .bbV {
+    background: #1e1e2e;
+  }
+  :root .agh .afV,
+  :root .bbV .afV {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .agh .afV:hover,
+  :root .bbV .afV:hover {
+    background: #313244;
+    color: #cdd6f4;
+  }
+  :root .zA:not(.zE):not(.x7) {
+    background-color: rgba(137, 180, 250, 0.03);
+  }
+  :root .brc:hover {
+    background-color: #313244;
+  }
+  :root .r4 .qK,
+  :root .r4 .qL {
+    background-color: #181825;
+  }
+  :root .r4 .nr,
+  :root .r4 .Ar {
+    border-color: #313244 !important;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="ok"] {
+    background-color: #89b4fa;
+  }
+  :root input[type="checkbox"],
+  :root input[type="radio"] {
+    accent-color: #89b4fa;
+  }
+  :root ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  :root ::-webkit-scrollbar-track {
+    background: #181825;
+  }
+  :root ::-webkit-scrollbar-thumb {
+    background: #45475a;
+    border-radius: 4px;
+  }
+  :root ::-webkit-scrollbar-thumb:hover {
+    background: #585b70;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    /* -----------------------------------------------------------
+       Proton-style semantic CSS custom properties
+       Exposes catppuccin palette as semantic tokens for any
+       custom Gmail extensions or userscripts to consume.
+       ----------------------------------------------------------- */
+    --ctp-primary: #89b4fa;
+    --ctp-primary-contrast: #11111b;
+    --ctp-surface: #1e1e2e;
+    --ctp-surface-dim: #181825;
+    --ctp-surface-bright: #11111b;
+    --ctp-surface-container: #313244;
+    --ctp-surface-container-high: #45475a;
+    --ctp-surface-container-highest: #585b70;
+    --ctp-on-surface: #cdd6f4;
+    --ctp-on-surface-variant: #bac2de;
+    --ctp-outline: #6c7086;
+    --ctp-outline-variant: #313244;
+    --ctp-danger: #f38ba8;
+    --ctp-warning: #fab387;
+    --ctp-success: #a6e3a1;
+    --ctp-info: #89b4fa;
+    --ctp-link: #89b4fa;
+    --ctp-link-hover: #b4befe;
+    --ctp-link-active: #89dceb;
+    /* Proton-style signal variants */
+    --ctp-danger-minor-1: #d01549;
+    --ctp-danger-minor-2: #a11139;
+    --ctp-danger-major-1: #f59db6;
+    --ctp-danger-major-2: #f7b0c4;
+    --ctp-warning-minor-1: #df5b09;
+    --ctp-warning-minor-2: #ae4707;
+    --ctp-warning-major-1: #fbbf9b;
+    --ctp-warning-major-2: #fcccae;
+    --ctp-success-minor-1: #40b536;
+    --ctp-success-minor-2: #328e2a;
+    --ctp-success-major-1: #b5e8b1;
+    --ctp-success-major-2: #c4ecc0;
+    --ctp-info-minor-1: #0a5be0;
+    --ctp-info-minor-2: #0747b0;
+    --ctp-info-major-1: #9dc0fb;
+    --ctp-info-major-2: #b0cdfc;
+    /* -----------------------------------------------------------
+       Extra selectors not covered by the official catppuccin Gmail
+       userstyle — fills gaps for a more complete theme.
+       ----------------------------------------------------------- */
+    /* Email bodies: light surface + dark text so newsletters stay readable
+       (transparent-bg mails would show the dark UI through dark text). */
+    /* Input caret */
+    /* Kill text shadows */
+    /* Gmail logo replacement (substring match: covers 1x/2x retina assets) */
+    /* Compose FAB — extra emphasis */
+    /* Draft text */
+    /* Compose window backgrounds */
+    /* Contact chip */
+    /* Unread email row — slightly tinted */
+    /* Attachment hover */
+    /* Settings page — extra overrides */
+    /* Material 3 dialog buttons */
+    /* Checkbox/radio inputs in settings */
+    /* Scrollbar theming */
+  }
+  :root ::selection {
+    background-color: rgba(137, 180, 250, 0.3);
+  }
+  :root input::placeholder,
+  :root textarea::placeholder {
+    color: #a6adc8 !important;
+  }
+  :root .a3s {
+    background-color: #eff1f5 !important;
+    color: #4c4f69 !important;
+  }
+  :root input,
+  :root textarea {
+    caret-color: #cdd6f4;
+  }
+  :root * {
+    text-shadow: none !important;
+  }
+  :root [src*="logo_gmail_lockup_default_"],
+  :root [src*="logo_gmail_lockup_dark_"] {
+    height: unset !important;
+    width: unset !important;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2217.727%2014.319%2030%2022.5%22%20width%3D%2230%22%20height%3D%2222.5%22%3E%3Cpath%20fill%3D%22%2389b4fa%22%20d%3D%22M19.773%2036.819h4.773V25.227l-6.819-5.114v14.659a2.044%202.044%200%200%200%202.045%202.045%22/%3E%3Cpath%20fill%3D%22%23a6e3a1%22%20d%3D%22M40.909%2036.819h4.773a2.044%202.044%200%200%200%202.045-2.045v-14.66l-6.819%205.114%22/%3E%3Cpath%20fill%3D%22%23f9e2af%22%20d%3D%22M40.909%2016.364v8.864l6.819-5.114v-2.727c0-2.529-2.888-3.971-4.909-2.455%22/%3E%3Cpath%20fill%3D%22%23f38ba8%22%20d%3D%22M24.545%2025.227v-8.863l8.181%206.136%208.181-6.136v8.864l-8.181%206.136m-15-13.977v2.727l6.819%205.114v-8.864l-1.909-1.431c-2.025-1.517-4.91-.075-4.91%202.455%22/%3E%3C/svg%3E");
+  }
+  :root .z0 > .L3:focus {
+    background-color: #75a8f9;
+  }
+  :root .boq {
+    color: #f38ba8;
+  }
+  :root .Hy.Hy .m,
+  :root .IG {
+    background-color: #181825;
+  }
+  :root .agh,
+  :root .bbV {
+    background: #1e1e2e;
+  }
+  :root .agh .afV,
+  :root .bbV .afV {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+  :root .agh .afV:hover,
+  :root .bbV .afV:hover {
+    background: #313244;
+    color: #cdd6f4;
+  }
+  :root .zA:not(.zE):not(.x7) {
+    background-color: rgba(137, 180, 250, 0.03);
+  }
+  :root .brc:hover {
+    background-color: #313244;
+  }
+  :root .r4 .qK,
+  :root .r4 .qL {
+    background-color: #181825;
+  }
+  :root .r4 .nr,
+  :root .r4 .Ar {
+    border-color: #313244 !important;
+  }
+  :root div[aria-modal="true"] [data-mdc-dialog-action="ok"] {
+    background-color: #89b4fa;
+  }
+  :root input[type="checkbox"],
+  :root input[type="radio"] {
+    accent-color: #89b4fa;
+  }
+  :root ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  :root ::-webkit-scrollbar-track {
+    background: #181825;
+  }
+  :root ::-webkit-scrollbar-thumb {
+    background: #45475a;
+    border-radius: 4px;
+  }
+  :root ::-webkit-scrollbar-thumb:hover {
+    background: #585b70;
+  }
+}
+
