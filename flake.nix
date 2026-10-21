@@ -75,7 +75,7 @@
 
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     backendqs = {
       url = "git+file:///home/sioodmy/.config/quickshell";

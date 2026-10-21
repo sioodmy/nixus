@@ -17,6 +17,7 @@
   imports = [
     inputs.apple-silicon-support.nixosModules.apple-silicon-support
     (modulesPath + "/installer/scan/not-detected.nix")
+    ./kernel.nix
   ];
 
   hardware.asahi = {
