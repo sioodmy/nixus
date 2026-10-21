@@ -1,5 +1,15 @@
 { pkgs, ... }:
 {
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
+  };
+
+  systemd.user.services.ssh-agent.serviceConfig.ExecStartPost =
+    "${pkgs.systemd}/bin/systemctl --user set-environment SSH_AUTH_SOCK=%t/ssh-agent";
+
   services.syncthing = {
     enable = true;
     user = "sioodmy";

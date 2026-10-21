@@ -1,4 +1,9 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   # Zaczerpnięte z https://github.com/GrajAP/nixos_config/tree/dcbf6bb5cb701427182892bdebfe7beaf812ff46/apps/t3code
   #
@@ -11,17 +16,36 @@ let
   # (tak samo robi wrapper GrajAPa przez SSL_CERT_FILE i spółkę).
   certBundle = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 
-  # T3 Connect tuneluje przez cloudflared; nixpkgsowy t3code nie dokłada go
-  # do PATH, więc dokładamy go wrapperem (jak providerPath u GrajAPa).
+  # T3 Connect tuneluje przez cloudflared; t3code z llm-agents.nix też go
+  # nie dokłada do PATH, więc dokładamy go wrapperem (jak providerPath u GrajAPa).
   providerPath = lib.makeBinPath [
     pkgs.cloudflared
     pkgs.gh
     pkgs.git
   ];
 
+  # t3code bierzemy z tego samego flake co opencode (numtide/llm-agents.nix),
+  # a nie z nixpkgs. Pakiet ma dwa outputy: `out` (CLI `t3`) i `desktop`
+  # (`t3code-desktop`) -- bierzemy oba, żeby mieć i CLI, i desktop.
+  llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+
+  # `providerPackages` steruje tylko PATH-em wrappera, a Nix nie forsuje
+  # nieużywanych argumentów funkcji -- więc claude-code i codex (których nie
+  # używamy) nie trafiają w ogóle do buildu, mimo że upstream wpina je z defaultu.
+  t3code = llm-agents.t3code.override {
+    providerPackages = [
+      llm-agents.opencode
+      llm-agents.cursor-agent
+      llm-agents.grok
+    ];
+  };
+
   t3code-wrapped = pkgs.symlinkJoin {
-    name = "${pkgs.t3code.pname or "t3code"}-${pkgs.t3code.version or "wrapped"}-with-ca";
-    paths = [ pkgs.t3code ];
+    name = "t3code-${t3code.version}-with-ca";
+    paths = [
+      t3code
+      t3code.desktop
+    ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       for program in "$out"/bin/*; do
@@ -57,6 +81,18 @@ let
   # Na hostach x86_64 (calypso) mostek jest zbędny.
   # W T3: Settings -> Providers -> Antigravity -> Binary path =
   #   /run/current-system/sw/bin/agy_acp_server-qemu
+  #
+  # HYBRYDA (fix na `found bad pointer in Go heap` przy modelu 3.8 high):
+  # agy_acp_server.par (Python) idzie przez qemu-user -- to działa stabilnie.
+  # Ale localharness_external (statyczny Go) NIE idzie przez qemu: Go +
+  # qemu-user sypie `fatal error: found bad pointer in Go heap (incorrect
+  # use of unsafe or cgo?)` i zrywa sesję (WS close 1006) na cięższych
+  # runach agenta. Statyczny Go działa natywnie na 16K pages, więc bierzemy
+  # harness z oficjalnego zipa arm64 (ten sam release 1.1.1, bajt w bajt
+  # jak u Google, bez patchelf/strip) i kładziemy go obok .par -- .par
+  # spawnuje siblinga, binfmt nie dotyka natywnego ELF-a. Wrapper dokłada
+  # jeszcze GODEBUG=asyncpreemptoff=1 / GOMAXPROCS=1 / QEMU_STACK_SIZE na
+  # wypadek resztek x86_64-Go pod qemu.
   isAarch64 = pkgs.stdenv.hostPlatform.system == "aarch64-linux";
 
   pkgsX64 = inputs.nixpkgs.legacyPackages."x86_64-linux";
@@ -64,20 +100,27 @@ let
   antigravityBridge = pkgs.stdenvNoCC.mkDerivation {
     pname = "antigravity-qemu-bridge";
     version = "1.1.1";
-    src = pkgs.fetchurl {
+    srcX64 = pkgs.fetchurl {
       url = "https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-agy_acp_server_1.1.1-linux-x86_64.zip";
       hash = "sha256-OPYtAbMt6wkHs9OacewwH9Njafb/0c8mLUrzhRd/ed8=";
     };
+    srcArm = pkgs.fetchurl {
+      url = "https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-agy_acp_server_1.1.1-linux-arm64.zip";
+      hash = "sha256-7WnmSzCPyxI6tUvzJ3v5yw1lEGT4hepaqw/1IMcXU5g=";
+    };
     nativeBuildInputs = [ pkgs.unzip ];
-    # Obcoarchitekturowy blob ma zostać bajt w bajt jak u Google.
+    # Obcoarchitekturowe bloby mają zostać bajt w bajt jak u Google.
     # Żadnego strip/patchelf (to prawdopodobnie skasowało build arm64).
     dontFixup = true;
-    sourceRoot = ".";
+    dontUnpack = true;
     installPhase = ''
       runHook preInstall
       mkdir -p $out/bin $out/x86_64-sysroot/lib64 $out/x86_64-sysroot/lib
-      install -m755 agy_acp_server.par $out/bin/agy_acp_server.par
-      install -m755 localharness_external $out/bin/localharness_external
+      unzip -p "$srcX64" agy_acp_server.par > $out/bin/agy_acp_server.par
+      chmod 755 $out/bin/agy_acp_server.par
+      # Natywny harness Go (aarch64, static) -- omija qemu-user.
+      unzip -p "$srcArm" localharness_external > $out/bin/localharness_external
+      chmod 755 $out/bin/localharness_external
       ln -s ${pkgsX64.glibc}/lib/* $out/x86_64-sysroot/lib64/
       ln -s ${pkgsX64.glibc}/lib/* $out/x86_64-sysroot/lib/
       substitute ${./agy-qemu-wrapper.sh} $out/bin/agy_acp_server-qemu \

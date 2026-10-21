@@ -74,7 +74,46 @@
   # Włączone: runtime t3code pod ~/.t3 to zwykłe drzewo npm, więc binarki
   # providerów (m.in. Antigravity ACP) potrzebują loadera Niksa także poza
   # shellem logowania. Bez tego systemd unit t3code nie widzi glibc.
-  programs.nix-ld.enable = true;
+  #
+  # T3 dociąga też własny `chrome-headless-shell` (Playwright) do
+  # ~/.t3/tools. To obcy binarny blob bez RPATH-a, a na NixOS nie ma apt-get,
+  # więc `t3 browser setup` nie ma skąd wziąć bibliotek. Lista poniżej to
+  # bezpośrednie NEEDED tego binarium (na podstawie RUNPATH z nixpkgsowego
+  # chromium); ich zależności rozwiązują się już przez własne RUNPATH-y.
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      alsa-lib
+      at-spi2-core
+      cairo
+      cups
+      dbus
+      expat
+      flac
+      glib
+      libffi
+      libgbm
+      libglvnd
+      libjpeg
+      libpulseaudio
+      libX11
+      libxcb
+      libXcomposite
+      libXdamage
+      libXext
+      libXfixes
+      libxkbcommon
+      libXrandr
+      libxml2
+      libxslt
+      nspr
+      nss
+      pango
+      pciutils
+      systemd
+      vulkan-loader
+    ];
+  };
 
   programs.nh = {
     enable = true;

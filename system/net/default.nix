@@ -28,6 +28,7 @@ in
       enable = true;
       allowPing = false;
       logReversePathDrops = true;
+      trustedInterfaces = [ config.services.tailscale.interfaceName ];
       allowedTCPPorts = [
         45454
         45455
@@ -40,6 +41,10 @@ in
     ./pwr-eduroam-cert.pem
   ];
 
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
   # encrypted dns
   services.dnscrypt-proxy = {
     enable = true;

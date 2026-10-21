@@ -16,6 +16,8 @@
       "/var/lib/pipewire"
       "/var/lib/bluetooth"
       "/var/lib/postgresql"
+      "/var/lib/tailscale"
+      "/var/cache/tailscale"
     ];
   };
 

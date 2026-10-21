@@ -21,6 +21,7 @@ in
         cava
         btop
         mpv
+        prismlauncher
         gh
         antigravity-cli
         antigravity-acp
@@ -35,7 +36,6 @@ in
         jdk17
         jre21_minimal
         rust-analyzer
-        firefox-devedition
         bear
         ferdium
         pastel
@@ -101,14 +101,16 @@ in
       inherit (inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system})
         leninshell
         ;
-      inherit (inputs.helix.packages.${pkgs.stdenv.hostPlatform.system})
-        helix
-        ;
       inherit (inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system})
-        opencode
+        opencode2
+        codex
+        ;
+      inherit (inputs.vim.packages.${pkgs.stdenv.hostPlatform.system})
+        default
         ;
     }
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
-    ++ [ inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    ++ [ inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system}.default ]
+    ++ [ (pkgs.callPackage ./smath { inherit inputs; }) ];
 
 }

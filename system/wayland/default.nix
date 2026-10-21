@@ -21,6 +21,8 @@ let
     # greetd sets XDG_RUNTIME_DIR, but fall back to the conventional location so
     # `systemctl --user` can find the session bus either way.
     export XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+    export SSH_AUTH_SOCK="''${SSH_AUTH_SOCK:-$XDG_RUNTIME_DIR/ssh-agent}"
+    ${pkgs.systemd}/bin/systemctl --user import-environment SSH_AUTH_SOCK
 
     ${pkgs.systemd}/bin/systemctl --user start nixos-fake-graphical-session.target
 

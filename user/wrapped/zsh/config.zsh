@@ -12,6 +12,11 @@ setopt HIST_SAVE_NO_DUPS
 export AUTO_NOTIFY_THRESHOLD=40
 export AUTO_NOTIFY_EXPIRE_TIME=5000
 
+# SSH agent socket
+if [[ -z "$SSH_AUTH_SOCK" && -n "$XDG_RUNTIME_DIR" ]]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
+fi
+
 # FZF Catppuccin Macchiato Theme
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
