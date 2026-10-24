@@ -165,8 +165,7 @@ if hl.plugin.hypr_edgehover then
         plugin = {
             hypr_edgehover = {
                 enabled = true,
-                -- Which monitor edges engage. The dock is at the bottom and the
-                -- bar areas are at the top, so all four are useful.
+                -- Forward motion in the outer window gaps on every edge.
                 edges = "lrtb",
                 -- How far inside the target edge the synthetic pointer sits.
                 -- 1px is enough to register as "inside" and not enough to be
@@ -190,7 +189,7 @@ if hl.plugin.hypr_edgehover then
                 layer_pass = "hover,keyboard",
                 -- Only the shell's own panels, not every layer that happens to
                 -- touch the edge (notifications, lock screen, OSDs).
-                layer_namespaces = "quickshell-dock,quickshell-launcher,quickshell-keepass",
+                layer_namespaces = "amethyst-bar",
                 steal_edge_width = 2,
 
                 -- A thin strip of window poking past another one is treated as

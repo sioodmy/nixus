@@ -1,0 +1,80 @@
+@define-color theme_bg_color @SURFACE@;
+@define-color theme_fg_color @TEXT@;
+@define-color theme_base_color @BACKGROUND@;
+@define-color theme_text_color @TEXT@;
+@define-color theme_selected_bg_color @ACCENT@;
+@define-color theme_selected_fg_color @BACKGROUND@;
+@define-color insensitive_fg_color @MUTED@;
+@define-color borders @EDGE@;
+@define-color accent_color @ACCENT@;
+@define-color accent_bg_color @ACCENT@;
+@define-color accent_fg_color @BACKGROUND@;
+@define-color window_bg_color @SURFACE@;
+@define-color window_fg_color @TEXT@;
+@define-color view_bg_color @BACKGROUND@;
+@define-color view_fg_color @TEXT@;
+@define-color headerbar_bg_color @RAISED@;
+@define-color headerbar_fg_color @TEXT@;
+@define-color headerbar_border_color @EDGE@;
+@define-color card_bg_color @RAISED@;
+@define-color card_fg_color @TEXT@;
+@define-color popover_bg_color @SURFACE@;
+@define-color popover_fg_color @TEXT@;
+@define-color dialog_bg_color @SURFACE@;
+@define-color dialog_fg_color @TEXT@;
+@define-color sidebar_bg_color @SURFACE@;
+@define-color sidebar_fg_color @TEXT@;
+@define-color sidebar_backdrop_color @BACKGROUND@;
+@define-color sidebar_shade_color alpha(@BACKGROUND@, 0.6);
+@define-color shade_color alpha(@BACKGROUND@, 0.4);
+@define-color dark_fill_color @BACKGROUND@;
+@define-color success_bg_color @GREEN@;
+@define-color error_bg_color @RED@;
+@define-color warning_bg_color @YELLOW@;
+
+window, .background { color: @theme_fg_color; background-color: @theme_bg_color; }
+headerbar, .titlebar, toolbar, .toolbar {
+  color: @theme_fg_color;
+  background-image: linear-gradient(to bottom, mix(@RAISED@, @HIGHLIGHT@, 0.18), @SURFACE@ 48%, @BACKGROUND@ 51%, @SURFACE@);
+  border-bottom: 1px solid @EDGE@;
+  box-shadow: inset 0 1px alpha(@HIGHLIGHT@, 0.25);
+}
+headerbar:backdrop, .titlebar:backdrop { background-image: linear-gradient(@RAISED@, @SURFACE@); }
+button {
+  color: @TEXT@;
+  border: 1px solid @EDGE@;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, mix(@RAISED@, @HIGHLIGHT@, 0.15), @RAISED@ 48%, @SURFACE@ 51%, @RAISED@);
+  box-shadow: inset 0 1px alpha(@HIGHLIGHT@, 0.2), 0 1px 2px alpha(@BACKGROUND@, 0.4);
+  text-shadow: 0 1px alpha(@BACKGROUND@, 0.5);
+}
+button:hover { border-color: @ACCENT@; background-image: linear-gradient(mix(@RAISED@, @ACCENT@, 0.38), @RAISED@); }
+button:active, button:checked { background-image: linear-gradient(@SURFACE@, mix(@RAISED@, @ACCENT@, 0.3)); border-color: @ACCENT@; }
+button.suggested-action { color: @BACKGROUND@; background-image: linear-gradient(@HIGHLIGHT@, @ACCENT@); text-shadow: none; }
+button.destructive-action { color: @BACKGROUND@; background-image: linear-gradient(mix(@RED@, white, 0.18), @RED@); text-shadow: none; }
+button.flat:not(:hover):not(:checked) { background-image: none; background-color: transparent; box-shadow: none; border-color: transparent; }
+button:disabled { color: @MUTED@; opacity: 0.55; }
+entry, spinbutton, searchentry, textview, textview text, .view, treeview.view {
+  color: @TEXT@; background-color: @BACKGROUND@; caret-color: @HIGHLIGHT@;
+}
+entry, spinbutton, searchentry { border: 1px solid @EDGE@; border-radius: 5px; box-shadow: inset 0 1px 3px alpha(black, 0.3); }
+entry:focus, searchentry:focus { border-color: @ACCENT@; outline-color: alpha(@ACCENT@, 0.5); }
+selection, .view:selected, row:selected { background-color: @ACCENT@; color: @BACKGROUND@; }
+popover, menu, .menu, tooltip { color: @TEXT@; background-color: @SURFACE@; border: 1px solid @EDGE@; }
+popover contents { background-color: @SURFACE@; border: 1px solid @EDGE@; border-radius: 8px; }
+menuitem:hover { background-color: @RAISED@; }
+notebook header { background-color: @SURFACE@; }
+notebook tab:checked { background-color: @RAISED@; box-shadow: inset 0 -2px @ACCENT@; }
+scale trough, progressbar trough { background-color: @BACKGROUND@; border: 1px solid @EDGE@; border-radius: 8px; }
+scale highlight, progressbar progress { background-image: linear-gradient(@HIGHLIGHT@, @ACCENT@); border-radius: 8px; }
+scale slider { background-image: linear-gradient(@HIGHLIGHT@, @ACCENT@ 48%, @EDGE@ 51%, @ACCENT@); border: 1px solid @EDGE@; border-radius: 5px; }
+switch:checked { background-color: @ACCENT@; }
+check, radio { border-color: @EDGE@; background-color: @SURFACE@; color: @TEXT@; }
+check:checked, check:indeterminate, radio:checked {
+  border-color: @HIGHLIGHT@; background-color: @ACCENT@; background-image: none; color: @BACKGROUND@;
+}
+link, link:link, label link { color: @ACCENT@; }
+link:visited, label link:visited { color: @HIGHLIGHT@; }
+separator { background-color: alpha(@EDGE@, 0.6); min-width: 1px; min-height: 1px; }
+.dim-label, .subtitle { color: @MUTED@; }
+decoration { border-radius: 10px; border: 1px solid @EDGE@; }

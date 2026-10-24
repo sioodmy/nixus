@@ -1,0 +1,102 @@
+:root, .theme-dark, .theme-light, .theme-darker, .theme-midnight,
+#app-mount, .visual-refresh {
+  --background-primary: @BACKGROUND@ !important;
+  --background-secondary: @SURFACE@ !important;
+  --background-secondary-alt: @SURFACE@ !important;
+  --background-tertiary: @BACKGROUND@ !important;
+  --background-floating: @SURFACE@ !important;
+  --background-base-lowest: @BACKGROUND@ !important;
+  --background-base-lower: @SURFACE@ !important;
+  --background-base-low: @SURFACE@ !important;
+  --background-surface-high: @RAISED@ !important;
+  --background-surface-higher: @RAISED@ !important;
+  --background-surface-highest: @RAISED@ !important;
+  --background-mod-subtle: #be9aef14 !important;
+  --background-mod-normal: #be9aef22 !important;
+  --background-mod-strong: #be9aef32 !important;
+  --background-modifier-hover: #be9aef18 !important;
+  --background-modifier-selected: #be9aef32 !important;
+  --bg-base-primary: @BACKGROUND@ !important;
+  --bg-base-secondary: @SURFACE@ !important;
+  --bg-base-tertiary: @BACKGROUND@ !important;
+  --bg-surface-overlay: @SURFACE@ !important;
+  --bg-surface-raised: @RAISED@ !important;
+  --bg-overlay-chat: @BACKGROUND@ !important;
+  --bg-overlay-2: @SURFACE@ !important;
+  --chat-background: @BACKGROUND@ !important;
+  --channeltextarea-background: @SURFACE@ !important;
+  --text-normal: @TEXT@ !important;
+  --text-primary: @TEXT@ !important;
+  --text-secondary: @MUTED@ !important;
+  --text-muted: @MUTED@ !important;
+  --header-primary: @TEXT@ !important;
+  --header-secondary: @MUTED@ !important;
+  --channels-default: @MUTED@ !important;
+  --interactive-normal: @MUTED@ !important;
+  --interactive-hover: @TEXT@ !important;
+  --interactive-active: @TEXT@ !important;
+  --interactive-text-default: @MUTED@ !important;
+  --interactive-text-active: @TEXT@ !important;
+  --text-link: @HIGHLIGHT@ !important;
+  --brand-500: @ACCENT@ !important;
+  --brand-530: @HIGHLIGHT@ !important;
+  --brand-560: @EDGE@ !important;
+  --brand-experiment: @ACCENT@ !important;
+  --button-filled-brand-background: @ACCENT@ !important;
+  --button-filled-brand-text: @BACKGROUND@ !important;
+  --control-primary-background-default: @ACCENT@ !important;
+  --control-primary-text-default: @BACKGROUND@ !important;
+  --status-positive: @GREEN@ !important;
+  --status-danger: @RED@ !important;
+  --status-warning: @YELLOW@ !important;
+  --border-subtle: #67517f88 !important;
+  --border-normal: @EDGE@ !important;
+  --font-primary: "Segoe UI", system-ui, sans-serif !important;
+  --font-display: "Segoe UI", system-ui, sans-serif !important;
+}
+html, body, #app-mount { background: @BACKGROUND@ !important; color: @TEXT@ !important; }
+[class*="sidebar_"] { background: @SURFACE@ !important; }
+section[class*="title_"], [class*="chat_"] > [class*="subtitleContainer_"],
+[class*="panels_"] {
+  background: var(--aero-panel-glass) !important;
+  border-color: @EDGE@ !important;
+  box-shadow: var(--aero-shine) !important;
+}
+[class*="channelTextArea_"] {
+  background: linear-gradient(@SURFACE@, @BACKGROUND@) !important;
+  border: 1px solid @EDGE@ !important;
+  border-radius: 9px !important;
+  box-shadow: var(--aero-inset) !important;
+}
+[class*="channelTextArea_"] [class*="scrollableContainer_"],
+[class*="channelTextArea_"] [class*="themedBackground_"] {
+  background: transparent !important;
+}
+[class*="searchBar_"]:not([class*="searchBarComponent_"]) {
+  background: linear-gradient(#160e20, @SURFACE@) !important;
+  border: 1px solid @EDGE@ !important;
+  border-radius: 7px !important;
+  box-shadow: var(--aero-inset) !important;
+}
+[class*="embedFull_"], [class*="fileWrapper_"], [class*="attachment_"] {
+  background-color: @SURFACE@ !important;
+  border-color: #be9aef40 !important;
+  box-shadow: inset 0 1px #ffffff15, 0 2px 6px #00000025 !important;
+}
+[class*="codeView_"], [class*="markup_"] code {
+  background-color: @BACKGROUND@ !important;
+  border-color: @EDGE@ !important;
+}
+[class*="channel_"][class*="selected_"] > *,
+[class*="selected_"] > [class*="link_"] {
+  background: var(--aero-selected) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--aero-shine) !important;
+}
+[role="menu"], [role="dialog"] {
+  background-color: @SURFACE@ !important;
+  border: 1px solid @EDGE@ !important;
+  box-shadow: inset 0 1px #ffffff25, 0 10px 30px #00000065 !important;
+}
+[class*="message_"][class*="mentioned_"] { background: #be9aef18 !important; }
+[class*="mentioned_"]::before { background: @ACCENT@ !important; }

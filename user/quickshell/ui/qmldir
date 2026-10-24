@@ -1,0 +1,21 @@
+singleton Theme 1.0 Theme.qml
+singleton Desktop 1.0 Desktop.qml
+singleton Apps 1.0 Apps.qml
+singleton Notices 1.0 Notices.qml
+singleton Feedback 1.0 Feedback.qml
+AeroSlider 1.0 AeroSlider.qml
+AeroButton 1.0 AeroButton.qml
+AeroField 1.0 AeroField.qml
+AeroText 1.0 AeroText.qml
+AudioView 1.0 AudioView.qml
+Authentication 1.0 Authentication.qml
+Bar 1.0 Bar.qml
+BluetoothView 1.0 BluetoothView.qml
+Flyout 1.0 Flyout.qml
+Glass 1.0 Glass.qml
+Launcher 1.0 Launcher.qml
+NetworkView 1.0 NetworkView.qml
+NotificationView 1.0 NotificationView.qml
+SessionView 1.0 SessionView.qml
+Toasts 1.0 Toasts.qml
+Osd 1.0 Osd.qml

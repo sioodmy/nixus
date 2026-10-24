@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.hyprland;
+  palette = builtins.fromJSON (builtins.readFile ../quickshell/ui/palette.json);
 
   inherit (lib)
     mkEnableOption
@@ -27,7 +28,6 @@ let
   # the Lua file in is enough — no session or module flag to flip.
   staticFiles = [
     "hyprland.lua"
-    "conf.d/01-general.lua"
     "conf.d/02-input.lua"
     "conf.d/03-decoration.lua"
     "conf.d/04-animations.lua"
@@ -90,6 +90,9 @@ in
         helium = 2;
         Helium = 2;
         firefox = 2;
+        zen = 2;
+        "zen-beta" = 2;
+        "zen-aero" = 2;
         # Messengers.
         ferdium = 4;
         signal = 4;
@@ -135,6 +138,14 @@ in
     homix =
       lib.foldl' (acc: file: acc // { ".config/hypr/${file}".source = ./config/${file}; }) { } staticFiles
       // {
+        ".config/hypr/conf.d/01-general.lua".text =
+          lib.replaceStrings [ "@accent@" "@highlight@" "@edge@" ]
+            (map (name: lib.removePrefix "#" palette.${name}) [
+              "accent"
+              "highlight"
+              "edge"
+            ])
+            (builtins.readFile ./config/conf.d/01-general.lua);
         # 00-plugins.lua has to be generated, not hand-written: the store paths
         # of the .so files only exist after a build. Everything the plugins are
         # *configured* with stays in the hand-written 09-plugins.lua.

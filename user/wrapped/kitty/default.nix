@@ -4,13 +4,14 @@
   ...
 }:
 let
+  palette = builtins.fromJSON (builtins.readFile ../../quickshell/ui/palette.json);
   inherit (pkgs.lib.meta) getExe getExe';
 
   xdg-open = getExe' pkgs.xdg-utils "xdg-open";
 
   config = pkgs.writeText "kitty.conf" ''
     # Fonts
-    font_family      monospace
+    font_family      JetBrains Mono
     bold_font        auto
     italic_font      auto
     bold_italic_font auto
@@ -21,7 +22,7 @@ let
     remember_window_size  no
     initial_window_width  104c
     initial_window_height 36c
-    window_padding_width  8
+    window_padding_width  12
     hide_window_decorations yes
     confirm_os_window_close 0
     enabled_layouts       splits,stack,fat,tall,grid
@@ -61,20 +62,20 @@ let
     tab_title_template " {index}: {title} ({num_windows}) "
     active_tab_title_template " {index}: {title} ({num_windows}) "
 
-    active_tab_foreground   #181926
-    active_tab_background   #b7bdf8
+    active_tab_foreground   ${palette.background}
+    active_tab_background   ${palette.accent}
     active_tab_font_style   bold
-    inactive_tab_foreground #cad3f5
-    inactive_tab_background #363a4f
+    inactive_tab_foreground ${palette.text}
+    inactive_tab_background ${palette.raised}
     inactive_tab_font_style normal
-    tab_bar_background      #1e2030
-    tab_bar_margin_color    #1e2030
+    tab_bar_background      ${palette.surface}
+    tab_bar_margin_color    ${palette.surface}
 
     draw_minimal_borders yes
     window_border_width 1.5pt
-    active_border_color #b7bdf8
-    inactive_border_color #494d64
-    bell_border_color #eed49f
+    active_border_color ${palette.accent}
+    inactive_border_color ${palette.edge}
+    bell_border_color ${palette.yellow}
     inactive_text_alpha 0.85
 
     map ctrl+k scroll_half_page_up
@@ -146,42 +147,42 @@ let
     map ctrl+alt+r set_tab_title
     map ctrl+alt+shift+w close_tab
 
-    # Colors (Catppuccin Macchiato)
-    background #24273a
-    foreground #cad3f5
-    background_opacity 0.91
+    # Amethyst Aero (shared palette)
+    background ${palette.background}
+    foreground ${palette.text}
+    background_opacity 0.90
 
-    selection_background #f4dbd6
-    selection_foreground #24273a
+    selection_background ${palette.highlight}
+    selection_foreground ${palette.background}
 
-    cursor #f4dbd6
-    cursor_text_color #181926
+    cursor ${palette.highlight}
+    cursor_text_color ${palette.background}
 
-    url_color #f4dbd6
+    url_color ${palette.highlight}
 
     # standard colors
-    color0 #494d64
-    color1 #ed8796
-    color2 #a6da95
-    color3 #eed49f
-    color4 #8aadf4
-    color5 #f5bde6
-    color6 #8bd5ca
-    color7 #b8c0e0
+    color0 ${palette.edge}
+    color1 ${palette.red}
+    color2 ${palette.green}
+    color3 ${palette.yellow}
+    color4 ${palette.blue}
+    color5 ${palette.accent}
+    color6 ${palette.cyan}
+    color7 ${palette.muted}
 
     # bright colors
-    color8 #5b6078
-    color9 #ed8796
-    color10 #a6da95
-    color11 #eed49f
-    color12 #8aadf4
-    color13 #f5bde6
-    color14 #8bd5ca
-    color15 #a5adcb
+    color8 ${palette.edge}
+    color9 ${palette.red}
+    color10 ${palette.green}
+    color11 ${palette.yellow}
+    color12 ${palette.blue}
+    color13 ${palette.accent}
+    color14 ${palette.cyan}
+    color15 ${palette.text}
 
     # 16-color extension
-    color16 #f5a97f
-    color17 #f4dbd6
+    color16 ${palette.yellow}
+    color17 ${palette.highlight}
   '';
 in
 pkgs.symlinkJoin {

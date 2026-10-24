@@ -1,0 +1,67 @@
+:root, html.dark, body, .app-wrapper-web, .app-wrapper-web.app-wrapper-web,
+.color-refresh, .color-refresh .dark {
+  --app-background: @BACKGROUND@ !important;
+  --app-background-stripe: @BACKGROUND@ !important;
+  --panel-background: @SURFACE@ !important;
+  --panel-background-lighter: @RAISED@ !important;
+  --panel-background-deep: @BACKGROUND@ !important;
+  --panel-header-background: @SURFACE@ !important;
+  --panel-header-icon: @MUTED@ !important;
+  --background-default: @BACKGROUND@ !important;
+  --background-default-active: @RAISED@ !important;
+  --background-default-hover: @RAISED@ !important;
+  --conversation-panel-background: @BACKGROUND@ !important;
+  --conversation-panel-border: @EDGE@ !important;
+  --conversation-header-background: @SURFACE@ !important;
+  --compose-panel-background: @SURFACE@ !important;
+  --compose-input-background: @BACKGROUND@ !important;
+  --incoming-background: @SURFACE@ !important;
+  --incoming-background-deeper: @SURFACE@ !important;
+  --outgoing-background: #51366d !important;
+  --outgoing-background-deeper: #49305f !important;
+  --message-primary: @TEXT@ !important;
+  --primary: @TEXT@ !important;
+  --primary-strong: @TEXT@ !important;
+  --secondary: @MUTED@ !important;
+  --secondary-strong: @TEXT@ !important;
+  --secondary-lighter: @MUTED@ !important;
+  --icon: @MUTED@ !important;
+  --icon-lighter: @MUTED@ !important;
+  --border-default: @EDGE@ !important;
+  --border-list: #67517f55 !important;
+  --search-input-background: @BACKGROUND@ !important;
+  --input-border-active: @ACCENT@ !important;
+  --active-tab-marker: @ACCENT@ !important;
+  --button-primary-background: @ACCENT@ !important;
+  --button-primary: @BACKGROUND@ !important;
+  --unread-marker-background: @ACCENT@ !important;
+  --unread-marker-text: @BACKGROUND@ !important;
+  --link: @HIGHLIGHT@ !important;
+  --link-preview: @HIGHLIGHT@ !important;
+  --typing: @ACCENT@ !important;
+  --teal: @ACCENT@ !important;
+  --teal-lighter: @HIGHLIGHT@ !important;
+  --WDS-accent: @ACCENT@ !important;
+  --WDS-accent-RGB: 190, 154, 239 !important;
+  --WDS-accent-rgb: 190, 154, 239 !important;
+  --WDS-accent-emphasized: @HIGHLIGHT@ !important;
+  --WDS-background-default: @BACKGROUND@ !important;
+  --WDS-background-elevated: @SURFACE@ !important;
+  --WDS-content-primary: @TEXT@ !important;
+  --WDS-content-secondary: @MUTED@ !important;
+}
+html, body, #app { background-color: @BACKGROUND@ !important; color: @TEXT@ !important; }
+#pane-side { background: @BACKGROUND@ !important; }
+#main > header, #side > header, #main footer {
+  background: var(--aero-glass) !important;
+  border-color: @EDGE@ !important;
+  box-shadow: var(--aero-shine) !important;
+}
+.message-in .copyable-text, .message-out .copyable-text { color: @TEXT@ !important; }
+.message-in [class*="copyable-text"]:not([data-lexical-editor="true"]) { border-color: @EDGE@; }
+.message-out { --outgoing-background: #51366d !important; }
+.message-out [data-testid="msg-container"], .message-in [data-testid="msg-container"] {
+  border: 1px solid #be9aef35 !important;
+  box-shadow: inset 0 1px #ffffff18, 0 1px 4px #00000035 !important;
+}
+/* Keep WhatsApp's QR/login illustrations and received images untouched. */

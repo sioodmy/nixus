@@ -8,6 +8,9 @@ rec {
       zsh = callPackage ./wrapped/zsh { };
       tmux = callPackage ./wrapped/tmux { };
       kitty = callPackage ./wrapped/kitty { inherit inputs; };
+      aeroshell = import ./quickshell/package.nix { inherit pkgs inputs; };
+      zen-aero = import ./zen-browser/package.nix { inherit pkgs inputs; };
+      ferdium = import ./ferdium/package.nix { inherit pkgs; };
       tofi = callPackage ./wrapped/tofi { };
       bat = pkgs.bat;
       zathura = callPackage ./wrapped/zathura { };
@@ -53,6 +56,7 @@ rec {
         ./hyprland
         ./ferdium
         ./quickshell
+        ./zen-browser
       ];
     };
 }

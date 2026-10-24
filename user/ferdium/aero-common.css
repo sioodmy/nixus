@@ -1,0 +1,28 @@
+/* Amethyst Aero — shared by the app and each isolated service webview. */
+:root, body {
+  color-scheme: dark;
+  --aero-bg: @BACKGROUND@;
+  --aero-surface: @SURFACE@;
+  --aero-raised: @RAISED@;
+  --aero-edge: @EDGE@;
+  --aero-text: @TEXT@;
+  --aero-muted: @MUTED@;
+  --aero-accent: @ACCENT@;
+  --aero-glass: linear-gradient(180deg, #79618b88 0%, #4b355fbb 48%, #241934ee 49%, #30203feb 100%);
+  --aero-selected: linear-gradient(180deg, #b196cba6, #7b589b99 48%, #49305fdd 49%, #61437be6);
+  --aero-inset: inset 0 1px 4px #00000070, 0 1px #ffffff18;
+  --aero-shine: inset 0 1px #ffffff45, 0 2px 7px #00000040;
+  --aero-panel-glass: linear-gradient(180deg, #ffffff24 0, #ffffff07 28px, transparent 29px), linear-gradient(120deg, #453153ee, @SURFACE@ 58%, #1a1025f5);
+  accent-color: @ACCENT@;
+  scrollbar-color: @EDGE@ @BACKGROUND@;
+}
+body { font-family: "Segoe UI", system-ui, sans-serif !important; }
+::selection { background: @ACCENT@ !important; color: @BACKGROUND@ !important; }
+::-webkit-scrollbar { width: 9px; height: 9px; background: @BACKGROUND@; }
+::-webkit-scrollbar-thumb { background: @EDGE@; border: 2px solid @BACKGROUND@; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: @ACCENT@; }
+:where(input, textarea, [contenteditable="true"]):focus-visible {
+  outline: 1px solid @ACCENT@ !important;
+  outline-offset: 2px;
+}
+/* Never recolor avatars, attachments, emoji or QR codes with image filters. */

@@ -3,10 +3,11 @@
   ...
 }:
 let
-  accent = "c6a0f6";
-  text = "cad3f5";
-  black = "363a4f";
-  background = "24273a";
+  palette = builtins.fromJSON (builtins.readFile ../../quickshell/ui/palette.json);
+  accent = pkgs.lib.removePrefix "#" palette.accent;
+  text = pkgs.lib.removePrefix "#" palette.text;
+  black = pkgs.lib.removePrefix "#" palette.raised;
+  background = pkgs.lib.removePrefix "#" palette.background;
   plugins = [
     "vim-tmux-navigator"
     "sensible"

@@ -4,6 +4,7 @@
 let
   inherit (lib) isBool concatStringsSep mapAttrsToList;
 
+  palette = builtins.fromJSON (builtins.readFile ../../quickshell/ui/palette.json);
   options = {
     recolor = true;
     adjust-open = "best-fit";
@@ -16,41 +17,41 @@ let
     scroll-full-overlap = "0.01";
     scroll-step = 100;
 
-    notification-error-bg = "#2E3440";
-    notification-error-fg = "#BF616A";
-    notification-warning-bg = "#2E3440";
-    notification-warning-fg = "#D08770";
-    notification-bg = "#2E3440";
-    notification-fg = "#D8DEE9";
+    notification-error-bg = palette.background;
+    notification-error-fg = palette.red;
+    notification-warning-bg = palette.background;
+    notification-warning-fg = palette.yellow;
+    notification-bg = palette.background;
+    notification-fg = palette.text;
 
-    completion-bg = "#2E3440";
-    completion-fg = "#D8DEE9";
-    completion-group-bg = "#3B4252";
-    completion-group-fg = "#D8DEE9";
-    completion-highlight-bg = "#88C0D0";
-    completion-highlight-fg = "#3B4252";
+    completion-bg = palette.background;
+    completion-fg = palette.text;
+    completion-group-bg = palette.raised;
+    completion-group-fg = palette.text;
+    completion-highlight-bg = palette.accent;
+    completion-highlight-fg = palette.raised;
 
-    index-bg = "#2E3440";
-    index-fg = "#8FBCBB";
-    index-active-bg = "#8FBCBB";
-    index-active-fg = "#2E3440";
+    index-bg = palette.background;
+    index-fg = palette.highlight;
+    index-active-bg = palette.highlight;
+    index-active-fg = palette.background;
 
-    inputbar-bg = "#2E3440";
-    inputbar-fg = "#E5E9F0";
+    inputbar-bg = palette.background;
+    inputbar-fg = palette.text;
 
-    statusbar-bg = "#2E3440";
-    statusbar-fg = "#E5E9F0";
+    statusbar-bg = palette.background;
+    statusbar-fg = palette.text;
 
-    highlight-color = "#D08770";
-    highlight-active-color = "#BF616A";
+    highlight-color = palette.yellow;
+    highlight-active-color = palette.red;
 
-    default-bg = "#2E3440";
-    default-fg = "#D8DEE9";
-    render-loading-bg = "#2E3440";
-    render-loading-fg = "#434C5E";
+    default-bg = palette.background;
+    default-fg = palette.text;
+    render-loading-bg = palette.background;
+    render-loading-fg = palette.edge;
 
-    recolor-lightcolor = "#2E3440";
-    recolor-darkcolor = "#ECEFF4";
+    recolor-lightcolor = palette.background;
+    recolor-darkcolor = palette.text;
   };
 
   formatLine =

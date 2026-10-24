@@ -12,15 +12,18 @@
 
 local MOD    = "SUPER"
 local TERM   = "kitty"
-local LAUNCH = "lenin-launcher"
+local LAUNCH = "aero-launcher"
 
 -- --- launcher / terminal / session -----------------------------------------
 
 hl.bind(MOD .. " + Return", hl.dsp.exec_cmd(TERM))
 hl.bind(MOD .. " + P", hl.dsp.exec_cmd(LAUNCH))
-hl.bind(MOD .. " + ALT + L", hl.dsp.exec_cmd("lenin-lock"))
-hl.bind(MOD .. " + ALT + K", hl.dsp.exec_cmd("lenin-keepass"))
-hl.bind(MOD .. " + SHIFT + O", hl.dsp.exec_cmd("lenin-rsvp"))
+hl.bind(MOD .. " + Space", hl.dsp.exec_cmd(LAUNCH))
+hl.bind(MOD .. " + W", hl.dsp.exec_cmd("aero-wifi"))
+hl.bind(MOD .. " + B", hl.dsp.exec_cmd("aero-bluetooth"))
+hl.bind(MOD .. " + ALT + L", hl.dsp.exec_cmd("aero-lock"))
+hl.bind(MOD .. " + ALT + K", hl.dsp.exec_cmd("keepassxc"))
+hl.bind(MOD .. " + SHIFT + O", hl.dsp.exec_cmd("aero-notifications"))
 hl.bind(MOD .. " + SHIFT + E", hl.dsp.exit())
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
 hl.bind("XF86Search", hl.dsp.exec_cmd(LAUNCH))
@@ -28,21 +31,21 @@ hl.bind("XF86Search", hl.dsp.exec_cmd(LAUNCH))
 -- --- media / hardware keys --------------------------------------------------
 
 hl.bind("XF86AudioRaiseVolume",
-    hl.dsp.exec_cmd("sh -c 'flock -x /tmp/vol.lock wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+'"),
+    hl.dsp.exec_cmd("aero-volume up"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume",
-    hl.dsp.exec_cmd("sh -c 'flock -x /tmp/vol.lock wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-'"),
+    hl.dsp.exec_cmd("aero-volume down"),
     { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("aero-volume mute"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("aero-volume mic-mute"), { locked = true })
 
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl pause"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("aero-brightness 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("aero-brightness 5%-"), { locked = true, repeating = true })
 
 -- niri's keylit (keyboard backlight toggle) was orphaned in the niri config;
 -- bound here so it is reachable.
@@ -201,15 +204,13 @@ hl.bind(MOD .. " + SHIFT + mouse_left",  hl.dsp.layout("focus l"))
 
 -- --- screenshots -----------------------------------------------------------
 --
--- Print and SHIFT+S both open the toolkit island (Full / Area / Window /
--- Close) rather than jumping straight into a picker — going direct to `area`
--- silently shows nothing when the area picker cannot start, which reads as a
--- dead key.
+-- Print / Super+Shift+S select an area; Shift+W captures the desktop,
+-- Shift+A captures the active window. Saved to Pictures/Screenshots and copied.
 
-hl.bind("Print", hl.dsp.exec_cmd("lenin-screenshot"))
-hl.bind(MOD .. " + SHIFT + S", hl.dsp.exec_cmd("lenin-screenshot"))
-hl.bind(MOD .. " + SHIFT + W", hl.dsp.exec_cmd("lenin-screenshot fullscreen"))
-hl.bind(MOD .. " + SHIFT + A", hl.dsp.exec_cmd("lenin-screenshot window"))
+hl.bind("Print", hl.dsp.exec_cmd("aero-screenshot"))
+hl.bind(MOD .. " + SHIFT + S", hl.dsp.exec_cmd("aero-screenshot"))
+hl.bind(MOD .. " + SHIFT + W", hl.dsp.exec_cmd("aero-screenshot fullscreen"))
+hl.bind(MOD .. " + SHIFT + A", hl.dsp.exec_cmd("aero-screenshot window"))
 
 -- --- misc ------------------------------------------------------------------
 
@@ -220,14 +221,5 @@ hl.bind(MOD .. " + TAB", hl.dsp.workspace.toggle_special("float"))
 
 hl.bind(MOD .. " + SHIFT + P", hl.dsp.dpms({ action = "toggle" }))
 
--- Emergency recovery for a stuck layer surface (quickshell island holding
--- Exclusive focus): kills the shell so all grabs die with it, releases any
--- input capture, refocuses windows, and restarts leninshell.
-hl.bind(MOD .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd("sh -c 'pkill -9 -f leninshell; pkill -9 -f quickshell; hyprctl dispatch release_input_capture; hyprctl dispatch cyclenext; uwsm app -- leninshell &'"))
-
--- niri's Mod+Escape toggled the keyboard-shortcuts inhibitor. Hyprland manages
--- that automatically, so the binding is deliberately absent and ESC is left to
--- the focused client.
-
--- hyprlock is not used: the leninshell lock screen (WlSessionLock + PAM) is
--- bound to SUPER+ALT+L above and is also driven by the backend's idle manager.
+-- Restart only the desktop shell; the independent Hyprlock stays running.
+hl.bind(MOD .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd("systemctl --user restart quickshell.service"))

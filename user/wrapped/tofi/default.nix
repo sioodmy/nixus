@@ -3,6 +3,7 @@
   ...
 }:
 let
+  palette = builtins.fromJSON (builtins.readFile ../../quickshell/ui/palette.json);
   config = pkgs.writeText "tofi-config" (
     pkgs.lib.generators.toKeyValue { } {
       prompt-text = "> ";
@@ -16,10 +17,10 @@ let
       padding-top = "35%";
       result-spacing = 25;
       num-results = 5;
-      background-color = "#000A";
-      default-result-color = "#cad3f5";
-      prompt-color = "#cad3f5";
-      selection-color = "#c6a0f6";
+      background-color = palette.background + "ee";
+      default-result-color = palette.text;
+      prompt-color = palette.text;
+      selection-color = palette.accent;
     }
   );
 in

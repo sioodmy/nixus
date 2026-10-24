@@ -37,7 +37,6 @@ in
         jre21_minimal
         rust-analyzer
         bear
-        ferdium
         pastel
         nixfmt
         nixfmt-tree
@@ -98,9 +97,6 @@ in
         qrencode
         unzip
         ;
-      inherit (inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system})
-        leninshell
-        ;
       inherit (inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system})
         opencode2
         codex
@@ -110,7 +106,6 @@ in
         ;
     }
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
-    ++ [ inputs.backendqs.packages.${pkgs.stdenv.hostPlatform.system}.default ]
     ++ [ (pkgs.callPackage ./smath { inherit inputs; }) ];
 
 }

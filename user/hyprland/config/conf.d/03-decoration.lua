@@ -9,8 +9,8 @@
 
 hl.config({
     decoration = {
-        rounding       = 15,
-        rounding_power = 2.8,
+        rounding       = 10,
+        rounding_power = 2.0,
 
         active_opacity     = 1.0,
         inactive_opacity   = 1.0,
@@ -31,8 +31,8 @@ hl.config({
         -- edge: the fringe of content visible behind a translucent surface.
         blur = {
             enabled            = true,
-            size               = 10,
-            passes             = 3,
+            size               = 8,
+            passes             = 2,
             ignore_opacity     = true,
             new_optimizations  = true,
             noise              = 0.02,

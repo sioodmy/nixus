@@ -1,0 +1,111 @@
+html, body, #root, #app, .app, .app .app__service,
+.auth, .theme__dark .auth, .welcome, .auth .auth__layout {
+  background: @BACKGROUND@ !important;
+  color: @TEXT@ !important;
+}
+body, button, input, select, textarea, .auth, .settings,
+.tabs, .franz-form__button { font-family: "Segoe UI", system-ui, sans-serif !important; }
+.auth .auth__container, .theme__dark .auth .auth__container,
+.auth .auth__links, .welcome .welcome__featured-services,
+.theme__dark .welcome__featured-services {
+  background: @SURFACE@ !important;
+  color: @TEXT@ !important;
+  border-color: @EDGE@ !important;
+}
+.auth a, .auth .legal, .auth p { color: @MUTED@ !important; }
+.app .sidebar, .theme__dark .app .sidebar {
+  background: linear-gradient(90deg, #ffffff14, transparent 16px), linear-gradient(175deg, #463052, @SURFACE@ 32%, @BACKGROUND@) !important;
+  border-right: 1px solid @EDGE@ !important;
+  box-shadow: inset 1px 0 #ffffff20, 3px 0 14px #00000045 !important;
+}
+.tabs .tabs__tab, .tabs .tab-item, .sidebar .sidebar__button, .sidebar .sidebar__add-service {
+  color: @MUTED@ !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent;
+}
+.sidebar .tabs .tab-item {
+  background: linear-gradient(180deg, #ffffff0d, #ffffff02 30%, #00000014) !important;
+  border: 1px solid #d5bced20 !important;
+  box-shadow: inset 0 1px #ffffff1c, 0 2px 4px #00000020 !important;
+}
+.tabs .tabs__tab:hover, .tabs .tab-item:hover, .sidebar .sidebar__button:hover {
+  background: var(--aero-glass) !important;
+  border-color: @EDGE@ !important;
+  color: @TEXT@ !important;
+  box-shadow: var(--aero-shine) !important;
+}
+.tabs .tabs__tab.is-active, .tabs .tabs__tab--active, .tabs .tab-item.is-active,
+.sidebar .sidebar__button.is-active, .sidebar .sidebar__add-service {
+  background: var(--aero-selected) !important;
+  border: 1px solid #d7bbed88 !important;
+  box-shadow: var(--aero-shine), 0 0 10px #be9aef20 !important;
+  color: @TEXT@ !important;
+}
+.tabs .tabs__tab .tabs__name, .tab-item__label { color: @TEXT@ !important; }
+.tab-item__message-count {
+  background: @ACCENT@ !important;
+  color: @BACKGROUND@ !important;
+  border: 1px solid @HIGHLIGHT@;
+  box-shadow: inset 0 1px #ffffff50;
+}
+.content-tabs, .content-tabs .content-tabs__tabs,
+.settings .settings__header, .settings .settings__navigation,
+.settings-navigation, .electron-app-title-bar {
+  background: var(--aero-glass) !important;
+  color: @TEXT@ !important;
+  border-color: @EDGE@ !important;
+  box-shadow: inset 0 1px #ffffff20 !important;
+}
+.settings, .settings .settings__body, .settings .settings__main,
+.settings .settings__content, .settings .settings__content-wrapper,
+.settings .settings__controls, .settings .account .account__box,
+.modal, .modal__content, .quick-switch, .theme__dark .settings {
+  background: @BACKGROUND@ !important;
+  color: @TEXT@ !important;
+  border-color: @EDGE@ !important;
+}
+.settings h1, .settings h2, .settings h3, .settings label,
+.settings-navigation__link, .franz-form__label { color: @TEXT@ !important; }
+.settings p, .settings .description, .franz-form__help { color: @MUTED@ !important; }
+.settings-navigation__link.is-active, .settings-navigation__link:hover,
+.content-tabs .content-tabs__tabs .content-tabs__item.is-active,
+.quick-switch .active {
+  background: var(--aero-selected) !important;
+  color: @TEXT@ !important;
+  border-radius: 6px;
+  box-shadow: var(--aero-shine);
+}
+.franz-form__input, .franz-form__textarea, .franz-form__select,
+.settings input:not([type=checkbox]):not([type=radio]):not([type=range]),
+.settings textarea, .settings select, .quick-switch input {
+  background: @SURFACE@ !important;
+  color: @TEXT@ !important;
+  border: 1px solid @EDGE@ !important;
+  border-radius: 7px !important;
+  box-shadow: var(--aero-inset) !important;
+}
+.franz-form__button, .theme__dark .franz-form__button,
+.settings .settings__close, .button {
+  background: var(--aero-glass) !important;
+  color: @TEXT@ !important;
+  border: 1px solid @EDGE@ !important;
+  border-radius: 7px !important;
+  box-shadow: var(--aero-shine) !important;
+}
+.franz-form__button:hover, .settings .settings__close:hover, .button:hover {
+  background: var(--aero-selected) !important;
+  border-color: @ACCENT@ !important;
+}
+.badge, .badge.badge--primary {
+  background: @ACCENT@ !important;
+  color: @BACKGROUND@ !important;
+  border: 1px solid @HIGHLIGHT@ !important;
+  box-shadow: inset 0 1px #ffffff50, 0 1px 3px #00000055;
+}
+.service-tile, .settings .service, .franz-form__fieldset {
+  background: @SURFACE@ !important;
+  border-color: @EDGE@ !important;
+  color: @TEXT@ !important;
+}
+.settings a, .settings .link { color: @HIGHLIGHT@ !important; }
+.theme__dark .tabs .tabs__tab img, .tabs .tabs__tab img { filter: none !important; }

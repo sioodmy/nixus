@@ -1,0 +1,16 @@
+{
+  "name": "Amethyst Aero",
+  "background": "#160f23",
+  "surface": "#241934",
+  "raised": "#352547",
+  "edge": "#67517f",
+  "accent": "#be9aef",
+  "highlight": "#e1caff",
+  "text": "#f1eafa",
+  "muted": "#baaacb",
+  "green": "#9bd6b4",
+  "red": "#f29ba9",
+  "yellow": "#e8d49a",
+  "blue": "#a4bafa",
+  "cyan": "#9ad5db"
+}

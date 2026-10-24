@@ -1,0 +1,99 @@
+/* Meta's semantic tokens cover both messenger.com and facebook.com/messages. */
+:root, html, body, .__fb-light-mode, .__fb-dark-mode,
+.__fb-light-mode:root, .__fb-dark-mode:root,
+[style*="--chat-outgoing-message-bubble-background-color"],
+[style*="--chat-incoming-message-bubble-background-color"] {
+  --surface-background: @BACKGROUND@ !important;
+  --web-wash: @BACKGROUND@ !important;
+  --wash: @SURFACE@ !important;
+  --card-background: @SURFACE@ !important;
+  --card-background-flat: @SURFACE@ !important;
+  --popover-background: @SURFACE@ !important;
+  --comment-background: @RAISED@ !important;
+  --messenger-card-background: @SURFACE@ !important;
+  --messenger-reply-background: @RAISED@ !important;
+  --messenger-xma-background: @SURFACE@ !important;
+  --messenger-xma-border: @EDGE@ !important;
+  --messenger-gray: @RAISED@ !important;
+  --primary-text: @TEXT@ !important;
+  --primary-text-on-media: @TEXT@ !important;
+  --secondary-text: @MUTED@ !important;
+  --placeholder-text: @MUTED@ !important;
+  --disabled-text: @MUTED@ !important;
+  --primary-icon: @TEXT@ !important;
+  --secondary-icon: @MUTED@ !important;
+  --accent: @ACCENT@ !important;
+  --blue-link: @HIGHLIGHT@ !important;
+  --primary-button-background: @ACCENT@ !important;
+  --primary-button-text: @BACKGROUND@ !important;
+  --secondary-button-background: @RAISED@ !important;
+  --secondary-button-text: @TEXT@ !important;
+  --primary-deemphasized-button-background: @RAISED@ !important;
+  --primary-deemphasized-button-text: @HIGHLIGHT@ !important;
+  --divider: @EDGE@ !important;
+  --divider-on-color: @EDGE@ !important;
+  --media-inner-border: #be9aef35 !important;
+  --hover-overlay: #be9aef18 !important;
+  --press-overlay: #be9aef30 !important;
+  --text-highlight: #be9aef40 !important;
+  --input-background: @BACKGROUND@ !important;
+  --input-border: @EDGE@ !important;
+  --input-border-hover: @ACCENT@ !important;
+  --input-label-color-highlighted: @HIGHLIGHT@ !important;
+  --chat-bubble-background: @RAISED@ !important;
+  --chat-outgoing-message-bubble-background-color: #51366d !important;
+  --chat-incoming-message-bubble-background-color: @RAISED@ !important;
+  --chat-outgoing-message-text-color: @TEXT@ !important;
+  --chat-incoming-message-text-color: @TEXT@ !important;
+  --chat-text-blockquote-color: @MUTED@ !important;
+  --chat-composer-background-color: @SURFACE@ !important;
+  --chat-composer-button-color: @ACCENT@ !important;
+}
+html, body { background: @BACKGROUND@ !important; color: @TEXT@ !important; }
+[role="main"], [role="navigation"], [role="complementary"] {
+  background-color: @BACKGROUND@ !important;
+  color: @TEXT@ !important;
+}
+[role="banner"] {
+  background: var(--aero-panel-glass) !important;
+  border-bottom: 1px solid @EDGE@ !important;
+  box-shadow: var(--aero-shine) !important;
+}
+[role="dialog"], [role="menu"] {
+  background-color: @SURFACE@ !important;
+  color: @TEXT@ !important;
+  border: 1px solid @EDGE@ !important;
+  box-shadow: inset 0 1px #ffffff25, 0 8px 24px #00000065 !important;
+}
+[role="textbox"][contenteditable="true"], input[type="search"] {
+  background: linear-gradient(#180e23, @SURFACE@) !important;
+  color: @TEXT@ !important;
+  caret-color: @HIGHLIGHT@ !important;
+  border-radius: 8px;
+  box-shadow: var(--aero-inset) !important;
+}
+[role="row"] [role="link"][aria-current="page"], [role="row"][aria-selected="true"] {
+  background: var(--aero-selected) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--aero-shine) !important;
+}
+/* Nodes are marked using rounded, painted text bubbles inside message tables.
+   This handles React class changes and per-conversation custom accent colors. */
+html body [data-aero-message] {
+  background: linear-gradient(180deg, #ffffff20, #ffffff05 17px, transparent 18px),
+    linear-gradient(125deg, #493151, #2b1b3a 80%) !important;
+  color: @TEXT@ !important;
+  outline: 1px solid #cbb0e04d !important;
+  outline-offset: -1px;
+  box-shadow: inset 0 1px #ffffff38, inset 0 -1px #00000040,
+    0 2px 5px #00000035 !important;
+}
+html body [data-aero-message="outgoing"] {
+  background: linear-gradient(180deg, #ffffff35, #ffffff08 18px, transparent 19px),
+    linear-gradient(125deg, #75508e, #4c2e66 85%) !important;
+  outline-color: #d4b4ee80 !important;
+  box-shadow: inset 0 1px #ffffff55, inset 0 -1px #00000030,
+    0 2px 6px #00000045, 0 0 8px #be9aef10 !important;
+}
+[data-aero-message] [dir="auto"] { color: @TEXT@ !important; }
+[data-aero-message] a { color: @HIGHLIGHT@ !important; text-decoration-color: #e1caff70; }

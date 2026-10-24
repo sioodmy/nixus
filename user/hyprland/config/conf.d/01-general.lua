@@ -3,8 +3,8 @@
 --
 -- Ported from the niri `layout` block.
 --
--- Colours are Catppuccin Macchiato with a mauve accent, matching the
--- GTK/Qt/kitty/tmux themes in user/gtk and user/wrapped.
+-- Amethyst Aero colors match GTK, Kvantum and terminals. Generated from
+-- the shared palette at Nix activation (see user/hyprland/default.nix).
 -- ---------------------------------------------------------------------------
 
 hl.config({
@@ -17,17 +17,17 @@ hl.config({
         -- niri: gaps 5 between windows. Hyprland needs a separate value for
         -- the screen edge; 5 keeps the tape from touching the bezel.
         gaps_in         = 5,
-        gaps_out        = 5,
+        gaps_out        = 9,
         gaps_workspaces = 0,
 
         -- niri drew no borders; its geometry-corner-radius rule became the
         -- global `decoration` block in 03-decoration.lua.
-        border_size = 0,
+        border_size = 2,
         col = {
-            active_border         = "rgba(c6a0f6ff)",
-            inactive_border       = "rgba(363a4f00)",
-            nogroup_border        = "rgba(89b4facc)",
-            nogroup_border_active = "rgba(89b4faff)",
+            active_border         = "rgba(@accent@cc)",
+            inactive_border       = "rgba(@edge@66)",
+            nogroup_border        = "rgba(@accent@cc)",
+            nogroup_border_active = "rgba(@highlight@ff)",
         },
 
         resize_on_border = true,

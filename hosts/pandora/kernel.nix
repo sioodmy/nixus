@@ -188,6 +188,8 @@ in
 
           # NixOS firewall/Tailscale and cryptsetup's userspace crypto API.
           NF_TABLES = module;
+          NF_CONNTRACK = module; # depends of NFT_CT/NATIVE/MASQ
+          NETFILTER_XTABLES = module; # depends of NFT_COMPAT/xt matches
           NF_NAT = module;
           NF_TABLES_INET = yes;
           IP_NF_MATCH_RPFILTER = module;
@@ -208,7 +210,10 @@ in
           CRYPTO_USER_API_HASH = module;
           CRYPTO_USER_API_SKCIPHER = module;
           CRYPTO_XTS = module;
-          CRYPTO_CBC = module;
+          # Upstream arm64 defconfig builds kerberos/fscrypt crypto stacks
+          # that select CBC built-in; forcing it back to m fails checkConfig.
+          # Built-in CBC is fine for dm-crypt (cryptsetup always finds it).
+          CRYPTO_CBC = yes;
           CRYPTO_CTR = module;
           CRYPTO_SHA256 = yes;
           # Built-in module signature verification (MODULE_SIG) selects

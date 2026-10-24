@@ -49,42 +49,22 @@ floating_dialog("portal-screencast-picker", { title = "^Select what to share$" }
 
 -- --- layer rules ------------------------------------------------------------
 --
--- niri's `background-effect` blur is a compositor feature that Hyprland does
--- not implement for layer-shell surfaces, but Hyprland *does* blur layers. The
--- leninshell surfaces are fullscreen transparent windows with an opaque glass
--- panel in the middle, so `ignore_alpha` reproduces niri's blurRegion closely
--- enough: only the pixels the shell actually draws get frosted.
-
--- NOTE: the lock screen is a WlSessionLockSurface, not a layer-shell surface,
--- so it has no namespace to match on and cannot be styled by a layer rule.
--- The shell draws its own wallpaper behind it, so there is nothing to do.
-
+-- Aero glass is blurred only where the layer actually draws pixels.
 local function glass_layer(name, namespace)
     hl.layer_rule({
-        name        = name,
-        match       = { namespace = namespace },
-        blur        = true,
+        name = name,
+        match = { namespace = namespace },
+        blur = true,
         ignore_alpha = 0.01,
-        xray        = false,
-        no_anim     = true,
+        xray = false,
+        no_anim = true,
     })
 end
 
-glass_layer("dock-blur",              "^quickshell-dock$")
-glass_layer("launcher-blur",          "^quickshell-launcher$")
-glass_layer("keepass-blur",           "^quickshell-keepass$")
-glass_layer("screenshot-editor-blur", "^quickshell-screenshot-editor$")
-glass_layer("fullscreen-media",     "^fullscreen_media$")
-glass_layer("rsvp-reader",          "^rsvp_reader$")
-
--- Lyrics are drawn straight onto the wallpaper; blurring them would blur the
--- text itself, and they must not leak into screen shares.
-hl.layer_rule({
-    name            = "lyrics-desktop",
-    match           = { namespace = "^lyrics_desktop$" },
-    no_anim         = true,
-    no_screen_share = true,
-})
+glass_layer("amethyst-panel", "^amethyst-bar$")
+glass_layer("amethyst-flyout", "^amethyst-flyout$")
+glass_layer("amethyst-notifications", "^amethyst-notifications$")
+glass_layer("amethyst-osd", "^amethyst-osd$")
 
 -- --- screenshot permissions -------------------------------------------------
 --
