@@ -97,3 +97,9 @@ html body [data-aero-message="outgoing"] {
 }
 [data-aero-message] [dir="auto"] { color: @TEXT@ !important; }
 [data-aero-message] a { color: @HIGHLIGHT@ !important; text-decoration-color: #e1caff70; }
+html body [data-aero-bubble-backing="true"],
+html body [data-aero-bubble-backing="true"]::before,
+html body [data-aero-bubble-backing="true"]::after {
+  background: transparent !important;
+  box-shadow: none !important;
+}

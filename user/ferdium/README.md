@@ -28,6 +28,18 @@ nie używa sieci ani pamięci konta. Pomija edytor, reakcje i załączniki grafi
 Dotychczasowy `messenger/user.js`, jeśli istnieje, trafia do `user.pre-aero.js`
 i jest nadal wykonywany przed nowym skryptem. Zmiany DOM są łączone w jeden
 przebieg, zamiast wykonywania pętli dla każdej pojedynczej mutacji.
+Usuwany jest również natywny niebieski podkład otaczający niektóre wysłane
+dymki. Dotyczy to wyłącznie warstw o rozmiarze samego dymka, nie tła całego
+wiersza ani reakcji. Pasek usług ma dopasowane szerokości, mniejsze ikony
+i wyróżnia jedynie aktywną usługę zamiast oprawiać każdą ikonę w osobny panel.
+
+Przypadek dodatkowej niebieskiej warstwy można odtworzyć w przeglądarce:
+
+```sh
+node user/ferdium/tests/bubbles.mjs ./result > /tmp/ferdium-bubbles.html
+```
+
+Przykład sprawdza też zachowanie reakcji, załączników, edytora i nowych dymków.
 
 Wrapper przed każdym uruchomieniem instaluje `config/custom.css` oraz `user.css`,
 `service.css` i `darkmode.css` w katalogach odpowiednich recipes. Pierwsze
@@ -68,3 +80,7 @@ restartowane podczas pracy.
 Mechanizmy upstream: [custom.css Ferdium](https://github.com/ferdium/ferdium-app#styling),
 [user.css w recipes](https://github.com/ferdium/ferdium-app/blob/develop/src/webview/recipe.ts),
 [API CSS recipes](https://github.com/ferdium/ferdium-recipes/blob/main/docs/frontend_api.md).
+
+Test przeglądarkowy dodatkowej niebieskiej warstwy przeszedł także dla nowo
+wstawionej wiadomości. Reakcja zachowała własne tło. Układ paska sprawdzono dla
+szerokości 68, 96 i 140 px: bez ucinania kafelków i ramek nieaktywnych usług.

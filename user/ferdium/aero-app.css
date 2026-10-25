@@ -24,9 +24,49 @@ body, button, input, select, textarea, .auth, .settings,
   border: 1px solid transparent;
 }
 .sidebar .tabs .tab-item {
-  background: linear-gradient(180deg, #ffffff0d, #ffffff02 30%, #00000014) !important;
-  border: 1px solid #d5bced20 !important;
-  box-shadow: inset 0 1px #ffffff1c, 0 2px 4px #00000020 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: 56px !important;
+  min-height: 48px !important;
+  box-sizing: border-box !important;
+  justify-content: center !important;
+  gap: 4px;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+.sidebar .sidebar__services {
+  width: calc(100% - 16px) !important;
+  margin-inline: 8px !important;
+  scrollbar-width: none !important;
+  overflow-x: hidden !important;
+}
+.sidebar .sidebar__services::-webkit-scrollbar { display: none !important; }
+.sidebar .tabs { width: 100% !important; min-width: 0 !important; }
+.sidebar .tab-item__icon {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain !important;
+}
+.sidebar .tabs .tab-item:hover {
+  background: linear-gradient(#ffffff14, #be9aef0d) !important;
+  border-color: #e1caff28 !important;
+}
+.sidebar .tabs .tab-item.is-active {
+  background: var(--aero-glass) !important;
+  border-color: #c7a7e16b !important;
+  box-shadow: inset 0 1px #ffffff3a, 0 2px 5px #00000030 !important;
+}
+.sidebar .tabs .tab-item.is-active::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 18px;
+  width: 2px;
+  height: 18px;
+  border-radius: 2px;
+  background: @HIGHLIGHT@;
 }
 .tabs .tabs__tab:hover, .tabs .tab-item:hover, .sidebar .sidebar__button:hover {
   background: var(--aero-glass) !important;

@@ -53,3 +53,61 @@ były częścią tej sesji testowej.
 - Style i hook Messengera zainstalowano w obecnym profilu. Aplikacje użytkownika
   i system nie były restartowane; nowe mapowanie klawiszy i shell wymagają
   aktywacji konfiguracji.
+
+## Blokada Quickshell, 25 października 2026
+
+- Hyprlock zastąpiony osobnym procesem Quickshella, protokołem
+  `ext-session-lock-v1` i profilem PAM `aero-lock`. Restart panelu nie zatrzymuje
+  procesu blokady. Hypridle nadal korzysta z `aero-lock`.
+- Pakiet `aeroshell` zbudowany dla aarch64-linux; profil PAM wyewaluowany dla
+  Pandory i Calypso. Sprawdzona ścieżka narzędzi usługi hypridle.
+- Wygląd oraz prawdziwa powierzchnia blokady uruchomione w izolowanym Sway
+  1440 × 900, bez błędów QML. Aktualny `previews/lockscreen.png` przedstawia
+  ten sam komponent w trybie podglądu.
+- `tests/lock.sh` sprawdza prawdziwą konwersację PAM z testowym hasłem przez
+  `pam_exec`: po odrzuceniu sesja pozostaje zabezpieczona, a po zaakceptowaniu
+  blokada znika i proces kończy się poprawnie. Profil testowy jest tworzony
+  wyłącznie w katalogu tymczasowym. Test nie zmienia LockedHint prawdziwej sesji.
+- Nie testowano hasła użytkownika, klucza U2F, hotplugu monitorów ani cyklu
+  uśpienia na działającym Hyprlandzie. Nowy profil PAM wymaga aktywacji NixOS;
+  system nie został przełączony w ramach tej zmiany.
+
+## Ikony i lista zadań, 25 października 2026
+
+- Pakiety `aero-icons` i `aeroshell` zbudowane dla aarch64-linux. Listy pakietów
+  obu konfiguracji, Pandory i Calypso, wyewaluowane z nowym motywem ikon.
+- 56 autorskich ikon SVG, 209 aliasów. `icons/tests/coverage.py` parsuje pliki,
+  sprawdza aliasy i potwierdza pokrycie wszystkich 58 lokalnych/systemowych
+  wpisów `.desktop`. Grafika otwierana poprawnie przez Qt w działającym shellu.
+- Usunięte tray, cztery przypięte aplikacje oraz osobna siatka sześciu pulpitów.
+  Jedna przewijana lista pokazuje poszczególne okna w grupach według pulpitu
+  i monitora. Pusty aktywny pulpit pozostaje dostępny.
+- `tests/tasks.mjs`: prawdziwe komponenty QML i natywne modele Hyprlanda
+  w izolowanym Sway, ze sterowanym serwerem IPC. Sprawdzone duplikaty app ID,
+  filtrowanie monitora, komendy aktywacji Lua, przenoszenie/zamykanie okien,
+  zmiana aktywnego pulpitu oraz puste grupy. Brak błędów QML i pętli powiązań.
+- `previews/desktop.png` to zrzut launchera z nowymi ikonami. `tasks.png` i
+  `taskbar.png` pokazują prawdziwy pasek z testowym modelem okien/pulpitów.
+- Zagnieżdżony Hyprland nie wystartował z powodu niezgodności wersji
+  `xdg_wm_base` w obecnym backendzie Aquamarine. Interakcje na rzeczywistym
+  Hyprlandzie i mapowanie jego uchwytów Waylanda nie były testowane; test IPC
+  obejmuje też aktywację okna po adresie przy braku takiego mapowania.
+- Test wyszukiwania, formatowanie Nix i `git diff --check` przechodzą.
+  Konfiguracja systemu nie była aktywowana.
+
+## Logowanie Vista/Windows 7 i bateria
+
+- Przebudowany wygląd blokady: duży obramowany kafel użytkownika, pole hasła
+  z jasnym tłem, okrągła strzałka, mały zegar/data w rogu oraz stopka Aero.
+  Renderowanie sprawdzone na osobnym Waylandzie 1440 × 900.
+- Test PAM po zmianie interfejsu przechodzi: błędna odpowiedź nie odblokowuje
+  sesji, poprawna testowa odpowiedź odblokowuje ją i kończy proces.
+- Wspólny model UPower dla paska, panelu sesji i blokady; poprawne odróżnienie
+  podłączenia zasilacza od aktywnego ładowania. Wypełnienie, procent, błyskawica,
+  wtyczka, niski/krytyczny poziom oraz obsługa nieznanego stanu i braku baterii.
+- `tests/battery.sh` sprawdza rozładowywanie, ładowanie, pełną baterię,
+  wstrzymane ładowanie, progi 20/10%, brak estymaty, nieznany stan, nieprawidłowy
+  odczyt i usunięcie baterii. Test nie zmienia stanu sprzętu.
+- Zbudowany pakiet pokazuje rzeczywistą baterię i estymatę z UPower.
+  `previews/battery-states.png` przedstawia natywny komponent z danymi testowymi.
+  System nie został przełączony.

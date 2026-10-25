@@ -67,7 +67,6 @@ in
         signal-desktop
         gimp3
         inkscape
-        keepassxc
         kpcli
         clang
         gnumake
@@ -106,6 +105,9 @@ in
         ;
     }
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
-    ++ [ (pkgs.callPackage ./smath { inherit inputs; }) ];
+    ++ [
+      (pkgs.callPackage ./smath { inherit inputs; })
+      (pkgs.callPackage ./keepassxc { })
+    ];
 
 }

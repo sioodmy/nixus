@@ -90,7 +90,7 @@ Item {
                         contentItem: RowLayout {
                             spacing: 10
                             Image {
-                                source: Quickshell.iconPath(result.modelData.icon, "application-x-executable")
+                                source: Quickshell.iconPath(Apps.iconName(result.modelData), "application-x-executable")
                                 sourceSize: Qt.size(32, 32)
                                 Layout.preferredWidth: 32
                                 Layout.preferredHeight: 32

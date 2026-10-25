@@ -11,6 +11,8 @@ rec {
       aeroshell = import ./quickshell/package.nix { inherit pkgs inputs; };
       zen-aero = import ./zen-browser/package.nix { inherit pkgs inputs; };
       ferdium = import ./ferdium/package.nix { inherit pkgs; };
+      aero-icons = callPackage ./icons { };
+      aero-cursors = callPackage ./cursor { };
       tofi = callPackage ./wrapped/tofi { };
       bat = pkgs.bat;
       zathura = callPackage ./wrapped/zathura { };

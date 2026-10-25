@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Services.UPower
 
 ColumnLayout {
     id: root
@@ -22,11 +21,36 @@ ColumnLayout {
         color: Theme.muted
         Layout.alignment: Qt.AlignHCenter
     }
-    AeroText {
-        visible: UPower.displayDevice.isLaptopBattery
-        Layout.alignment: Qt.AlignHCenter
-        text: "Bateria " + Math.round(UPower.displayDevice.percentage * 100) + "%" + (UPower.onBattery ? "" : " · ładowanie")
-        color: Theme.muted
+    RowLayout {
+        visible: BatteryInfo.available
+        Layout.fillWidth: true
+        spacing: 14
+        BatteryGauge {
+            Layout.alignment: Qt.AlignVCenter
+            level: BatteryInfo.level
+            known: BatteryInfo.known
+            charging: BatteryInfo.charging
+            plugged: BatteryInfo.plugged
+            low: BatteryInfo.low
+            critical: BatteryInfo.critical
+        }
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 4
+            AeroText {
+                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
+                elide: Text.ElideNone
+                text: BatteryInfo.percentageText + " · " + BatteryInfo.stateText
+                color: BatteryInfo.critical ? Theme.red : Theme.text
+            }
+            AeroText {
+                visible: BatteryInfo.estimate !== ""
+                text: BatteryInfo.estimate
+                color: Theme.muted
+                font.pixelSize: 12
+            }
+        }
     }
     Item {
         Layout.fillHeight: true

@@ -3,11 +3,8 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Hyprland
 import Quickshell.Networking
 import Quickshell.Bluetooth
-import Quickshell.Services.UPower
-import Quickshell.Services.SystemTray
 
 PanelWindow {
     id: root
@@ -22,7 +19,6 @@ PanelWindow {
     color: "transparent"
     WlrLayershell.namespace: "amethyst-bar"
     WlrLayershell.layer: WlrLayer.Top
-    readonly property var monitor: Hyprland.monitorFor(screen)
     SystemClock {
         id: clock
         precision: SystemClock.Minutes
@@ -51,127 +47,16 @@ PanelWindow {
                 implicitHeight: 1
                 color: Theme.alpha(Theme.highlight, 0.2)
             }
-            Repeater {
-                model: Apps.pins
-                AeroButton {
-                    id: pinButton
-                    required property var modelData
-                    readonly property var windows: ToplevelManager.toplevels.values.filter(w => Apps.pinMatches(modelData, w))
-                    Layout.alignment: Qt.AlignHCenter
-                    implicitWidth: 46
-                    implicitHeight: 45
-                    iconSize: 30
-                    iconName: modelData.fallback
-                    hint: modelData.label
-                    selected: windows.some(w => w.activated)
-                    onClicked: {
-                        if (!windows.length)
-                            Apps.launchPin(modelData);
-                        else
-                            windows[(windows.indexOf(ToplevelManager.activeToplevel) + 1) % windows.length].activate();
-                    }
-                    Rectangle {
-                        visible: pinButton.windows.length > 0
-                        anchors {
-                            left: parent.left
-                            verticalCenter: parent.verticalCenter
-                        }
-                        width: 3
-                        height: 20
-                        radius: 2
-                        color: Theme.highlight
-                    }
-                }
+            TaskList {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.minimumHeight: 40
+                outputName: root.screen.name
             }
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 1
                 color: Theme.alpha(Theme.highlight, 0.2)
-            }
-            // Workspaces remain reachable on short laptop displays.
-            GridLayout {
-                Layout.alignment: Qt.AlignHCenter
-                columns: 2
-                columnSpacing: 3
-                rowSpacing: 3
-                Repeater {
-                    model: [1, 2, 3, 4, 5, 6]
-                    AeroButton {
-                        required property int modelData
-                        implicitWidth: 22
-                        implicitHeight: 26
-                        leftPadding: 0
-                        rightPadding: 0
-                        text: String(modelData)
-                        hint: "Pulpit " + modelData
-                        selected: root.monitor?.activeWorkspace?.id === modelData
-                        onClicked: {
-                            if (Hyprland.usingLua)
-                                Hyprland.dispatch("hl.dsp.focus({workspace=" + modelData + "})");
-                            else
-                                Hyprland.dispatch("workspace " + modelData);
-                        }
-                    }
-                }
-            }
-            ListView {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.minimumHeight: 0
-                Layout.maximumHeight: Math.min(count * 44, 132)
-                clip: true
-                spacing: 4
-                model: {
-                    var seen = ({});
-                    return ToplevelManager.toplevels.values.filter(w => {
-                        if (w.parent || seen[w.appId] || Apps.pins.some(p => Apps.pinMatches(p, w)))
-                            return false;
-                        seen[w.appId] = true;
-                        return true;
-                    });
-                }
-                delegate: AeroButton {
-                    required property var modelData
-                    width: ListView.view.width
-                    implicitHeight: 40
-                    iconSize: 26
-                    iconName: DesktopEntries.heuristicLookup(modelData.appId)?.icon || "application-x-executable"
-                    hint: modelData.title
-                    selected: modelData.activated
-                    onClicked: modelData.activate()
-                }
-            }
-            Item {
-                Layout.fillHeight: true
-                Layout.minimumHeight: 0
-            }
-            // AppIndicator menus are real D-Bus menus, including secondary actions.
-            Repeater {
-                model: SystemTray.items
-                AeroButton {
-                    id: trayButton
-                    required property var modelData
-                    Layout.alignment: Qt.AlignHCenter
-                    implicitHeight: 29
-                    implicitWidth: 42
-                    iconSize: 20
-                    hint: modelData.tooltipTitle || modelData.title
-                    contentItem: Image {
-                        source: trayButton.modelData.icon
-                        sourceSize: Qt.size(20, 20)
-                        fillMode: Image.PreserveAspectFit
-                    }
-                    onClicked: {
-                        if (modelData.onlyMenu)
-                            modelData.display(root, Theme.rightPanel ? 0 : root.width, trayButton.mapToItem(root.contentItem, 0, 0).y);
-                        else
-                            modelData.activate();
-                    }
-                    TapHandler {
-                        acceptedButtons: Qt.RightButton
-                        onTapped: trayButton.modelData.display(root, Theme.rightPanel ? 0 : root.width, trayButton.mapToItem(root.contentItem, 0, 0).y)
-                    }
-                }
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
@@ -221,12 +106,9 @@ PanelWindow {
                     color: Theme.green
                 }
             }
-            AeroText {
-                visible: UPower.displayDevice.isLaptopBattery
+            BatteryIndicator {
                 Layout.alignment: Qt.AlignHCenter
-                text: Math.round(UPower.displayDevice.percentage * 100) + "%"
-                color: UPower.onBattery ? Theme.muted : Theme.green
-                font.pixelSize: 11
+                onClicked: Desktop.toggle("session", root.screen.name)
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter

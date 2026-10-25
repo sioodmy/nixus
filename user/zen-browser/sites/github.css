@@ -1,0 +1,142 @@
+/* Primer tokens cover classic and React views without touching layout.
+ * Semantic colors and syntax get dark equivalents, including in light mode.
+ */
+@-moz-document domain("github.com") {
+  @media screen {
+    :root, [data-color-mode] {
+      --bgColor-default: var(--aero-bg) !important;
+      --bgColor-muted: var(--aero-surface) !important;
+      --bgColor-inset: #120c1d !important;
+      --bgColor-emphasis: var(--aero-raised) !important;
+      --bgColor-inverse: var(--aero-highlight) !important;
+      --bgColor-neutral-muted: #be9aef20 !important;
+      --bgColor-neutral-emphasis: var(--aero-edge) !important;
+      --bgColor-accent-muted: #be9aef20 !important;
+      --bgColor-accent-emphasis: #77549c !important;
+      --fgColor-default: var(--aero-text) !important;
+      --fgColor-muted: var(--aero-muted) !important;
+      --fgColor-neutral: var(--aero-muted) !important;
+      --fgColor-accent: var(--aero-highlight) !important;
+      --fgColor-link: var(--aero-highlight) !important;
+      --fgColor-onEmphasis: var(--aero-text) !important;
+      --fgColor-onInverse: var(--aero-bg) !important;
+      --borderColor-default: var(--aero-line) !important;
+      --borderColor-muted: #c6abdf28 !important;
+      --borderColor-emphasis: var(--aero-edge) !important;
+      --borderColor-accent-emphasis: var(--aero-accent) !important;
+      --borderColor-accent-muted: #be9aef55 !important;
+      --focus-outlineColor: var(--aero-accent) !important;
+      --control-bgColor-rest: var(--aero-surface) !important;
+      --control-bgColor-hover: var(--aero-raised) !important;
+      --control-bgColor-active: #48315b !important;
+      --control-bgColor-selected: var(--aero-raised) !important;
+      --control-borderColor-rest: var(--aero-edge) !important;
+      --control-borderColor-hover: var(--aero-accent) !important;
+      --control-transparent-bgColor-hover: #be9aef20 !important;
+      --control-transparent-bgColor-active: #be9aef30 !important;
+      --control-transparent-bgColor-selected: #be9aef30 !important;
+      --button-default-bgColor-rest: var(--aero-surface) !important;
+      --button-default-bgColor-hover: var(--aero-raised) !important;
+      --button-default-borderColor-rest: var(--aero-edge) !important;
+      --button-default-fgColor-rest: var(--aero-text) !important;
+      --button-primary-bgColor-rest: #375b48 !important;
+      --button-primary-bgColor-hover: #426e56 !important;
+      --button-primary-bgColor-active: #304d3e !important;
+      --button-primary-fgColor-rest: var(--aero-text) !important;
+      --button-primary-borderColor-rest: #9bd6b460 !important;
+      --fgColor-success: var(--aero-green) !important;
+      --fgColor-open: var(--aero-green) !important;
+      --fgColor-danger: var(--aero-red) !important;
+      --fgColor-closed: var(--aero-red) !important;
+      --fgColor-attention: var(--aero-yellow) !important;
+      --fgColor-done: var(--aero-accent) !important;
+      --bgColor-success-muted: #9bd6b418 !important;
+      --bgColor-open-muted: #9bd6b418 !important;
+      --bgColor-danger-muted: #f29ba918 !important;
+      --bgColor-closed-muted: #f29ba918 !important;
+      --bgColor-attention-muted: #e8d49a18 !important;
+      --bgColor-done-muted: #be9aef20 !important;
+      --color-prettylights-syntax-comment: var(--aero-muted) !important;
+      --color-prettylights-syntax-constant: var(--aero-blue) !important;
+      --color-prettylights-syntax-entity: var(--aero-accent) !important;
+      --color-prettylights-syntax-entity-tag: var(--aero-green) !important;
+      --color-prettylights-syntax-keyword: var(--aero-red) !important;
+      --color-prettylights-syntax-string: var(--aero-cyan) !important;
+      --color-prettylights-syntax-variable: var(--aero-yellow) !important;
+      --color-prettylights-syntax-storage-modifier-import: var(--aero-text) !important;
+      --color-prettylights-syntax-markup-heading: var(--aero-highlight) !important;
+      --color-prettylights-syntax-markup-inserted-bg: #21362e !important;
+      --color-prettylights-syntax-markup-inserted-text: var(--aero-green) !important;
+      --color-prettylights-syntax-markup-deleted-bg: #412331 !important;
+      --color-prettylights-syntax-markup-deleted-text: var(--aero-red) !important;
+      --diffBlob-addition-bgColor-line: #21362e !important;
+      --diffBlob-addition-bgColor-num: #2b4438 !important;
+      --diffBlob-addition-bgColor-word: #375b48 !important;
+      --diffBlob-addition-fgColor-text: var(--aero-text) !important;
+      --diffBlob-deletion-bgColor-line: #412331 !important;
+      --diffBlob-deletion-bgColor-num: #53303f !important;
+      --diffBlob-deletion-bgColor-word: #713d51 !important;
+      --diffBlob-deletion-fgColor-text: var(--aero-text) !important;
+      --diffBlob-hunk-bgColor-num: var(--aero-raised) !important;
+      --diffBlob-hunk-bgColor: var(--aero-surface) !important;
+      --diffBlob-hunk-fgColor-num: var(--aero-muted) !important;
+      --diffBlob-hunk-fgColor-text: var(--aero-muted) !important;
+      /* Compatibility with older server-rendered Primer components. */
+      --color-canvas-default: var(--aero-bg) !important;
+      --color-canvas-subtle: var(--aero-surface) !important;
+      --color-canvas-inset: #120c1d !important;
+      --color-fg-default: var(--aero-text) !important;
+      --color-fg-muted: var(--aero-muted) !important;
+      --color-border-default: var(--aero-line) !important;
+      --color-accent-fg: var(--aero-highlight) !important;
+      --color-header-bg: var(--aero-surface) !important;
+      --color-header-text: var(--aero-text) !important;
+    }
+    body {
+      background: var(--aero-bg) !important;
+      color: var(--aero-text) !important;
+    }
+    .Header, .AppHeader, .gh-header, .js-repo-nav, .color-bg-subtle:has(.UnderlineNav) {
+      background: var(--aero-glass) !important;
+      box-shadow: var(--aero-rim) !important;
+      border-color: var(--aero-line) !important;
+    }
+    .Box, .Box-header, .file-header, .markdown-body pre,
+    [class*="prc-Dialog-Dialog"], [class*="prc-Overlay-Overlay"] {
+      border-color: var(--aero-line) !important;
+    }
+    .Box-header, .file-header {
+      background: var(--aero-glass) !important;
+      box-shadow: inset 0 1px #ffffff20 !important;
+    }
+    .btn:not(.btn-primary, .btn-danger, .btn-invisible, .btn-link),
+    .Button--secondary, [data-component="Button"][data-variant="default"] {
+      background: var(--aero-button) !important;
+      color: var(--aero-text) !important;
+      border-color: var(--aero-edge) !important;
+      box-shadow: var(--aero-rim), 0 1px 3px #09051040 !important;
+    }
+    .btn:not(.btn-primary, .btn-danger, .btn-invisible, .btn-link):hover,
+    .Button--secondary:hover, [data-component="Button"][data-variant="default"]:hover {
+      background: var(--aero-button-hover) !important;
+    }
+    .btn-primary, .Button--primary, [data-component="Button"][data-variant="primary"] {
+      background-image: linear-gradient(#ffffff20, #ffffff04 46%, #00000018 47%) !important;
+      box-shadow: var(--aero-rim) !important;
+    }
+    .form-control, .form-select, .input-contrast, .AppHeader-searchButton {
+      background: var(--aero-inset) !important;
+      color: var(--aero-text) !important;
+      border-color: var(--aero-edge) !important;
+      box-shadow: inset 0 1px 4px #00000060, 0 1px #ffffff12 !important;
+    }
+    .SelectMenu-modal, .dropdown-menu, [class*="prc-Overlay-Overlay"] {
+      background: var(--aero-glass) !important;
+      box-shadow: var(--aero-float) !important;
+    }
+    .UnderlineNav-item[aria-current]:not([aria-current="false"])::after,
+    [class*="prc-UnderlineNav"][aria-current="page"]::after {
+      background-color: var(--aero-accent) !important;
+    }
+  }
+}

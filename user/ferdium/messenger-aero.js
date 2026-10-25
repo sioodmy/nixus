@@ -3,6 +3,22 @@ module.exports = () => {
   if (window.__amethystMessengerObserver) return;
   const regions = '[data-scope="messages_table"], [role="log"], [role="grid"]';
   let pending = false;
+  const clearNativeBacking = bubble => {
+    const rect = bubble.getBoundingClientRect();
+    for (let wrapper = bubble.parentElement, depth = 0; wrapper && depth < 4; wrapper = wrapper.parentElement, depth++) {
+      if (wrapper.matches('[role="row"], [role="log"], [role="grid"], [data-scope="messages_table"]')) break;
+      const bounds = wrapper.getBoundingClientRect();
+      // Meta can paint a second, square blue surface behind the rounded bubble.
+      // Only clear layers with the same geometry, never a row or reaction.
+      if (Math.abs(bounds.left - rect.left) > 4 || Math.abs(bounds.right - rect.right) > 4 ||
+          Math.abs(bounds.top - rect.top) > 4 || Math.abs(bounds.bottom - rect.bottom) > 4) break;
+      const style = getComputedStyle(wrapper);
+      if (style.backgroundImage !== 'none' ||
+          (style.backgroundColor !== 'transparent' && style.backgroundColor !== 'rgba(0, 0, 0, 0)')) {
+        wrapper.dataset.aeroBubbleBacking = 'true';
+      }
+    }
+  };
   const scan = () => {
     pending = false;
     for (const region of document.querySelectorAll(regions)) {
@@ -27,6 +43,7 @@ module.exports = () => {
           const right = bounds.right - rect.right;
           const left = rect.left - bounds.left;
           bubble.dataset.aeroMessage = right < left ? 'outgoing' : 'incoming';
+          clearNativeBacking(bubble);
           break;
         }
       }

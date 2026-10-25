@@ -7,25 +7,7 @@
 }:
 let
   cfg = config.quickshell;
-  palette = builtins.fromJSON (builtins.readFile ./ui/palette.json);
-  render =
-    file:
-    lib.replaceStrings
-      (
-        [
-          "@wallpaper@"
-          "@avatar@"
-        ]
-        ++ map (name: "@${name}@") (builtins.attrNames palette)
-      )
-      (
-        [
-          (toString ./ui/assets/wallpaper.png)
-          "${pkgs.kdePackages.oxygen-icons}/share/icons/oxygen/base/128x128/places/user-identity.png"
-        ]
-        ++ map (name: lib.removePrefix "#" palette.${name}) (builtins.attrNames palette)
-      )
-      (builtins.readFile file);
+
 in
 {
   options.quickshell = {
@@ -56,12 +38,17 @@ in
       pkgs.networkmanagerapplet
       pkgs.nemo
     ];
-    programs.hyprlock.enable = true;
+    security.pam.services.aero-lock = { };
+    services.hypridle.enable = true;
     services.blueman.enable = true;
-    # Hyprlock enables hypridle in nixpkgs. Start it from Hyprland, after the
+    # Start hypridle from Hyprland, after the
     # compositor has exported its environment, just like the shell.
     systemd.user.services.hypridle.wantedBy = lib.mkForce [ ];
-    systemd.user.services.hypridle.path = [ cfg.package ];
+    systemd.user.services.hypridle.path = lib.mkForce [
+      cfg.package
+      pkgs.systemd
+      pkgs.hyprland
+    ];
     systemd.user.services.quickshell = {
       description = "Amethyst Aero desktop shell";
       partOf = [ "graphical-session.target" ];
@@ -103,7 +90,6 @@ in
       };
     };
     homix = {
-      ".config/hypr/hyprlock.conf".text = render ./hyprlock.conf;
       ".config/hypr/hypridle.conf".text = ''
         general {
           lock_cmd = aero-lock

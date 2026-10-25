@@ -9,32 +9,6 @@ Singleton {
     // DesktopEntries indexes and watches .desktop files in native C++ once.
     readonly property var indexed: Search.index(DesktopEntries.applications.values)
     property var usage: ({})
-    readonly property var pins: [
-        {
-            id: "kitty",
-            fallback: "utilities-terminal",
-            label: "Terminal",
-            command: ["kitty"]
-        },
-        {
-            id: "zen-aero",
-            fallback: "internet-web-browser",
-            label: "Internet",
-            command: ["zen"]
-        },
-        {
-            id: "nemo",
-            fallback: "folder-violet",
-            label: "Pliki",
-            command: ["nemo"]
-        },
-        {
-            id: "signal",
-            fallback: "kopete",
-            label: "Wiadomości",
-            command: ["signal-desktop"]
-        }
-    ]
     FileView {
         id: history
         printErrors: false
@@ -64,21 +38,17 @@ Singleton {
         Desktop.spawn(entry.runInTerminal ? ["kitty"].concat(entry.command) : entry.command, entry.workingDirectory);
         Desktop.close();
     }
-    function pinned(pin) {
-        return DesktopEntries.heuristicLookup(pin.id);
-    }
-    function pinMatches(pin, window) {
-        var appId = window.appId.toLowerCase();
-        if (!appId)
-            return false;
-        var entry = pinned(pin);
-        return appId === (entry?.startupClass || "").toLowerCase() || appId.includes(pin.id.toLowerCase());
-    }
-    function launchPin(pin) {
-        var entry = pinned(pin);
-        if (entry)
-            launch(entry);
-        else
-            Desktop.run(pin.command);
+    function iconName(entry, appId) {
+        // Prefer a themed basename even if a desktop file supplies an absolute
+        // store path. Entries without Icon= can still resolve by desktop ID/name.
+        const candidates = [entry?.icon, entry?.id, appId, entry?.startupClass, entry?.name?.toLowerCase()];
+        for (let candidate of candidates) {
+            if (!candidate)
+                continue;
+            candidate = candidate.split("/").pop().replace(/\.(desktop|svg|png|xpm)$/i, "");
+            if (Quickshell.hasThemeIcon(candidate))
+                return candidate;
+        }
+        return "application-x-executable";
     }
 }

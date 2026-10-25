@@ -1,4 +1,4 @@
-/* Restrict styling to browser-owned pages; websites keep their own colors. */
+/* Browser-owned pages. Selected website themes are appended by package.nix. */
 @-moz-document url("about:newtab"), url("about:home") {
   :root {
     color-scheme: dark !important;

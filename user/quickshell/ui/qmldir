@@ -19,3 +19,8 @@ NotificationView 1.0 NotificationView.qml
 SessionView 1.0 SessionView.qml
 Toasts 1.0 Toasts.qml
 Osd 1.0 Osd.qml
+TaskList 1.0 TaskList.qml
+TaskGroup 1.0 TaskGroup.qml
+singleton BatteryInfo 1.0 BatteryInfo.qml
+BatteryGauge 1.0 BatteryGauge.qml
+BatteryIndicator 1.0 BatteryIndicator.qml

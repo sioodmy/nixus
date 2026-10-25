@@ -221,5 +221,5 @@ hl.bind(MOD .. " + TAB", hl.dsp.workspace.toggle_special("float"))
 
 hl.bind(MOD .. " + SHIFT + P", hl.dsp.dpms({ action = "toggle" }))
 
--- Restart only the desktop shell; the independent Hyprlock stays running.
+-- Restart only the desktop shell; the independent Quickshell locker stays running.
 hl.bind(MOD .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd("systemctl --user restart quickshell.service"))

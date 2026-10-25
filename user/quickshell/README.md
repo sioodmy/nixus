@@ -24,8 +24,16 @@ nix build path:.#aeroshell
 ```
 
 W aktywnej konfiguracji restart panelu: `systemctl --user restart quickshell`.
-Aplikacje są uruchamiane w osobnych scope'ach systemd. Hyprlock również ma
-osobny scope, niezależny od panelu i demona bezczynności.
+Aplikacje są uruchamiane w osobnych scope'ach systemd. Blokada Quickshell (`aero-lock`) ma
+osobny scope, niezależny od panelu i demona bezczynności. Używa protokołu
+Wayland `ext-session-lock-v1` i profilu PAM `aero-lock`. Odblokowuje wyłącznie
+po poprawnym uwierzytelnieniu, na wszystkich monitorach jednocześnie.
+
+Podgląd wyglądu bez blokowania sesji:
+
+```sh
+qs -p user/quickshell/ui/lock-preview.qml
+```
 
 ## Obsługa
 
@@ -43,8 +51,12 @@ osobny scope, niezależny od panelu i demona bezczynności.
 
 W launcherze: strzałki wybierają wynik, Enter uruchamia, Esc zamyka. Komendy
 `:wifi`, `:bt`, `:audio` i `:power` otwierają odpowiednie panele po Enterze.
-Ikony na pasku przełączają istniejące okna aplikacji; ponowne kliknięcia
-przechodzą między jej oknami. Dodatkowe aplikacje pojawiają się na pasku.
+Pasek pokazuje otwarte okna pogrupowane według pulpitu na danym monitorze.
+Każde okno ma własną ikonę i podpowiedź z tytułem, również gdy należy do tej
+samej aplikacji. Kliknięcie ikony aktywuje konkretne okno; mały nagłówek grupy
+przełącza pulpit. Pusta bieżąca grupa pozostaje widoczna, a puste nieaktywne
+pulpity znikają. Długa lista przewija się w dostępnym miejscu. Pasek nie ma
+przypiętych aplikacji ani traya.
 Launcher jest przy górnej krawędzi ekranu, obok pionowego panelu.
 
 Klawisze głośności, wyciszenia, mikrofonu i jasności pokazują szkliste OSD
@@ -64,7 +76,7 @@ Bluetooth obsługuje wyszukiwanie, parowanie, łączenie, rozłączanie, zaufani
 i usuwanie par. Blueman zapewnia dialogi PIN/potwierdzenia i dodatkowe opcje.
 Wyszukiwanie kończy się po zamknięciu panelu lub po minucie.
 
-Panel zawiera też tray z menu aplikacji, głośność, mikrofon, jasność, MPRIS,
+Panele systemowe zawierają głośność, mikrofon, jasność, MPRIS,
 historię powiadomień i tryb nie przeszkadzać. Historia powiadomień pozostaje
 w pamięci do restartu shella. Zrzuty trafiają do katalogu obrazów XDG
 (`Screenshots`) i do schowka. Blokada następuje po 5 minutach bezczynności
@@ -79,8 +91,10 @@ Przeglądarka: [Zen z motywem Amethyst Aero](../zen-browser/README.md),
 uruchamiana z przycisku Internet na panelu.
 
 Segoe UI pochodzi z używanego już pakietu `vista-fonts`; terminale używają
-JetBrains Mono. Motyw ikon dziedziczy Oxygen, a foldery korzystają z jego
-oryginalnego fioletowego wariantu. Kursor: Bibata Modern Ice. Menedżer plików:
+JetBrains Mono. [Pakiet ikon Amethyst Aero](../icons/README.md) ma 56 własnych
+projektów SVG i 209 aliasów: fioletowe szkło, jasne krawędzie oraz indywidualne
+symbole aplikacji. Obejmuje wszystkie 58 obecnych wpisów `.desktop`; pozostałe
+ikony systemowe dziedziczy z Oxygen i Adwaity. Kursor: [Amethyst Aero](../cursor/README.md). Menedżer plików:
 Nemo. Kvantum zachowuje oryginalne wypukłości i gradienty KvDark, zmieniając
 kolory skryptem [`../gtk/kvantum.py`](../gtk/kvantum.py).
 
@@ -114,4 +128,44 @@ polkit i serwera powiadomień oraz akcje blokowania/zasilania w podglądzie.
 Sterowanie prawdziwą siecią i urządzeniami nadal działa.
 
 Podglądy w [`previews/`](previews/) to zrzuty działającego interfejsu
-w osobnej sesji Waylanda, nie makiety HTML.
+w osobnej sesji Waylanda, nie makiety HTML. `tasks.png` i `taskbar.png` używają
+testowych danych Hyprlanda do pokazania kilku pulpitów bez zmieniania sesji
+użytkownika.
+
+Test blokady w izolowanym, bezekranowym Sway (wymaga `qs`, `sway`, `wtype`,
+Node, Perl i modułów Linux PAM):
+
+```sh
+PAM_MODULE_DIR=/ścieżka/do/lib/security bash user/quickshell/tests/lock.sh
+```
+
+Można wskazać narzędzia przez `QS_BINARY`, `SWAY_BINARY` i `WTYPE_BINARY`.
+Test używa własnego kompozytora i tymczasowego profilu PAM; nie blokuje pulpitu.
+
+Test grupowania okien w izolowanym Sway i na testowym IPC Hyprlanda:
+
+```sh
+node user/quickshell/tests/tasks.mjs
+```
+
+Sprawdza osobne zadania dla wielu okien tej samej aplikacji, filtrowanie według
+monitora, przełączanie pulpitów w trybie Lua, przenoszenie i zamykanie okien
+oraz zachowanie pustego aktywnego pulpitu. Wymaga `qs` i `sway`; można ustawić
+`QS_BINARY` i `SWAY_BINARY`.
+
+Blokada korzysta z układu logowania Visty/Windows 7: duży szklany kafel
+użytkownika, nazwa konta, jasne pole hasła i okrągła strzałka odblokowania.
+Zegar i data są w dolnym rogu; obok stopki jest wskaźnik baterii.
+
+Bateria na pasku pokazuje rzeczywiste wypełnienie i procent. Błyskawica oznacza
+ładowanie, wtyczka — podłączony zasilacz bez aktywnego ładowania. Pełna bateria
+i wstrzymane ładowanie mają osobne opisy. Na baterii poziom ≤20% jest bursztynowy,
+a ≤10% czerwony z wykrzyknikiem. Podpowiedź oraz panel sesji po kliknięciu
+pokazują stan i szacowany czas, jeśli UPower go udostępnia. Brak danych nie
+jest przedstawiany jako 0%; na komputerze bez baterii wskaźnik znika.
+
+```sh
+bash user/quickshell/tests/battery.sh
+```
+
+Test sprawdza stany UPower na danych testowych i nie steruje zasilaniem.

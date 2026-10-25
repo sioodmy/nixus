@@ -1,6 +1,7 @@
 { pkgs, inputs }:
 let
   qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  icons = pkgs.callPackage ../icons { };
   runtime = with pkgs; [
     coreutils
     systemd
@@ -21,7 +22,6 @@ let
     wl-clipboard
     libnotify
     hyprland
-    hyprlock
     nemo
   ];
 in
@@ -40,21 +40,26 @@ pkgs.stdenvNoCC.mkDerivation {
       --set QT_QUICK_CONTROLS_STYLE Basic \
       --set QT_QPA_PLATFORMTHEME qt6ct \
       --prefix QT_PLUGIN_PATH : "${pkgs.kdePackages.qt6ct}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.qtstyleplugin-kvantum}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
-      --run 'export XDG_DATA_DIRS="$HOME/.local/share:$HOME/.nix-profile/share:/etc/profiles/per-user/$USER/share:/run/current-system/sw/share:${pkgs.kdePackages.oxygen-icons}/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"' \
+      --run 'export XDG_DATA_DIRS="${icons}/share:$HOME/.local/share:$HOME/.nix-profile/share:/etc/profiles/per-user/$USER/share:/run/current-system/sw/share:${pkgs.kdePackages.oxygen-icons}/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"' \
       --prefix PATH : ${pkgs.lib.makeBinPath runtime}
     for action in launcher wifi bluetooth audio notifications session close; do
       makeWrapper $out/bin/aeroshell $out/bin/aero-$action \
         --add-flags "ipc call aero $action"
     done
+    makeWrapper ${qs}/bin/quickshell $out/bin/aero-lock-ui \
+      --add-flags "--no-duplicate --path $out/share/amethyst-aero/lock.qml" \
+      --set QT_QUICK_CONTROLS_STYLE Basic \
+      --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.systemd ]}
     cat > $out/bin/aero-lock <<'EOF'
     #!${pkgs.runtimeShell}
-    if ${pkgs.procps}/bin/pgrep -u "$UID" -x hyprlock >/dev/null; then
-      exit 0
-    fi
-    exec ${pkgs.systemd}/bin/systemd-run --user --scope --quiet --collect \
+    # Keep the locker outside the desktop service's cgroup. flock also prevents
+    # simultaneous idle/key/suspend requests racing to acquire the Wayland lock.
+    exec ${pkgs.util-linux}/bin/flock --nonblock "''${XDG_RUNTIME_DIR:-/run/user/$UID}/amethyst-session.lock" \
+      ${pkgs.systemd}/bin/systemd-run --user --scope --quiet --collect \
       --unit=amethyst-lock --slice=session.slice \
-      ${pkgs.hyprlock}/bin/hyprlock --grace 0 "$@"
+      @out@/bin/aero-lock-ui "$@"
     EOF
+    substituteInPlace $out/bin/aero-lock --replace-fail '@out@' "$out"
     cat > $out/bin/aero-screenshot <<'EOF'
     #!${pkgs.runtimeShell}
     set -eu
@@ -113,7 +118,7 @@ pkgs.stdenvNoCC.mkDerivation {
     set -eu
     exec 9>"''${XDG_RUNTIME_DIR:-/run/user/$UID}/amethyst-brightness.lock"
     ${pkgs.util-linux}/bin/flock 9
-    status=$(${pkgs.brightnessctl}/bin/brightnessctl -m -n 1 set "''${1:-5%+}")
+    status=$(${pkgs.brightnessctl}/bin/brightnessctl -m --min-value=1 set "''${1:-5%+}")
     percent=$(printf '%s\n' "$status" | ${pkgs.gawk}/bin/awk -F, 'NR == 1 {gsub(/%/, "", $4); print $4}')
     case "$percent" in ""|*[!0-9]*) exit 1 ;; esac
     shell_dir=$(${pkgs.coreutils}/bin/dirname "$(${pkgs.coreutils}/bin/readlink -f "$0")")

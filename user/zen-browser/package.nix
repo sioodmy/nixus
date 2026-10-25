@@ -11,7 +11,13 @@ let
   chrome = pkgs.writeText "amethyst-userChrome.css" (render ./userChrome.css);
   content = pkgs.writeText "amethyst-userContent.css" (
     lib.replaceStrings [ "@WALLPAPER@" ] [ "${../quickshell/ui/assets/wallpaper.png}" ] (
-      render ./userContent.css
+      lib.concatMapStringsSep "\n" render [
+        ./userContent.css
+        ./sites/common.css
+        ./sites/youtube.css
+        ./sites/github.css
+        ./sites/t3code.css
+      ]
     )
   );
   settings = import ./settings.nix { inherit palette; };

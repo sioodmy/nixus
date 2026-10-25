@@ -7,7 +7,9 @@ let
   )) (builtins.attrValues colors) (builtins.readFile ./gtk.css);
   themeName = "Amethyst-Aero";
   iconTheme = "Amethyst-Aero";
-  cursorTheme = "Bibata-Modern-Ice";
+  cursorTheme = "Amethyst-Aero-Cursors";
+  iconPackage = pkgs.callPackage ../icons { };
+  cursorPackage = pkgs.callPackage ../cursor { };
   colorScheme = pkgs.writeText "Amethyst-Aero.conf" (
     let
       roles = with palette; [
@@ -54,28 +56,6 @@ let
     python3 ${./kvantum.py} \
       ${pkgs.kdePackages.qtstyleplugin-kvantum}/share/Kvantum/KvDark \
       "$out/share/Kvantum/${themeName}" ${../quickshell/ui/palette.json}
-    icons="$out/share/icons/${themeName}"
-    mkdir -p "$icons"
-    cat > "$icons/index.theme" <<'EOF'
-    [Icon Theme]
-    Name=Amethyst Aero
-    Comment=Violet Oxygen folders, with the original Oxygen application icons
-    Inherits=oxygen,Adwaita,hicolor
-    Directories=16x16/places,22x22/places,32x32/places,48x48/places,64x64/places,128x128/places,256x256/places
-    EOF
-    for size in 16 22 32 48 64 128 256; do
-      mkdir -p "$icons/''${size}x''${size}/places"
-      cat >> "$icons/index.theme" <<EOF
-    [''${size}x''${size}/places]
-    Size=$size
-    Context=Places
-    Type=Fixed
-    EOF
-      for name in folder folder-open inode-directory; do
-        ln -s ${pkgs.kdePackages.oxygen-icons}/share/icons/oxygen/base/''${size}x''${size}/places/folder-violet.png \
-          "$icons/''${size}x''${size}/places/$name.png"
-      done
-    done
   '';
   gtkSettings = lib.generators.toINI { } {
     Settings = {
@@ -113,6 +93,10 @@ let
 in
 {
   imports = [ ./apps.nix ];
+  system.userActivationScripts.amethystAeroCursor.text = ''
+    mkdir -p "$HOME/.local/share/icons"
+    ln -sfnT ${cursorPackage}/share/icons/${cursorTheme} "$HOME/.local/share/icons/${cursorTheme}"
+  '';
   homix = {
     ".config/gtk-3.0/settings.ini".text = gtkSettings;
     ".config/gtk-4.0/settings.ini".text = gtkSettings;
@@ -160,6 +144,7 @@ in
   environment = {
     systemPackages = [
       theme
+      iconPackage
       pkgs.kdePackages.oxygen-icons
       pkgs.adwaita-icon-theme
       pkgs.gnome-themes-extra
@@ -167,7 +152,7 @@ in
       pkgs.kdePackages.qt6ct
       pkgs.libsForQt5.qtstyleplugin-kvantum
       pkgs.kdePackages.qtstyleplugin-kvantum
-      pkgs.bibata-cursors
+      cursorPackage
     ];
     variables = {
       GSK_RENDERER = "gl";
