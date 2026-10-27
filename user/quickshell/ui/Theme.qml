@@ -20,6 +20,7 @@ Singleton {
     readonly property color muted: palette.muted
     readonly property color green: palette.green
     readonly property color red: palette.red
+    readonly property int barWidth: 60
     readonly property string font: "Segoe UI"
     readonly property bool reducedMotion: Quickshell.env("AERO_REDUCED_MOTION") === "1"
     readonly property bool rightPanel: Quickshell.env("AERO_PANEL_SIDE") === "right"

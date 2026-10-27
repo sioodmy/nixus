@@ -30,6 +30,11 @@ in
       default = false;
       description = "Disable optional shell transitions.";
     };
+    hamster.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Show the movable hamster file shelf and optional temporary sharing.";
+    };
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
@@ -57,6 +62,7 @@ in
       environment = {
         AERO_PANEL_SIDE = cfg.panelSide;
         AERO_REDUCED_MOTION = if cfg.reducedMotion then "1" else "0";
+        AERO_HAMSTER = if cfg.hamster.enable then "1" else "0";
       };
       serviceConfig = {
         Type = "exec";

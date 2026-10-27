@@ -90,9 +90,6 @@ in
         helium = 2;
         Helium = 2;
         firefox = 2;
-        zen = 2;
-        "zen-beta" = 2;
-        "zen-aero" = 2;
         # Messengers.
         ferdium = 4;
         signal = 4;

@@ -11,7 +11,7 @@ Rectangle {
     required property bool current
     signal workspaceRequested()
     signal windowRequested(var window)
-    implicitHeight: contents.implicitHeight + 8
+    implicitHeight: contents.implicitHeight + 6
     radius: 7
     border.color: Theme.alpha(Theme.highlight, current ? 0.48 : 0.14)
     gradient: Gradient {
@@ -21,12 +21,12 @@ Rectangle {
     }
     ColumnLayout {
         id: contents
-        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 4 }
-        spacing: 3
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 3 }
+        spacing: 2
         AbstractButton {
             id: heading
             Layout.fillWidth: true
-            implicitHeight: 22
+            implicitHeight: 18
             hoverEnabled: true
             Accessible.name: "Pulpit " + root.label + ", okien: " + root.windows.length
             ToolTip.visible: hovered
@@ -64,8 +64,8 @@ Rectangle {
                 readonly property string appId: window.appId || modelData.lastIpcObject?.class || ""
                 readonly property var entry: DesktopEntries.heuristicLookup(appId)
                 Layout.fillWidth: true
-                implicitHeight: 42
-                iconSize: 30
+                implicitHeight: 34
+                iconSize: 24
                 iconName: Apps.iconName(entry, appId)
                 hint: (entry?.name || appId || "Okno") + " · " + (window.title || modelData.title || "")
                 selected: modelData.activated || window.activated
@@ -86,7 +86,7 @@ Rectangle {
         Text {
             visible: root.windows.length === 0
             Layout.fillWidth: true
-            Layout.preferredHeight: visible ? 25 : 0
+            Layout.preferredHeight: visible ? 20 : 0
             text: "—"
             horizontalAlignment: Text.AlignHCenter
             color: Theme.edge

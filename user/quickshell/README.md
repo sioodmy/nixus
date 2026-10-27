@@ -45,9 +45,17 @@ qs -p user/quickshell/ui/lock-preview.qml
 | Super+Shift+O | Powiadomienia |
 | Super+Alt+L | Blokada ekranu |
 | Super+Alt+K | KeePassXC |
+| Super+Alt+H | Chomik i schowek plików |
 | Super+Ctrl+Shift+R | Restart panelu |
-| Print / Super+Shift+S | Zrzut zaznaczonego obszaru |
-| Super+Shift+W / Super+Shift+A | Zrzut pulpitu / aktywnego okna |
+| Print / Super+Shift+S | Zrzut obszaru lub okna (grimblast + slurp) |
+| Super+Shift+W | Zrzut całego pulpitu (natychmiastowy) |
+| Super+Shift+A | Zrzut aktywnego okna (grimblast) |
+
+`aero-screenshot` korzysta z `grimblast` z hyprland-contrib: Print i
+Super+Shift+S otwierają slurp do zaznaczenia obszaru lub okna (Esc anuluje),
+Shift+A bierze aktywne okno, a Shift+W cały pulpit. Gotowy PNG trafia do
+`~/Pictures/Screenshots`, do schowka i do chomika, który odtwarza animację
+`AnimScreenShotFinish`.
 
 W launcherze: strzałki wybierają wynik, Enter uruchamia, Esc zamyka. Komendy
 `:wifi`, `:bt`, `:audio` i `:power` otwierają odpowiednie panele po Enterze.
@@ -58,6 +66,60 @@ przełącza pulpit. Pusta bieżąca grupa pozostaje widoczna, a puste nieaktywne
 pulpity znikają. Długa lista przewija się w dostępnym miejscu. Pasek nie ma
 przypiętych aplikacji ani traya.
 Launcher jest przy górnej krawędzi ekranu, obok pionowego panelu.
+
+## Chomik i schowek plików
+
+Mały chomik (84 × 88 px) mieszka nad oknami i nie rezerwuje miejsca na pulpicie.
+Korzysta z oryginalnej grafiki i animacji ChomikBoxa od Chomikuj.pl: mruga,
+rozgląda się i reaguje na przesuwanie oraz przeciąganie/upuszczenie pliku.
+Podczas bezczynności losuje drobne ruchy — mrugnięcie, rozglądanie, drapanie
+noska, bujanie, prychanie do góry, ziewanie, zezowanie — a rzadziej większe
+czynności: kopanie norki, puszczanie samolotu, czytanie gazety, czytanie
+książki i drzemka na poduszce (każda z oryginalnych sekwencji
+start → pętla → zakończenie). Zabawę przerywa chwycenie chomika, upuszczenie
+na niego plików albo włączenie muzyki.
+Gdy MPRIS zgłosi rozpoczęcie odtwarzania, odtwarza `AnimMusicStart`.
+Po zapisaniu zrzutu przez `aero-screenshot` dodaje PNG do schowka i odtwarza
+`AnimScreenShotFinish`.
+`quickshell.reducedMotion = true` pozostawia nieruchomą oryginalną klatkę.
+Pochodzenie plików opisano w [`ASSETS.md`](ASSETS.md).
+Przytrzymaj go lewym przyciskiem i przeciągnij, żeby zmienić położenie. Zapamiętuje
+pozycję i monitor po restarcie. Kliknięcie otwiera **Chomicze policzki**;
+kliknięcie poza panelem lub Escape zamyka panel. Na kilku monitorach przycisk
+**Inny ekran** przenosi chomika na kolejny ekran.
+
+Przeciągnij lokalne pliki z menedżera plików na chomika lub pole w jego panelu.
+Schowek przechowuje do 100 odnośników do oryginałów, bez kopiowania i przenoszenia
+plików. Można przeciągać je z listy dalej do innych aplikacji, otwierać i usuwać
+ze schowka. Przeniesione/usunięte oryginały są oznaczane jako niedostępne;
+foldery trzeba wcześniej spakować. **Opróżnij** zachowuje oryginalne pliki.
+
+**Udostępnij wszystkie** lub **Udostępnij wybrane** uruchamia Cloudflare Quick
+Tunnel, bez konta i domeny. Jeden plik jest pobierany bezpośrednio, kilka jako ZIP.
+Udostępniana jest osobna kopia wybranych plików z chwili kliknięcia; późniejsze
+dodawanie plików do schowka nie zmienia zawartości linku. Kopię i lokalny serwer
+pobierania usuwa **Wyłącz link**, wygaśnięcie po 15 minutach, usunięcie pozycji,
+opróżnienie schowka albo zamknięcie/restart shella. Zastąpienie linku unieważnia
+poprzedni. Każdy, kto otrzyma pełny link z losowym kluczem, może pobrać pliki.
+Komputer musi być włączony i mieć połączenie z Internetem. Serwer słucha tylko
+na `127.0.0.1`, udostępnia jeden adres pobrania i nie wystawia katalogów.
+Quick Tunnel ma zmienny adres i nie gwarantuje dostępności
+([dokumentacja Cloudflare](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/)).
+
+**Schowaj** ukrywa chomika do restartu. Skrót Super+Alt+H lub `aero-hamster` przywołuje go
+i otwiera/zamyka panel. Wyłączenie na stałe: `quickshell.hamster.enable = false;`.
+Stan schowka i pozycja są w `$XDG_STATE_HOME/amethyst-aero/hamster.json`.
+Podgląd uruchamiany bez pakietu wymaga `python3`, `cloudflared` oraz `wl-copy`
+w `PATH` i wtyczki WebP z Qt Image Formats w `QT_PLUGIN_PATH`;
+pakiet `aeroshell` zapewnia te zależności.
+
+Sprawdzenie backendu (bez publikowania plików; lokalny tunel testowy):
+
+```sh
+python3 -B user/quickshell/tests/hamster.py
+```
+
+Test QML w izolowanym Sway opisany jest w [`VALIDATION.md`](VALIDATION.md).
 
 Klawisze głośności, wyciszenia, mikrofonu i jasności pokazują szkliste OSD
 u góry aktywnego ekranu. OSD znika po 1,7 s od ostatniej zmiany. Dźwięk jest
@@ -87,8 +149,7 @@ i przed uśpieniem; ekran wyłącza się po 10 minutach.
 Wspólna paleta: [`ui/palette.json`](ui/palette.json). Korzystają z niej Quickshell,
 GTK 3/4, Qt 5/6/Kvantum, obramowania Hyprlanda, Kitty, foot, Alacritty, tmux,
 Zathura, btop, fzf, pomocniczy tofi i istniejące style usług Ferdium.
-Przeglądarka: [Zen z motywem Amethyst Aero](../zen-browser/README.md),
-uruchamiana z przycisku Internet na panelu.
+Przeglądarka: Helium.
 
 Segoe UI pochodzi z używanego już pakietu `vista-fonts`; terminale używają
 JetBrains Mono. [Pakiet ikon Amethyst Aero](../icons/README.md) ma 56 własnych
@@ -128,44 +189,4 @@ polkit i serwera powiadomień oraz akcje blokowania/zasilania w podglądzie.
 Sterowanie prawdziwą siecią i urządzeniami nadal działa.
 
 Podglądy w [`previews/`](previews/) to zrzuty działającego interfejsu
-w osobnej sesji Waylanda, nie makiety HTML. `tasks.png` i `taskbar.png` używają
-testowych danych Hyprlanda do pokazania kilku pulpitów bez zmieniania sesji
-użytkownika.
-
-Test blokady w izolowanym, bezekranowym Sway (wymaga `qs`, `sway`, `wtype`,
-Node, Perl i modułów Linux PAM):
-
-```sh
-PAM_MODULE_DIR=/ścieżka/do/lib/security bash user/quickshell/tests/lock.sh
-```
-
-Można wskazać narzędzia przez `QS_BINARY`, `SWAY_BINARY` i `WTYPE_BINARY`.
-Test używa własnego kompozytora i tymczasowego profilu PAM; nie blokuje pulpitu.
-
-Test grupowania okien w izolowanym Sway i na testowym IPC Hyprlanda:
-
-```sh
-node user/quickshell/tests/tasks.mjs
-```
-
-Sprawdza osobne zadania dla wielu okien tej samej aplikacji, filtrowanie według
-monitora, przełączanie pulpitów w trybie Lua, przenoszenie i zamykanie okien
-oraz zachowanie pustego aktywnego pulpitu. Wymaga `qs` i `sway`; można ustawić
-`QS_BINARY` i `SWAY_BINARY`.
-
-Blokada korzysta z układu logowania Visty/Windows 7: duży szklany kafel
-użytkownika, nazwa konta, jasne pole hasła i okrągła strzałka odblokowania.
-Zegar i data są w dolnym rogu; obok stopki jest wskaźnik baterii.
-
-Bateria na pasku pokazuje rzeczywiste wypełnienie i procent. Błyskawica oznacza
-ładowanie, wtyczka — podłączony zasilacz bez aktywnego ładowania. Pełna bateria
-i wstrzymane ładowanie mają osobne opisy. Na baterii poziom ≤20% jest bursztynowy,
-a ≤10% czerwony z wykrzyknikiem. Podpowiedź oraz panel sesji po kliknięciu
-pokazują stan i szacowany czas, jeśli UPower go udostępnia. Brak danych nie
-jest przedstawiany jako 0%; na komputerze bez baterii wskaźnik znika.
-
-```sh
-bash user/quickshell/tests/battery.sh
-```
-
-Test sprawdza stany UPower na danych testowych i nie steruje zasilaniem.
+oraz nagranie wideo interakcji z oknami w Sway.

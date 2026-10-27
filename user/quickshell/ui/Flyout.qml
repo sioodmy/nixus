@@ -15,8 +15,8 @@ PanelWindow {
         bottom: Desktop.page !== "launcher"
     }
     margins {
-        left: 82
-        right: 82
+        left: Theme.barWidth + 6
+        right: Theme.barWidth + 6
         bottom: 12
         top: 12
     }

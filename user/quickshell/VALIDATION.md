@@ -111,3 +111,69 @@ były częścią tej sesji testowej.
 - Zbudowany pakiet pokazuje rzeczywistą baterię i estymatę z UPower.
   `previews/battery-states.png` przedstawia natywny komponent z danymi testowymi.
   System nie został przełączony.
+
+## Chomik i schowek plików, 25 października 2026
+
+- Grafika zastąpiona oryginalnymi assetami ChomikBoxa 2.0.8.2 przekazanymi
+  przez użytkownika: jedna klatka PNG i dwadzieścia osiem klipów WebP,
+  skopiowanych bez zmian. Obsługują bezruch, drobne ruchy bezczynności
+  (mruganie, rozglądanie, drapanie noska, ziewania, bujanie, prychanie do
+  góry, zezowanie), rzadkie czynności losowane wagią — kopanie norki,
+  puszczanie samolotu, czytanie gazety, czytanie książki i drzemka na
+  poduszce (każda sekwencja ćwiczenia składa się z oryginalnych klipów
+  start → pętla → zakończenie), przesuwanie, przeciąganie i przyjęcie pliku.
+  Wspólny punkt podparcia zachowuje położenie postaci pomiędzy klipami.
+  Tryb ograniczonego ruchu wyłącza animacje.
+  MPRIS uruchamia `AnimMusicStart`, a udany zrzut ekranu dodaje PNG do schowka
+  i uruchamia `AnimScreenShotFinish`.
+  Test Waylanda sprawdza rzeczywiste dekodowanie WebP, w tym 130 klatek reakcji
+  na upuszczenie. Pakiet dołącza wtyczkę Qt Image Formats.
+- `nix build path:.#aeroshell` przechodzi dla aarch64-linux. Nowa opcja
+  `quickshell.hamster.enable` i środowisko usługi wyewaluowane dla Pandory.
+  Formatowanie Nix i `git diff --check` przechodzą.
+- `python3 -B user/quickshell/tests/hamster.py`: siedem testów backendu.
+  Odnośniki i pozycja przeżywają restart; deduplikacja, limit 100 plików,
+  odrzucanie zdalnych URL-i/folderów i oznaczanie brakujących plików.
+  Rzeczywisty serwer HTTP sprawdzony z lokalnym procesem zastępującym
+  `cloudflared`: kopia pliku, ZIP wybranych plików z powtarzającymi się nazwami,
+  tajny adres bez listowania katalogu, nagłówki pobrania, wygaśnięcie,
+  wyłączenie tunelu, podmiana pliku symlinkiem i zamknięcie stdin.
+- `node user/quickshell/tests/hamster.mjs`: natywny Quickshell w izolowanym
+  Sway 1024 × 768. Wirtualny wskaźnik Waylanda sprawdza kliknięcia przez maskę
+  przezroczystego okna, drag pliku na chomika i z listy do drugiego okna,
+  otwieranie panelu i przesuwanie chomika. Opróżnienie zachowuje oryginał.
+  Pełny shell ładuje się z nowymi komponentami bez błędów QML.
+  Brak PipeWire w izolowanej sesji jest oczekiwany i pomijany w tym sprawdzeniu.
+  Wymagane: `qs`, `sway`, Node i Python 3. Ścieżki można wskazać przez
+  `QS_BINARY` i `SWAY_BINARY`; opcjonalne `AERO_CAPTURE_DIR` wymaga `grim`.
+- Zrzut [`previews/hamster.png`](previews/hamster.png) pochodzi z tego samego
+  działającego QML. Podgląd nie obejmuje rozmycia i przejmowania fokusu Hyprlanda.
+- Nie otwierano publicznego tunelu ani nie udostępniano plików użytkownika.
+  Integracja z zewnętrzną usługą Cloudflare wymaga sprawdzenia przy pierwszym
+  rzeczywistym udostępnieniu. Konfiguracja systemu nie została aktywowana.
+
+## Zrzuty ekranu przez grimblast, 27 października 2026
+
+- `aero-screenshot` korzysta z `grimblast` z hyprland-contrib: `screen` dla
+  Super+Shift+W, `active` dla Super+Shift+A oraz `area` (slurp) dla Print i
+  Super+Shift+S. Grimblast zapisuje PNG i kopiuje go do schowka, a skrypt
+  dokłada plik do chomika przez IPC (`aero screenshot`) i pokazuje
+  powiadomienie.
+- `nix build path:.#aeroshell` przechodzi dla aarch64-linux; konfiguracje
+  Pandory i Calypso wyewaluowane z nowym skryptem zrzutów.
+- Na działającym Hyprlandzie 0.56 zrzut pulpitu (2560 × 1600) i aktywnego okna
+  (2386 × 1556) zapisały się w `~/Pictures/Screenshots`, a schowek zawierał
+  `image/png`. Selekcja obszaru uruchamia slurp; jej przerwanie nie tworzy
+  pliku i kończy skrypt kodem 0. Rzeczywistego przeciągania prostokąta nie
+  symulowano.
+- `node user/quickshell/tests/hamster.mjs` w izolowanym Sway przechodzi, w tym
+  reakcja `screenshot` (co najmniej 10 klatek animacji po IPC).
+- Bez `~/.config/user-dirs.dirs` `xdg-user-dir PICTURES` zwraca `$HOME`; skrypt
+  używa wtedy `$HOME/Pictures`, więc nowe zrzuty nie trafiają już do
+  `~/Screenshots`.
+- Wywołanie IPC sprawdzono na działającej sesji (wpis pojawił się w
+  `~/.local/state/amethyst-aero/hamster.json`). Po przełączeniu NixOS usługa
+  shella i skrypt pochodzą z tego samego store path, więc trafiają do tej samej
+  instancji.
+- System nie został przełączony; wymagane jest
+  `sudo nixos-rebuild switch --flake path:.#pandora`.

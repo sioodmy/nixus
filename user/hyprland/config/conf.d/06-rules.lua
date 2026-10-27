@@ -65,6 +65,7 @@ glass_layer("amethyst-panel", "^amethyst-bar$")
 glass_layer("amethyst-flyout", "^amethyst-flyout$")
 glass_layer("amethyst-notifications", "^amethyst-notifications$")
 glass_layer("amethyst-osd", "^amethyst-osd$")
+glass_layer("amethyst-hamster-stash", "^amethyst-hamster-stash$")
 
 -- --- screenshot permissions -------------------------------------------------
 --

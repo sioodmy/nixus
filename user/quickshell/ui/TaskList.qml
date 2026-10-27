@@ -26,7 +26,7 @@ ListView {
             .filter(group => group.windows.length > 0 || group.current);
     }
     model: groups
-    spacing: 7
+    spacing: 4
     clip: true
     boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: ScrollBar {

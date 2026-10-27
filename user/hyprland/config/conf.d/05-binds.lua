@@ -23,6 +23,7 @@ hl.bind(MOD .. " + W", hl.dsp.exec_cmd("aero-wifi"))
 hl.bind(MOD .. " + B", hl.dsp.exec_cmd("aero-bluetooth"))
 hl.bind(MOD .. " + ALT + L", hl.dsp.exec_cmd("aero-lock"))
 hl.bind(MOD .. " + ALT + K", hl.dsp.exec_cmd("keepassxc"))
+hl.bind(MOD .. " + ALT + H", hl.dsp.exec_cmd("aero-hamster"))
 hl.bind(MOD .. " + SHIFT + O", hl.dsp.exec_cmd("aero-notifications"))
 hl.bind(MOD .. " + SHIFT + E", hl.dsp.exit())
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
@@ -204,8 +205,10 @@ hl.bind(MOD .. " + SHIFT + mouse_left",  hl.dsp.layout("focus l"))
 
 -- --- screenshots -----------------------------------------------------------
 --
--- Print / Super+Shift+S select an area; Shift+W captures the desktop,
--- Shift+A captures the active window. Saved to Pictures/Screenshots and copied.
+-- Print / Super+Shift+S open grimblast's slurp selection (area or window).
+-- Drag or click the region to capture; Escape cancels.
+-- Shift+W grabs the full desktop immediately; Shift+A grabs the active window.
+-- Every saved shot also feeds the hamster.
 
 hl.bind("Print", hl.dsp.exec_cmd("aero-screenshot"))
 hl.bind(MOD .. " + SHIFT + S", hl.dsp.exec_cmd("aero-screenshot"))

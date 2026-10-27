@@ -1,0 +1,146 @@
+{
+  "move-start": {
+    "source": "animations/paccharacter/AnimCharacterMoveStart/animation.webp",
+    "frameCount": 5,
+    "frameDurationMs": 50
+  },
+  "move-loop": {
+    "source": "animations/paccharacter/AnimCharacterMoving/animation.webp",
+    "frameCount": 30,
+    "frameDurationMs": 50
+  },
+  "move-finish": {
+    "source": "animations/paccharacter/AnimCharacterMoveFinish/animation.webp",
+    "frameCount": 15,
+    "frameDurationMs": 50
+  },
+  "drag-start": {
+    "source": "animations/pacdragfile/AnimDragFileStart/animation.webp",
+    "frameCount": 10,
+    "frameDurationMs": 50
+  },
+  "drag-loop": {
+    "source": "animations/pacdragfile/AnimDragFileProcessing/animation.webp",
+    "frameCount": 30,
+    "frameDurationMs": 50
+  },
+  "drag-cancel": {
+    "source": "animations/pacdragfile/AnimDragFileCancel/animation.webp",
+    "frameCount": 10,
+    "frameDurationMs": 50
+  },
+  "drop": {
+    "source": "animations/pacdropfile/AnimDropFileFinish/animation.webp",
+    "frameCount": 130,
+    "frameDurationMs": 50
+  },
+  "blink": {
+    "source": "animations/pacidle0/AnimIdle0_MrugniecieOczyma/animation.webp",
+    "frameCount": 21,
+    "frameDurationMs": 50
+  },
+  "look": {
+    "source": "animations/pacidle1/AnimIdle1_Rozgladanie/animation.webp",
+    "frameCount": 80,
+    "frameDurationMs": 50
+  },
+  "nose": {
+    "source": "animations/pacidle2/AnimIdle2_SmyraniePoNosie/animation.webp",
+    "frameCount": 60,
+    "frameDurationMs": 50
+  },
+  "idle": {
+    "source": "animations/pacmainidle/AnimMainIdle/frames/0000_hamster_0060.png",
+    "frameCount": 1
+  },
+  "music": {
+    "source": "animations/pacmusic/AnimMusicStart/animation.webp",
+    "frameCount": 130,
+    "frameDurationMs": 50
+  },
+  "screenshot": {
+    "source": "animations/pacscreenshot/AnimScreenShotFinish/animation.webp",
+    "frameCount": 140,
+    "frameDurationMs": 50
+  },
+  "yawn": {
+    "source": "animations/pacidle3/AnimIdle3_Ziewanie/animation.webp",
+    "frameCount": 60,
+    "frameDurationMs": 50
+  },
+  "sway": {
+    "source": "animations/pacidle4/AnimIdle4_Bujanie/animation.webp",
+    "frameCount": 30,
+    "frameDurationMs": 50
+  },
+  "peek": {
+    "source": "animations/pacidle5/AnimIdle5_KukniecieDoGory/animation.webp",
+    "frameCount": 40,
+    "frameDurationMs": 50
+  },
+  "yawn2": {
+    "source": "animations/pacidle6/AnimIdle6_Ziewanie2/animation.webp",
+    "frameCount": 70,
+    "frameDurationMs": 50
+  },
+  "dig": {
+    "source": "animations/pacidle7/AnimIdle7_KopanieNorki/animation.webp",
+    "frameCount": 140,
+    "frameDurationMs": 50
+  },
+  "cross": {
+    "source": "animations/pacidle8/AnimIdle8_Zezowanie/animation.webp",
+    "frameCount": 70,
+    "frameDurationMs": 50
+  },
+  "plane": {
+    "source": "animations/pacidle9/AnimIdle9_PuszczanieSamolotu/animation.webp",
+    "frameCount": 220,
+    "frameDurationMs": 50
+  },
+  "paper-start": {
+    "source": "animations/pacidlestart1/AnimIdleStart1_CzytanieGazety/animation.webp",
+    "frameCount": 40,
+    "frameDurationMs": 50
+  },
+  "paper-loop": {
+    "source": "animations/pacidlestart1/AnimIdleLoop1/animation.webp",
+    "frameCount": 100,
+    "frameDurationMs": 50
+  },
+  "paper-done": {
+    "source": "animations/pacidlestart1/AnimIdleFinish1/animation.webp",
+    "frameCount": 40,
+    "frameDurationMs": 50
+  },
+  "book-start": {
+    "source": "animations/pacidlestart2/AnimIdleStart2_CzytanieKsiazki/animation.webp",
+    "frameCount": 40,
+    "frameDurationMs": 50
+  },
+  "book-loop": {
+    "source": "animations/pacidlestart2/AnimIdleLoop2/animation.webp",
+    "frameCount": 100,
+    "frameDurationMs": 50
+  },
+  "book-done": {
+    "source": "animations/pacidlestart2/AnimIdleFinish2/animation.webp",
+    "frameCount": 50,
+    "frameDurationMs": 50
+  },
+  "sleep-start": {
+    "source": "animations/pacidlestart3/AnimIdleStart3_SpanieNaPoduszce/animation.webp",
+    "frameCount": 70,
+    "frameDurationMs": 50
+  },
+  "sleep-loop": {
+    "source": "animations/pacidlestart3/AnimIdleLoop3/animation.webp",
+    "frameCount": 40,
+    "frameDurationMs": 50
+  },
+  "sleep-done": {
+    "source": "animations/pacidlestart3/AnimIdleFinish3/animation.webp",
+    "frameCount": 80,
+    "frameDurationMs": 50
+  }
+}

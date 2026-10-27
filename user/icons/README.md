@@ -7,7 +7,7 @@ indywidualne sylwetki zamiast jednakowych kafelków. Ikony skalują się od 16 d
 
 `manifest.json` przypisuje 209 nazw ikon, identyfikatorów desktopowych i klas
 okien do projektów z `build.py`. Pokrywa wszystkie 58 obecnie zainstalowanych
-wpisów `.desktop`, w tym Kitty, Zen, Helium, Nemo, Signal, Ferdium, Thunderbird,
+wpisów `.desktop`, w tym Kitty, Helium, Nemo, Signal, Ferdium, Thunderbird,
 T3 Code, Neovim, KeePassXC, GIMP, Inkscape, Rnote, Prism, mpv, imv, Zathurę,
 SMath, Tectonic, Yazi, btop, Deluge, Transmission, Nicotine+, Syncthing i narzędzia
 systemowe. Programy terminalowe otrzymują ikonę wpisu uruchamiającego je w GUI.

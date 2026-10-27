@@ -214,27 +214,6 @@
         "type": "github"
       }
     },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "zen-browser",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792098797,
-        "narHash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "640725978b99076e18e069f6e7d2959124584f8f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -412,8 +391,7 @@
         "nixpkgs": "nixpkgs",
         "qml-niri": "qml-niri",
         "quickshell": "quickshell",
-        "vim": "vim",
-        "zen-browser": "zen-browser"
+        "vim": "vim"
       }
     },
     "rust-overlay": {
@@ -546,27 +524,6 @@
       "original": {
         "owner": "sioodmy",
         "repo": "vim",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "home-manager": "home-manager",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792595242,
-        "narHash": "sha256-kH/E0uJDslOgYcnmU+c0cm6HrUjsEtvZQKZtuQ1+uvo=",
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
-        "rev": "f19490ac889eabb05bdb7e8dcb85225ee75bd87b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

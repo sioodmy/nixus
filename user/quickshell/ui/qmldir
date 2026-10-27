@@ -3,6 +3,10 @@ singleton Desktop 1.0 Desktop.qml
 singleton Apps 1.0 Apps.qml
 singleton Notices 1.0 Notices.qml
 singleton Feedback 1.0 Feedback.qml
+singleton Hamster 1.0 Hamster.qml
+DesktopPet 1.0 DesktopPet.qml
+ChomikSprite 1.0 ChomikSprite.qml
+HamsterStash 1.0 HamsterStash.qml
 AeroSlider 1.0 AeroSlider.qml
 AeroButton 1.0 AeroButton.qml
 AeroField 1.0 AeroField.qml

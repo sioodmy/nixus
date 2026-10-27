@@ -9,7 +9,6 @@ rec {
       tmux = callPackage ./wrapped/tmux { };
       kitty = callPackage ./wrapped/kitty { inherit inputs; };
       aeroshell = import ./quickshell/package.nix { inherit pkgs inputs; };
-      zen-aero = import ./zen-browser/package.nix { inherit pkgs inputs; };
       ferdium = import ./ferdium/package.nix { inherit pkgs; };
       aero-icons = callPackage ./icons { };
       aero-cursors = callPackage ./cursor { };
@@ -58,7 +57,7 @@ rec {
         ./hyprland
         ./ferdium
         ./quickshell
-        ./zen-browser
+        ./browser
       ];
     };
 }

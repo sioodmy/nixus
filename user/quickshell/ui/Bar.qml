@@ -14,8 +14,8 @@ PanelWindow {
         left: !Theme.rightPanel
         right: Theme.rightPanel
     }
-    implicitWidth: 76
-    exclusiveZone: 76
+    implicitWidth: Theme.barWidth
+    exclusiveZone: implicitWidth
     color: "transparent"
     WlrLayershell.namespace: "amethyst-bar"
     WlrLayershell.layer: WlrLayer.Top
@@ -26,17 +26,18 @@ PanelWindow {
 
     Glass {
         anchors.fill: parent
-        anchors.margins: 7
+        anchors.margins: 4
         radius: 10
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 5
-            spacing: 7
+            anchors.margins: 4
+            spacing: 4
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 48
-                implicitHeight: 48
+                implicitWidth: 38
+                implicitHeight: 40
                 orb: true
+                iconSize: 26
                 iconName: "start-here"
                 hint: "Start · Super+P"
                 selected: Desktop.page === "launcher"
@@ -60,8 +61,9 @@ PanelWindow {
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 44
-                implicitHeight: 32
+                implicitWidth: 36
+                implicitHeight: 28
+                iconSize: 18
                 iconName: Networking.wifiEnabled ? "network-wireless" : "network-offline"
                 hint: "Sieć i Wi-Fi"
                 selected: Desktop.page === "wifi"
@@ -69,8 +71,9 @@ PanelWindow {
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 44
-                implicitHeight: 32
+                implicitWidth: 36
+                implicitHeight: 28
+                iconSize: 18
                 iconName: "preferences-system-bluetooth"
                 hint: "Bluetooth"
                 selected: Desktop.page === "bluetooth"
@@ -78,8 +81,9 @@ PanelWindow {
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 44
-                implicitHeight: 32
+                implicitWidth: 36
+                implicitHeight: 28
+                iconSize: 18
                 iconName: "audio-volume-high"
                 hint: "Dźwięk i jasność"
                 selected: Desktop.page === "audio"
@@ -87,8 +91,9 @@ PanelWindow {
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 44
-                implicitHeight: 32
+                implicitWidth: 36
+                implicitHeight: 28
+                iconSize: 18
                 iconName: Desktop.doNotDisturb ? "notifications-disabled" : "preferences-desktop-notification"
                 hint: "Powiadomienia (" + Notices.count + ")"
                 selected: Desktop.page === "notifications"
@@ -108,20 +113,24 @@ PanelWindow {
             }
             BatteryIndicator {
                 Layout.alignment: Qt.AlignHCenter
+                selected: Desktop.page === "session"
                 onClicked: Desktop.toggle("session", root.screen.name)
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 46
-                implicitHeight: 48
+                implicitWidth: 36
+                implicitHeight: 40
+                leftPadding: 4
+                rightPadding: 4
                 text: Qt.formatDateTime(clock.date, "HH\nmm")
                 hint: Qt.formatDateTime(clock.date, "dddd, d MMMM yyyy")
                 onClicked: Desktop.toggle("session", root.screen.name)
             }
             AeroButton {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 44
-                implicitHeight: 30
+                implicitWidth: 36
+                implicitHeight: 28
+                iconSize: 18
                 iconName: "system-shutdown"
                 hint: "Zablokuj / zasilanie"
                 onClicked: Desktop.toggle("session", root.screen.name)

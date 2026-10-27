@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const exec = promisify(execFile);
-const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'aero-tasks-'));
+const directory = await fs.mkdtemp(path.join('/tmp', 'aero-tasks-'));
 const qs = process.env.QS_BINARY || 'qs';
 const sway = process.env.SWAY_BINARY || 'sway';
 const children = [];
@@ -25,11 +25,12 @@ const workspaces = [
 const windows = [
     {address: '0x101', class: 'kitty', title: 'Terminal A', workspace: {id: 1, name: '1'}},
     {address: '0x102', class: 'kitty', title: 'Terminal B', workspace: {id: 1, name: '1'}},
-    {address: '0x103', class: 'zen-aero', title: 'Browser', workspace: {id: 2, name: '2'}},
+    {address: '0x103', class: 'helium', title: 'Browser', workspace: {id: 2, name: '2'}},
     {address: '0x104', class: 'nemo', title: 'Other monitor', workspace: {id: 3, name: '3'}},
 ];
 const monitor = () => ({id: 0, name: 'HEADLESS-1', description: 'Test output', width: 1440, height: 900, scale: 1, focused: true, activeWorkspace: {id: Number(current), name: current}});
-function emit(name, data = '') { for (const client of eventClients) client.write(`${name}>>${data}\n`); }
+function emit(name, data = '') { for (const client of eventClients) client.write(`${name}>>${data}
+`); }
 async function waitFor(callback, description) {
     let lastError;
     for (let i = 0; i < 60; i++) {
@@ -103,7 +104,10 @@ ShellRoot {
     const env = {...process.env, XDG_RUNTIME_DIR: runtime, AERO_PREVIEW: '1', QT_QUICK_CONTROLS_STYLE: 'Basic'};
     delete env.WAYLAND_DISPLAY; delete env.SWAYSOCK; delete env.HYPRLAND_INSTANCE_SIGNATURE;
     const config = path.join(directory, 'sway.conf');
-    await fs.writeFile(config, `output * mode 1440x900\nseat seat0 fallback true\noutput * bg ${fileURLToPath(new URL('../ui/assets/wallpaper.png', import.meta.url))} fill\n`);
+    await fs.writeFile(config, `output * mode 1440x900
+seat seat0 fallback true
+output * bg ${fileURLToPath(new URL('../ui/assets/wallpaper.png', import.meta.url))} fill
+`);
     const compositor = start(sway, ['--unsupported-gpu', '-c', config], {...env, WLR_BACKENDS: 'headless', WLR_RENDERER: 'pixman', WLR_LIBINPUT_NO_DEVICES: '1'});
     env.WAYLAND_DISPLAY = await waitFor(async () => (await fs.readdir(runtime)).find(name => /^wayland-\d+$/.test(name)), 'Sway startup');
     env.HYPRLAND_INSTANCE_SIGNATURE = signature;

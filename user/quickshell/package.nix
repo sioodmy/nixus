@@ -18,11 +18,14 @@ let
     playerctl
     pwvucontrol
     grim
+    grimblast
     slurp
     wl-clipboard
     libnotify
     hyprland
     nemo
+    python3
+    cloudflared
   ];
 in
 pkgs.stdenvNoCC.mkDerivation {
@@ -39,10 +42,10 @@ pkgs.stdenvNoCC.mkDerivation {
       --add-flags "--no-duplicate --path $out/share/amethyst-aero" \
       --set QT_QUICK_CONTROLS_STYLE Basic \
       --set QT_QPA_PLATFORMTHEME qt6ct \
-      --prefix QT_PLUGIN_PATH : "${pkgs.kdePackages.qt6ct}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.qtstyleplugin-kvantum}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
+      --prefix QT_PLUGIN_PATH : "${pkgs.kdePackages.qt6ct}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.kdePackages.qtstyleplugin-kvantum}/${pkgs.qt6.qtbase.qtPluginPrefix}:${pkgs.qt6.qtimageformats}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
       --run 'export XDG_DATA_DIRS="${icons}/share:$HOME/.local/share:$HOME/.nix-profile/share:/etc/profiles/per-user/$USER/share:/run/current-system/sw/share:${pkgs.kdePackages.oxygen-icons}/share:''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"' \
       --prefix PATH : ${pkgs.lib.makeBinPath runtime}
-    for action in launcher wifi bluetooth audio notifications session close; do
+    for action in launcher wifi bluetooth audio notifications session close hamster; do
       makeWrapper $out/bin/aeroshell $out/bin/aero-$action \
         --add-flags "ipc call aero $action"
     done
@@ -63,22 +66,35 @@ pkgs.stdenvNoCC.mkDerivation {
     cat > $out/bin/aero-screenshot <<'EOF'
     #!${pkgs.runtimeShell}
     set -eu
-    output_dir="$(${pkgs.xdg-user-dirs}/bin/xdg-user-dir PICTURES)/Screenshots"
+    # `xdg-user-dir` falls back to $HOME when no user-dirs.dirs has been
+    # generated yet; keep screenshots in the documented Pictures folder then.
+    pictures="$(${pkgs.xdg-user-dirs}/bin/xdg-user-dir PICTURES)"
+    if [ "$pictures" = "$HOME" ]; then
+      pictures="$HOME/Pictures"
+    fi
+    output_dir="$pictures/Screenshots"
     mkdir -p "$output_dir"
     screenshot_file="$output_dir/$(date +%Y-%m-%d_%H-%M-%S-%N).png"
+    # Grimblast (Hyprland contrib) handles region selection with slurp, the
+    # active-window geometry and the clipboard copy. Cancelling the selection
+    # exits non-zero without producing a file, so capture failures are treated
+    # as "no screenshot" instead of tripping `set -e`.
     case "''${1:-area}" in
-      fullscreen) ${pkgs.grim}/bin/grim "$screenshot_file" ;;
-      window)
-        geometry=$(${pkgs.hyprland}/bin/hyprctl -j activewindow | ${pkgs.jq}/bin/jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
-        ${pkgs.grim}/bin/grim -g "$geometry" "$screenshot_file" ;;
-      area)
-        geometry=$(${pkgs.slurp}/bin/slurp) || exit 0
-        ${pkgs.grim}/bin/grim -g "$geometry" "$screenshot_file" ;;
+      fullscreen) target=screen ;;
+      window) target=active ;;
+      area) target=area ;;
       *) exit 2 ;;
     esac
-    ${pkgs.wl-clipboard}/bin/wl-copy --type image/png < "$screenshot_file"
-    ${pkgs.libnotify}/bin/notify-send -i camera-photo "Zapisano zrzut ekranu" "$screenshot_file"
+    ${pkgs.grimblast}/bin/grimblast copysave "$target" "$screenshot_file" || true
+    if [ ! -s "$screenshot_file" ]; then
+      rm -f "$screenshot_file"
+      exit 0
+    fi
+    # The hamster eats the file into its shelf and plays screenshot.webp.
+    @out@/bin/aeroshell ipc call aero screenshot "$screenshot_file" >/dev/null 2>&1 || true
+    ${pkgs.libnotify}/bin/notify-send -i camera-photo "Zapisano zrzut ekranu" "$screenshot_file" || true
     EOF
+    substituteInPlace $out/bin/aero-screenshot --replace-fail '@out@' "$out"
     chmod +x $out/bin/aero-lock $out/bin/aero-screenshot
     cat > $out/bin/aero-directory <<'EOF'
     #!${pkgs.runtimeShell}

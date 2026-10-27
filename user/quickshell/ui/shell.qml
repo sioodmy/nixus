@@ -25,8 +25,15 @@ ShellRoot {
         }
     }
     Authentication {}
+    DesktopPet {}
     IpcHandler {
         target: "aero"
+        function hamster(): void {
+            Hamster.toggle();
+        }
+        function screenshot(path: string): void {
+            Hamster.screenshot(path);
+        }
         function launcher(): void {
             Desktop.toggle("launcher");
         }
