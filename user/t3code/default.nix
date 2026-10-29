@@ -132,6 +132,17 @@ let
   };
 in
 {
+  # agy_acp_server od Google przy starcie (init_google.cc:403 ->
+  # ChangeRootAndUser -> SwitchGroup) robi drop uprawnień do grupy "nobody"
+  # i sprawdza ją twardym CHECK-em, więc jej brak = natychmiastowy FATAL.
+  # NixOS ma tylko grupę "nogroup" (user nobody ma właśnie nią), więc lookup
+  # by-name zwraca błąd: `Check failed: Group nobody not found`. Padę to
+  # natywnie (antigravity-acp z nixpkgs) i przez qemu-bridge (oficjalny
+  # runtime 1.1.1) -- czyli Antigravity w T3 nie uruchamia się w ogóle,
+  # zanim cokolwiek zdąży odpalić model. Lek: grupa po prostu musi istnieć,
+  # GID dowolny; 65533 tuż przed nogroup=65534, żeby nie kolidować.
+  users.groups.nobody = { gid = 65533; };
+
   # Wrapper niesie CA bundle, ale procesy odpalone poza nim (serwer
   # `t3 service`, ACP startowany z systemd) muszą go dostać inaczej.
   environment.sessionVariables = {
