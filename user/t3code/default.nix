@@ -165,4 +165,17 @@ in
       ];
     };
   };
+
+  # Jednostka bazowa `t3code.service` to deklaracja samej aplikacji (`t3
+  # service install` pisze ją do ~/.config/systemd/user), a moduł dokłada
+  # do niej tylko dropin -- stąd overrideStrategy = "asDropin". Żeby dropin
+  # nie wisił w próżni na świeżym hoście albo po `t3 uninstall`, aktywacja
+  # doinstalowuje bazę, jeśli jej brak. Instalacja jest idempotentna i
+  # awaryjnie nie blokuje logowania (|| true), bo pad aktywacji zjada sesję.
+  system.userActivationScripts.t3codeService.text = ''
+    if [ ! -f "$HOME/.config/systemd/user/t3code.service" ]; then
+      echo "t3code: installing base user unit (t3 service install)"
+      ${t3code-wrapped}/bin/t3 service install || true
+    fi
+  '';
 }
