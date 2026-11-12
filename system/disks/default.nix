@@ -18,12 +18,17 @@
       "/var/lib/postgresql"
       "/var/lib/tailscale"
       "/var/cache/tailscale"
+      # SEP identity keybag and per-device Touch ID calibration/rollback.
+      "/var/lib/aurora-sep"
+    ];
+    files = [
+      "/var/lib/aurora-sep-keybag.bin"
+      "/var/lib/aurora-sep-refkey.bin"
     ];
   };
 
   boot.initrd.luks.devices.luksroot = {
     device = "/dev/disk/by-label/NIXCRYPT";
-    preLVM = true;
     allowDiscards = true;
     #    crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
   };

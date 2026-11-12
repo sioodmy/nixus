@@ -35,7 +35,6 @@ in
       ++ [
         pkgs.nerd-fonts.jetbrains-mono
         pkgs.nerd-fonts.iosevka
-        pkgs.lexend
         pkgs.maple-mono.NF
       ];
 

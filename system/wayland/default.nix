@@ -69,6 +69,9 @@ in
 
       QT_QPA_PLATFORM = "wayland";
 
+      XCURSOR_THEME = "Amethyst-Aero-Cursors";
+      XCURSOR_SIZE = "24";
+
       # Platform theme, cursor theme and font are set by user/gtk, which owns
       # both the GTK and the Qt side.
     };
@@ -116,6 +119,7 @@ in
     };
   };
   programs.kdeconnect.enable = true;
+  programs.xwayland.enable = true;
 
   # xdg-desktop-portal-gtk stores the last-used directory in dconf; without the
   # dconf service it logs "failed to commit changes to dconf" on every dialog

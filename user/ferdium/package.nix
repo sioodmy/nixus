@@ -15,7 +15,10 @@ pkgs.symlinkJoin {
     ln -s ${theme.messengerCss} "$out/share/amethyst-aero/messenger.css"
     ln -s ${theme.whatsappCss} "$out/share/amethyst-aero/whatsapp.css"
   '';
+  # Same as the keepassxc wrapper: symlinkJoin has only "out", so don't let a
+  # future "man" output of ferdium leak in through inherited meta.
   meta = pkgs.ferdium.meta // {
     mainProgram = "ferdium";
+    outputsToInstall = [ "out" ];
   };
 }

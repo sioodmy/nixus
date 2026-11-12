@@ -15,12 +15,12 @@ rec {
   n = "nix";
   v = "nvim";
 
-  macos = "sudo asahi-bless -n --set-boot-macos";
+  macos = "command -v asahi-bless >/dev/null 2>&1 && sudo asahi-bless -n --set-boot-macos || echo 'asahi-bless is only available on Apple Silicon'";
 
   cleaner = "du -sh */ | sort -hr | head -n 10";
 
   # imagine using mp3
-  ytopus = "yt-dlp -x --embed-metadata --audio-quality 0 --audio-format opus --embed-metadata --embed-thumbnail";
+  ytopus = "yt-dlp -x --audio-quality 0 --audio-format opus --embed-metadata --embed-thumbnail";
 
   cat = "bat --plain";
 

@@ -9,6 +9,8 @@ let
   MHz = x: x * 1000;
 
   cfg = config.hardware.laptop;
+  isIntel = config.hardware.cpu.intel.updateMicrocode or false;
+  isAmd = config.hardware.cpu.amd.updateMicrocode or false;
 in
 {
   options = {
@@ -17,10 +19,10 @@ in
 
   config = mkIf cfg.enable {
     services = {
-      thermald.enable = true;
+      thermald.enable = isIntel;
       fprintd.enable = true;
       undervolt = {
-        enable = true;
+        enable = isIntel;
         # TODO: make options for that
         coreOffset = -95;
         gpuOffset = -80;
@@ -51,19 +53,19 @@ in
         };
       };
     };
-    # https://github.com/NixOS/nixpkgs/issues/114222
-    systemd.user.services.telephony_client.enable = false;
 
     # https://github.com/NixOS/nixpkgs/issues/211345#issuecomment-1397825573
-    systemd.tmpfiles.rules = map (e: "w /sys/bus/${e}/power/control - - - - auto") [
-      "pci/devices/0000:00:01.0" # Renoir PCIe Dummy Host Bridge
-      "pci/devices/0000:00:02.0" # Renoir PCIe Dummy Host Bridge
-      "pci/devices/0000:00:14.0" # FCH SMBus Controller
-      "pci/devices/0000:00:14.3" # FCH LPC bridge
-      "pci/devices/0000:04:00.0" # FCH SATA Controller [AHCI mode]
-      "pci/devices/0000:04:00.1/ata1" # FCH SATA Controller, port 1
-      "pci/devices/0000:04:00.1/ata2" # FCH SATA Controller, port 2
-      "usb/devices/1-3" # USB camera
-    ];
+    systemd.tmpfiles.rules = lib.mkIf isAmd (
+      map (e: "w /sys/bus/${e}/power/control - - - - auto") [
+        "pci/devices/0000:00:01.0" # Renoir PCIe Dummy Host Bridge
+        "pci/devices/0000:00:02.0" # Renoir PCIe Dummy Host Bridge
+        "pci/devices/0000:00:14.0" # FCH SMBus Controller
+        "pci/devices/0000:00:14.3" # FCH LPC bridge
+        "pci/devices/0000:04:00.0" # FCH SATA Controller [AHCI mode]
+        "pci/devices/0000:04:00.1/ata1" # FCH SATA Controller, port 1
+        "pci/devices/0000:04:00.1/ata2" # FCH SATA Controller, port 2
+        "usb/devices/1-3" # USB camera
+      ]
+    );
   };
 }

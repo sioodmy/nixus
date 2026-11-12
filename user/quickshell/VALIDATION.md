@@ -177,3 +177,24 @@ były częścią tej sesji testowej.
   instancji.
 - System nie został przełączony; wymagane jest
   `sudo nixos-rebuild switch --flake path:.#pandora`.
+
+## Touch ID i blokada, 12 listopada 2026
+
+- Kernel Aurora udostępnia `/dev/sep-bio`; Aurora `libfprint`/`fprintd` widzą
+  czujnik jako `Apple secure enclave fingerprint sensor`. `aurora-sep`,
+  `aurora-sep-ready`, kalibracja `aurora-touchid-setup` i `fprintd` działają.
+- Blokada startuje PAM z `pam_fprintd` przed hasłem; wpisanie hasła przełącza
+  na profil `aero-lock-password`, a przycisk **Użyj Touch ID** ponawia próbę.
+  Profil `aero-lock` ma też `pam_aurora_touchid` po `pam_unix`, więc hasło
+  wpisane na blokadzie ponownie uzbraja Touch ID po restarcie.
+- `tests/lock.sh` przechodzi z oboma profilami PAM: odrzucone hasło zostawia
+  sesję zablokowaną, poprawne hasło kończy proces blokady.
+- Rejestracja odcisku wymaga fizycznego przyłożenia palca:
+  `fprintd-enroll -f right-index-finger sioodmy`.
+- M1 nie ma `/chosen/apfs-preboot-uuid`; bez własnej tożsamości SEP odmawia
+  enrolacji („no Linux SEP OS identity is selected”). Host przypina osobną
+  tożsamość Linuksa w `/etc/modprobe.d` (`options apple_sep os_uuid_hi/lo`).
+  Nie może jej dublować w `boot.kernelParams`, bo parametry Rust są write-once.
+  Wymaga to rebootu; po nim `diag/os_identity` ma być `explicit`.
+- `aurora.sep.requirePasswordAfterBoot = false` — pierwsze odblokowanie po
+  starcie nie wymaga już hasła.

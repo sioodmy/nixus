@@ -124,7 +124,7 @@ Rectangle {
                     selectionColor: "#9e80c3"
                     selectedTextColor: "white"
                     font { family: Aero.Theme.font; pixelSize: 13 }
-                    placeholderText: root.auth.responseVisible ? "Odpowiedź" : "Hasło"
+                    placeholderText: root.auth.responseVisible ? "Odpowiedź" : (root.auth.fingerprintMode === true ? "Hasło lub Touch ID" : "Hasło")
                     echoMode: root.auth.responseVisible ? TextInput.Normal : TextInput.Password
                     passwordCharacter: "●"
                     enabled: !root.auth.busy
@@ -176,7 +176,25 @@ Rectangle {
                     }
                 }
             }
-            Item { width: 1; height: 16 }
+            Item { width: 1; height: 7 }
+            Button {
+                id: fingerprint
+                anchors.horizontalCenter: parent.horizontalCenter
+                visible: root.auth.fingerprintMode !== undefined
+                enabled: !root.auth.authenticated
+                hoverEnabled: true
+                Accessible.name: root.auth.fingerprintMode ? "Wpisz hasło" : "Użyj Touch ID"
+                onClicked: root.auth.fingerprintMode ? root.auth.startPassword() : root.auth.startFingerprint()
+                contentItem: Text {
+                    text: root.auth.fingerprintMode ? "◉ Touch ID — przyłóż palec" : "◎ Użyj Touch ID"
+                    color: fingerprint.hovered ? "#ffffff" : "#dcccf0"
+                    horizontalAlignment: Text.AlignHCenter
+                    font { family: Aero.Theme.font; pixelSize: 12 }
+                    style: Text.Raised; styleColor: "#6021133a"
+                }
+                background: Item { }
+            }
+            Item { width: 1; height: 9 }
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: 360

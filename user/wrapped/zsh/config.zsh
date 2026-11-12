@@ -17,14 +17,6 @@ if [[ -z "$SSH_AUTH_SOCK" && -n "$XDG_RUNTIME_DIR" ]]; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 fi
 
-# FZF Catppuccin Macchiato Theme
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
---color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
---color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
---color=selected-bg:#494d64 \
---color=border:#b7bdf8,label:#b7bdf8"
-
 # Leave Tab key unbound in deja so fzf / native completion handles Tab
 export DEJA_CYCLE_KEY=""
 
@@ -35,9 +27,6 @@ function zvm_after_init() {
   eval "$(fzf --zsh)"
 }
 zvm_after_init_commands+=('eval "$(fzf --zsh)"')
-
-eval "$(fzf --zsh)"
-# (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -93,5 +82,3 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[3 q' # Use underline shape cursor on startup.
 preexec() { echo -ne '\e[3 q' ;} # Use underline shape cursor for each new prompt.
-
-

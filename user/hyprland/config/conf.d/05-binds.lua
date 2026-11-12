@@ -48,9 +48,22 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("aero-brightness 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("aero-brightness 5%-"), { locked = true, repeating = true })
 
--- niri's keylit (keyboard backlight toggle) was orphaned in the niri config;
--- bound here so it is reachable.
-hl.bind(MOD .. " + F1", hl.dsp.exec_cmd("keylit"))
+-- --- keyboard backlight ----------------------------------------------------
+-- Standard XF86 keyboard brightness keys (hardware / fn-keys)
+hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("aero-kbd-brightness +10%"), { locked = true, repeating = true })
+hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("aero-kbd-brightness 10%-"), { locked = true, repeating = true })
+-- There is no XF86KbdBrightnessToggle keysym (X11 only defines Up/Down), so a
+-- toggle bind on it is a hard config error. Toggle lives on SUPER+F1 below.
+
+-- Convenient shortcuts for Apple Silicon MacBooks (Pandora Asahi) & laptops:
+-- Super + F5 / Super + F6 (classic Mac backlight keys)
+hl.bind(MOD .. " + F5", hl.dsp.exec_cmd("aero-kbd-brightness 10%-"), { locked = true, repeating = true })
+hl.bind(MOD .. " + F6", hl.dsp.exec_cmd("aero-kbd-brightness +10%"), { locked = true, repeating = true })
+-- Super + F1 (toggle backlight)
+hl.bind(MOD .. " + F1", hl.dsp.exec_cmd("aero-kbd-brightness toggle"), { locked = true })
+-- Super + Screen brightness keys (quick keyboard brightness adjustment)
+hl.bind(MOD .. " + XF86MonBrightnessDown", hl.dsp.exec_cmd("aero-kbd-brightness 10%-"), { locked = true, repeating = true })
+hl.bind(MOD .. " + XF86MonBrightnessUp", hl.dsp.exec_cmd("aero-kbd-brightness +10%"), { locked = true, repeating = true })
 
 -- --- window focus / movement -----------------------------------------------
 --

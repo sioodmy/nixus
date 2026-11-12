@@ -117,7 +117,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "/home/sioodmy/dev/dotfiles";
+    flake = "/home/sioodmy/dev/nixus";
   };
 
   # WE DONT WANT TO BUILD STUFF ON TMPFS

@@ -14,10 +14,10 @@ Singleton {
     property bool ready: false
     readonly property var sink: Pipewire.defaultAudioSink
     readonly property var source: Pipewire.defaultAudioSource
-    readonly property string label: kind === "brightness" ? "Jasność ekranu" : kind === "microphone" ? "Mikrofon" : "Głośność"
-    readonly property string icon: kind === "brightness" ? "weather-clear" : kind === "microphone" ? "audio-input-microphone" : muted || percent === 0 ? "audio-volume-muted" : percent < 35 ? "audio-volume-low" : percent < 70 ? "audio-volume-medium" : "audio-volume-high"
+    readonly property string label: kind === "brightness" ? "Jasność ekranu" : kind === "kbd-brightness" ? "Jasność klawiatury" : kind === "microphone" ? "Mikrofon" : "Głośność"
+    readonly property string icon: kind === "brightness" ? "weather-clear" : kind === "kbd-brightness" ? "input-keyboard" : kind === "microphone" ? "audio-input-microphone" : muted || percent === 0 ? "audio-volume-muted" : percent < 35 ? "audio-volume-low" : percent < 70 ? "audio-volume-medium" : "audio-volume-high"
     function show(type, value, isMuted) {
-        if (["volume", "brightness", "microphone"].indexOf(type) === -1)
+        if (["volume", "brightness", "microphone", "kbd-brightness"].indexOf(type) === -1)
             return;
         kind = type;
         percent = Math.max(0, Math.min(150, Math.round(value)));

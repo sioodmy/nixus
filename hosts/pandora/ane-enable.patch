@@ -1,0 +1,94 @@
+--- a/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
++++ b/arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
+@@ -1010,7 +1010,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_base";
+ 		power-domains = <&ps_ane_sys_cpu>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_ane_set1: power-controller@c010 {
+@@ -1020,7 +1020,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_set1";
+ 		power-domains = <&ps_ane_base>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_ane_set2: power-controller@c018 {
+@@ -1030,7 +1030,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_set2";
+ 		power-domains = <&ps_ane_base>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_ane_set3: power-controller@c020 {
+@@ -1040,7 +1040,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_set3";
+ 		power-domains = <&ps_ane_base>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_ane_set4: power-controller@c028 {
+@@ -1050,7 +1050,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_set4";
+ 		power-domains = <&ps_ane_base>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_ane_set5: power-controller@c030 {
+@@ -1060,7 +1060,7 @@
+ 		#reset-cells = <0>;
+ 		label = "ane_set5";
+ 		power-domains = <&ps_ane_base>;
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	ps_disp0_cpu0: power-controller@10018 {
+--- a/arch/arm64/boot/dts/apple/t8103.dtsi
++++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+@@ -1517,7 +1517,7 @@
+ 			interrupt-parent = <&aic>;
+ 			interrupts = <AIC_IRQ 417 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&ps_ane_sys>;
+-			status = "disabled";
++			status = "okay";
+ 		};
+ 
+ 		ane_dart1: iommu@26b810000 {
+@@ -1528,7 +1528,7 @@
+ 			interrupt-parent = <&aic>;
+ 			interrupts = <AIC_IRQ 417 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&ps_ane_sys>;
+-			status = "disabled";
++			status = "okay";
+ 		};
+ 
+ 		ane_dart2: iommu@26b820000 {
+@@ -1539,7 +1539,7 @@
+ 			interrupt-parent = <&aic>;
+ 			interrupts = <AIC_IRQ 417 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&ps_ane_sys>;
+-			status = "disabled";
++			status = "okay";
+ 		};
+ 
+ 		ane: ane@26bc04000 {
+@@ -1552,7 +1552,7 @@
+ 			iommus = <&ane_dart0 0>, <&ane_dart1 0>, <&ane_dart2 0>;
+ 			power-domains = <&ps_ane_set1>, <&ps_ane_set2>,
+ 				<&ps_ane_set3>, <&ps_ane_set4>, <&ps_ane_set5>;
+-			status = "disabled";
++			status = "okay";
+ 		};
+ 
+ 		dispext0_dart: iommu@271304000 {

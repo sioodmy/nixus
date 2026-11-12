@@ -157,7 +157,7 @@ in
     variables = {
       GSK_RENDERER = "gl";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      QT_QPA_PLATFORMTHEME = "qt6ct:qt5ct";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
       QT_STYLE_OVERRIDE = "kvantum";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       QT_QUICK_CONTROLS_CONF = "$HOME/.config/qtquickcontrols2.conf";

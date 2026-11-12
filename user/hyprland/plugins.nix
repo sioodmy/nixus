@@ -75,6 +75,14 @@ let
 
       nativeBuildInputs = [ pkgs.gnumake ];
 
+      # Hyprland 0.57 moved the window class from CWindow::m_class to
+      # CWindowMetadata::appID(). Upstream still targets 0.55 (last commit
+      # 2026-07), so patch the member access until a release catches up.
+      postPatch = ''
+        substituteInPlace kinetic.cpp \
+          --replace-fail 'PWIN->m_class' 'PWIN->metadata().appID()'
+      '';
+
       strictDeps = false;
       dontUseCmakeConfigure = true;
       buildFlags = [ "all" ];
@@ -109,6 +117,22 @@ let
       };
 
       nativeBuildInputs = [ pkgs.cmake ];
+
+      # Hyprland 0.57 port: src/desktop/Workspace.hpp was removed (CWindow's
+      # class moved to CWindowMetadata, CWorkspace is gone), Window.hpp moved
+      # to view/window/, m_isX11/m_X11SurfaceScaledBy moved to the window
+      # backend, m_exclusiveLSes became m_exclusiveKeyboardLSes, m_isMapped
+      # went private (use mapped()), m_X11ShouldntFocus became shouldntFocus().
+      postPatch = ''
+        substituteInPlace src/edgehover.cpp \
+          --replace-fail '#include <hyprland/src/desktop/Workspace.hpp>' '#include <hyprland/src/desktop/DesktopTypes.hpp>' \
+          --replace-fail '#include <hyprland/src/desktop/view/Window.hpp>' '#include <hyprland/src/desktop/view/window/Window.hpp>' \
+          --replace-fail 'window->m_isX11' 'window->backend().isX11()' \
+          --replace-fail 'window->m_X11SurfaceScaledBy' 'window->backend().surfaceScale()' \
+          --replace-fail 'g_pInputManager->m_exclusiveLSes' 'g_pInputManager->m_exclusiveKeyboardLSes' \
+          --replace-fail 'window->m_isMapped' 'window->mapped()' \
+          --replace-fail 'window->m_X11ShouldntFocus' 'window->shouldntFocus()'
+      '';
 
       # The geometry unit test builds a second binary and only checks arithmetic
       # on constants; skip it.

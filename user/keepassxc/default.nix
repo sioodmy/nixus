@@ -19,7 +19,12 @@ pkgs.symlinkJoin {
       --set QT_STYLE_OVERRIDE kvantum \
       --prefix QT_PLUGIN_PATH : "${qt.qt5ct}/${qt.qtbase.qtPluginPrefix}:${qt.qtstyleplugin-kvantum}/${qt.qtbase.qtPluginPrefix}"
   '';
+  # symlinkJoin exposes only the "out" output, but keepassxc gained a separate
+  # "man" output in nixpkgs 26.11. Inheriting meta wholesale makes buildEnv
+  # (system-path) try to select the nonexistent `drv.man` and fail with
+  # "attribute 'man' missing".
   meta = pkgs.keepassxc.meta // {
     mainProgram = "keepassxc";
+    outputsToInstall = [ "out" ];
   };
 }

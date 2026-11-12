@@ -54,7 +54,21 @@ else
 
   let
     # x86_64 nixpkgs niezależnie od architektury hościa (wzorzec z t3code).
-    pkgsX64 = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    # Bez config (jak w system/nix) `nixpkgs.config.allowBroken = true` nie działa
+    # i gtk2 odmawia ewaluacji (nixpkgs oznaczył go jako broken na koniec życia GLib 2).
+    pkgsX64 = (
+      import inputs.nixpkgs {
+        system = "x86_64-linux";
+        # `allowBroken = true` nie przepuszcza meta.problems.broken z explicit
+        # ustawieniem w upstreamie; oficjalna droga na wyjątek dla jednego pakietu.
+        config = {
+          allowUnfree = true;
+          problems.handlers = {
+            "gtk+".broken = "warn";
+          };
+        };
+      }
+    );
 
     # Biblioteki, których AppImage NIE wozi, a których mono/libgdiplus/
     # WinForms potrzebują za naszym LD_LIBRARY_PATH. Suma NEEDED z
@@ -82,6 +96,8 @@ else
         pixman
         libxml2
         cups
+        libgdiplus
+        gtk2
       ]
       ++ (with pkgsX64; [
         libX11
@@ -125,6 +141,12 @@ else
       mkdir -p $out/bin $out/share
       cp -r ${appimageContents} $out/share/smath
       chmod -R u+w $out/share/smath
+
+      # Ubuntu 24.04 bundled libgdiplus segfaults in pango_fc_font_get_pattern /
+      # FcPatternDuplicate inside GdipMeasureString / GdipGetCellAscent when
+      # running on nixpkgs libraries. Replace it with nixpkgs x86_64 libgdiplus
+      # which renders fonts cleanly via cairo.
+      ln -sf ${pkgsX64.libgdiplus}/lib/libgdiplus.so* $out/share/smath/usr/lib/
 
       substitute ${./qemu-wrapper.sh} $out/bin/smath \
         --replace-fail @SYSROOT@ "${sysroot}" \

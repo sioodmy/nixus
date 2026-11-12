@@ -43,7 +43,12 @@ in
       pkgs.networkmanagerapplet
       pkgs.nemo
     ];
-    security.pam.services.aero-lock = { };
+    # Fingerprint first, then the password. The second service skips the
+    # reader when the user starts typing before the sensor answers.
+    security.pam.services.aero-lock = {
+      fprintAuth = config.services.fprintd.enable;
+    };
+    security.pam.services.aero-lock-password = { };
     services.hypridle.enable = true;
     services.blueman.enable = true;
     # Start hypridle from Hyprland, after the

@@ -5,10 +5,16 @@
 }:
 let
   inherit (builtins) attrValues;
+
+  # ArtCraft: gotowe AppImage'e (aarch64 + x86_64), żeby nie kompilować
+  # Rusta ze źródeł.
+  craftApps = pkgs.callPackage ./artcraft { };
 in
 {
   environment.systemPackages =
     attrValues {
+      prismlauncher = pkgs.callPackage ./wrapped/prismlauncher { };
+
       inherit (pkgs)
         android-tools
         deluge
@@ -21,7 +27,6 @@ in
         cava
         btop
         mpv
-        prismlauncher
         gh
         antigravity-cli
         antigravity-acp
@@ -45,7 +50,6 @@ in
         pandoc
         texliveMedium
         vscode-langservers-extracted
-        tectonic-unwrapped
         typst
         texlab
         powershell
@@ -57,7 +61,6 @@ in
         cliphist
         slurp
         wl-clipboard
-        flare-signal
         wf-recorder
         rnote
         swaybg
@@ -98,8 +101,15 @@ in
         ;
       inherit (inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system})
         opencode2
-        codex
         ;
+      # tectonic 0.17 pulls rustls/aws-lc-rs; aws-lc-sys builds in system
+      # mode (AWS_LC_SYS_USE_SYSTEM=1) but the nixpkgs derivation doesn't
+      # list aws-lc in buildInputs, so from-source builds panic with
+      # "requires a system-installed AWS-LC". TODO: drop when nixpkgs
+      # fixes the package.
+      tectonic-unwrapped = pkgs.tectonic-unwrapped.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.aws-lc ];
+      });
       inherit (inputs.vim.packages.${pkgs.stdenv.hostPlatform.system})
         default
         ;
@@ -107,7 +117,13 @@ in
     ++ [ inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default ]
     ++ [
       (pkgs.callPackage ./smath { inherit inputs; })
+      (pkgs.callPackage ./symbolical { })
       (pkgs.callPackage ./keepassxc { })
+    ]
+    ++ [
+      craftApps.vectorcraft
+      craftApps.figcraft
+      craftApps.photocraft
     ];
 
 }

@@ -18,10 +18,17 @@ let
 
   # T3 Connect tuneluje przez cloudflared; t3code z llm-agents.nix też go
   # nie dokłada do PATH, więc dokładamy go wrapperem (jak providerPath u GrajAPa).
+  #
+  # node jest tu, bo Antigravity wymaga go do "sign-in"/przygotowania profilu:
+  # T3 liczy ścieżkę `node` i odpala nim helper (`node -e ...`), który tłumi
+  # launch przeglądarki i robi preflight OAuth. Bez node każda sesja pada na
+  # `NodeRuntimeUnavailableError: Antigravity sign-in requires Node.js`
+  # (ten sam resolver obsługuje "Local device support"/"Device automation").
   providerPath = lib.makeBinPath [
     pkgs.cloudflared
     pkgs.gh
     pkgs.git
+    pkgs.nodejs
   ];
 
   # t3code bierzemy z tego samego flake co opencode (numtide/llm-agents.nix),
@@ -30,8 +37,12 @@ let
   llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
 
   # `providerPackages` steruje tylko PATH-em wrappera, a Nix nie forsuje
-  # nieużywanych argumentów funkcji -- więc claude-code i codex (których nie
-  # używamy) nie trafiają w ogóle do buildu, mimo że upstream wpina je z defaultu.
+  # nieużywanych argumentów funkcji -- więc claude-code i codex (których
+  # nie używamy) nie trafiają w ogóle do buildu, mimo że upstream wpina
+  # je z defaultu. Binarka codex w ogóle nie musi istnieć: T3 spawnuje
+  # ją dopiero po wybraniu providera Codex, więc skoro provider jest
+  # nieużywany, nie idzie ani z llm-agents (from-source), ani z nixpkgs
+  # (build pada na aws-lc-sys bez overlaya).
   t3code = llm-agents.t3code.override {
     providerPackages = [
       llm-agents.opencode
@@ -141,7 +152,9 @@ in
   # runtime 1.1.1) -- czyli Antigravity w T3 nie uruchamia się w ogóle,
   # zanim cokolwiek zdąży odpalić model. Lek: grupa po prostu musi istnieć,
   # GID dowolny; 65533 tuż przed nogroup=65534, żeby nie kolidować.
-  users.groups.nobody = { gid = 65533; };
+  users.groups.nobody = {
+    gid = 65533;
+  };
 
   # Wrapper niesie CA bundle, ale procesy odpalone poza nim (serwer
   # `t3 service`, ACP startowany z systemd) muszą go dostać inaczej.
@@ -163,7 +176,10 @@ in
     overrideStrategy = "asDropin";
     serviceConfig = {
       Environment = [
-        "PATH=%h/.local/share/t3code/npm/bin:%h/.npm-global/bin:/run/wrappers/bin:/run/current-system/sw/bin:/etc/profiles/per-user/%U/bin:%h/.local/state/nix/profile/bin:%h/.nix-profile/bin"
+        # `${pkgs.nodejs}/bin` MUSI tu być: serwer startuje z drzewa
+        # ~/.t3/runtime (nie przez wrapper), a dropin nadpisuje PATH całościowo.
+        # Bez tego Antigravity pada na brak `node` (patrz providerPath wyżej).
+        "PATH=%h/.local/share/t3code/npm/bin:%h/.npm-global/bin:${pkgs.nodejs}/bin:/run/wrappers/bin:/run/current-system/sw/bin:/etc/profiles/per-user/%U/bin:%h/.local/state/nix/profile/bin:%h/.nix-profile/bin"
         "T3CODE_CLOUDFLARED_PATH=${lib.getExe pkgs.cloudflared}"
         "NIX_LD=/run/current-system/sw/share/nix-ld/lib/ld.so"
         "NIX_LD_LIBRARY_PATH=/run/current-system/sw/share/nix-ld/lib"

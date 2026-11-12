@@ -38,7 +38,21 @@ let
       }) list
     );
   mkPersistentSourcePaths =
-    list: concatStringsSep "\n" (forEach list (path: "mkdir -p /persist${path}"));
+    list:
+    concatStringsSep "\n" (
+      forEach list (path: ''
+        mkdir -p /sysroot${path} /sysroot/persist${path}
+      '')
+    );
+  mkPersistentFileSources =
+    list:
+    concatStringsSep "\n" (
+      forEach list (path: ''
+        mkdir -p /sysroot${dirOf path} /sysroot/persist${dirOf path}
+        touch /sysroot${path} /sysroot/persist${path}
+        chmod 600 /sysroot${path} /sysroot/persist${path}
+      '')
+    );
 in
 {
   options.staypls = {
@@ -47,19 +61,22 @@ in
       type = types.listOf types.str;
       description = "List of directiories to mount";
     };
+    files = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "List of files to persist through bind mounts";
+    };
   };
   config = mkIf cfg.enable {
-    boot.initrd.systemd.enable = mkDefault true;
-
-    fileSystems = mkPersistentBindMounts cfg.dirs;
+    fileSystems = mkPersistentBindMounts (cfg.dirs ++ cfg.files);
     boot.initrd.systemd.services.make-source-of-persistent-dirs = {
-      wantedBy = [ "initrd-root-device.target" ];
-      before = [ "sysroot.mount" ];
-      requires = [ "persist.mount" ];
-      after = [ "persist.mount" ];
+      wantedBy = [ "initrd.target" ];
+      before = [ "initrd-switch-root.target" ];
+      requires = [ "sysroot-persist.mount" ];
+      after = [ "sysroot-persist.mount" ];
       serviceConfig.Type = "oneshot";
       unitConfig.DefaultDependencies = false;
-      script = mkPersistentSourcePaths cfg.dirs;
+      script = mkPersistentSourcePaths cfg.dirs + "\n" + mkPersistentFileSources cfg.files;
     };
   };
 }

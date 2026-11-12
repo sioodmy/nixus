@@ -35,6 +35,52 @@ Podgląd wyglądu bez blokowania sesji:
 qs -p user/quickshell/ui/lock-preview.qml
 ```
 
+## Touch ID
+
+Blokada sama startuje Touch ID po zamknięciu sesji; wystarczy przyłożyć palec
+do przycisku zasilania (czujnika). Wpisanie hasła w trakcie oczekiwania na palec
+przełącza PAM na profil hasła, a przycisk **Użyj Touch ID** ponawia próbę.
+Pierwsze odblokowanie po restarcie może wymagać hasła — tak jak w macOS,
+`aurora.sep.requirePasswordAfterBoot` domyślnie czeka na pierwsze hasło od
+uruchomienia, a potem Touch ID działa normalnie.
+
+Rejestracja palca (jako zwykły użytkownik, bez sudo):
+
+```sh
+fprintd-enroll -f right-index-finger sioodmy
+# przyciskaj przycisk zasilania / Touch ID, aż polecenie zakończy się sukcesem
+fprintd-list sioodmy
+fprintd-verify -f right-index-finger sioodmy
+```
+
+Gdy czujnik nie jest gotowy, sprawdź usługi i kalibrację:
+
+```sh
+systemctl status aurora-sep aurora-sep-ready fprintd
+sudo aurora-touchid-setup --check
+```
+
+M1 nie przekazuje `/chosen/apfs-preboot-uuid`, więc host ma przypiętą osobną
+tożsamość Linuksa w `/etc/modprobe.d` (`options apple_sep os_uuid_hi/lo`).
+Nie wolno jej dublować w `boot.kernelParams`: parametry Rust są write-once
+i drugi zapis kończy się błędem „invalid for parameter”. Po zmianie potrzebny
+jest **pełny reboot**, nie sam `nixos-rebuild switch`:
+
+```sh
+sudo reboot
+```
+
+Po restarcie:
+
+```sh
+cat /sys/bus/platform/devices/*.sep/diag/os_identity   # -> explicit
+```
+
+Dopiero wtedy `fprintd-enroll` zacznie przyjmować palec.
+
+`aurora.sep.requirePasswordAfterBoot = false;` w konfiguracji hosta pozwala
+używać Touch ID już przy pierwszym odblokowaniu po starcie.
+
 ## Obsługa
 
 | Skrót | Działanie |

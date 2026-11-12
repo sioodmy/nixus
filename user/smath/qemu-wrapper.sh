@@ -7,4 +7,8 @@
 # AppRun ustawia już PATH/LD_LIBRARY_PATH/MONO_* względem własnego HERE.
 export QEMU_LD_PREFIX="@SYSROOT@"
 export LD_LIBRARY_PATH="@X64LIBS@:@SMATHDIR@/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export DISPLAY="${DISPLAY:-:0}"
+export FONTCONFIG_FILE="${FONTCONFIG_FILE:-/etc/fonts/fonts.conf}"
+export XCURSOR_SIZE="${XCURSOR_SIZE:-24}"
+export XCURSOR_THEME="${XCURSOR_THEME:-Amethyst-Aero-Cursors}"
 exec "@SMATHDIR@/AppRun" "$@"

@@ -140,7 +140,37 @@ pkgs.stdenvNoCC.mkDerivation {
     shell_dir=$(${pkgs.coreutils}/bin/dirname "$(${pkgs.coreutils}/bin/readlink -f "$0")")
     "$shell_dir/aeroshell" ipc call aero showOsd brightness "$percent" false >/dev/null 2>&1 || true
     EOF
-    chmod +x $out/bin/aero-volume $out/bin/aero-brightness
+    cat > $out/bin/aero-kbd-brightness <<'EOF'
+    #!${pkgs.runtimeShell}
+    set -eu
+    exec 9>"''${XDG_RUNTIME_DIR:-/run/user/$UID}/amethyst-kbd-brightness.lock"
+    ${pkgs.util-linux}/bin/flock 9
+    dev=$(${pkgs.brightnessctl}/bin/brightnessctl -l -m | ${pkgs.gawk}/bin/awk -F, '$2=="leds" && $1~/kbd_backlight/ {print $1; exit}')
+    [ -n "$dev" ] || dev="kbd_backlight"
+    arg="''${1:-+10%}"
+    case "$arg" in
+      toggle)
+        cur=$(${pkgs.brightnessctl}/bin/brightnessctl -d "$dev" get)
+        max=$(${pkgs.brightnessctl}/bin/brightnessctl -d "$dev" max)
+        if [ "$cur" -eq 0 ]; then
+          val="$(( max / 2 ))"
+        elif [ "$cur" -ge "$max" ]; then
+          val=0
+        else
+          val="$max"
+        fi
+        status=$(${pkgs.brightnessctl}/bin/brightnessctl -m -d "$dev" set "$val")
+        ;;
+      *)
+        status=$(${pkgs.brightnessctl}/bin/brightnessctl -m -d "$dev" set "$arg")
+        ;;
+    esac
+    percent=$(printf '%s\n' "$status" | ${pkgs.gawk}/bin/awk -F, 'NR == 1 {gsub(/%/, "", $4); print $4}')
+    case "$percent" in ""|*[!0-9]*) exit 1 ;; esac
+    shell_dir=$(${pkgs.coreutils}/bin/dirname "$(${pkgs.coreutils}/bin/readlink -f "$0")")
+    "$shell_dir/aeroshell" ipc call aero showOsd kbd-brightness "$percent" false >/dev/null 2>&1 || true
+    EOF
+    chmod +x $out/bin/aero-volume $out/bin/aero-brightness $out/bin/aero-kbd-brightness
     runHook postInstall
   '';
   meta = {

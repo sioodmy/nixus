@@ -26,8 +26,6 @@
       forAllSystems = nixpkgs.lib.genAttrs [
         "aarch64-linux"
         "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
       ];
     in
     {
@@ -76,6 +74,14 @@
     apple-silicon-support = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Apple Silicon hardware stack behind Omarchy MX Mac. Its kernel, Mesa
+    # and Touch ID userspace are wired in by hosts/pandora/aurora.nix; the
+    # rest of its overlay (m1n1, U-Boot, ...) stays unused.
+    aurora = {
+      url = "github:aurora-silicon/nixos-aurora";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.apple-silicon.follows = "apple-silicon-support";
     };
     helix = {
       url = "github:sioodmy/helix/sioodmy";

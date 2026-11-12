@@ -1,0 +1,33 @@
+Fix kernel host-tool builds against glibc >= 2.44.
+
+glibc 2.44 ships an asm/sigcontext.h (from linux-headers >= 6.17) that uses
+__u128 for the SVE register state. When building host tools (e.g.
+tools/bpf/resolve_btfids), the stale copy of linux/types.h under
+tools/include/uapi comes first on the include path and shadows glibc's own,
+so __u128 is never defined and every aarch64 build with CONFIG_DEBUG_INFO_BTF
+fails with "unknown type name '__u128'".
+
+Aurora's tools/include/linux/types.h already carries the typedefs; only the
+uapi copy still needs them.
+---
+ tools/include/uapi/linux/types.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/tools/include/uapi/linux/types.h b/tools/include/uapi/linux/types.h
+--- a/tools/include/uapi/linux/types.h
++++ b/tools/include/uapi/linux/types.h
+@@ -6,6 +6,14 @@
+ 
+ #ifndef __ASSEMBLER__
+ 
++/* Keep in sync with include/uapi/linux/types.h: glibc >= 2.44 ships an
++ * asm/sigcontext.h that uses __u128, and this stale copy shadows glibc's
++ * own linux/types.h when building host tools (e.g. resolve_btfids). */
++#ifdef __SIZEOF_INT128__
++typedef __signed__ __int128 __s128 __attribute__((aligned(16)));
++typedef unsigned __int128 __u128 __attribute__((aligned(16)));
++#endif
++
+ /* copied from linux:include/uapi/linux/types.h */
+ #define __bitwise
+ typedef __u16 __bitwise __le16;

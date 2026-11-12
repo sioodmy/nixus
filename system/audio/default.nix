@@ -41,8 +41,6 @@
       settings = {
         General = {
           ControllerMode = "dual";
-
-          Enable = "Source,Sink,Media,Socket";
         };
       };
     };

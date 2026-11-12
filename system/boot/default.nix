@@ -1,10 +1,6 @@
 { ... }:
 {
   boot = {
-    initrd = {
-      verbose = false;
-      systemd.enable = true;
-    };
     loader = {
       systemd-boot = {
         enable = true;

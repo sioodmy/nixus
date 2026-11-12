@@ -25,9 +25,10 @@ for directory in args.applications:
         config = configparser.ConfigParser(interpolation=None, strict=False)
         config.read(desktop)
         entry = config["Desktop Entry"]
-        icon = Path(entry.get("Icon", "")).stem
+        raw_icon = entry.get("Icon", "")
+        icon = Path(raw_icon).stem
         name = entry.get("Name", "").lower()
-        candidates = [icon, desktop.stem, entry.get("StartupWMClass", ""), name]
+        candidates = [raw_icon, icon, desktop.stem, entry.get("StartupWMClass", ""), name]
         if any(candidate in aliases for candidate in candidates):
             checked += 1
         else:

@@ -1,16 +1,17 @@
 # Amethyst Aero Icons
 
-56 oryginalnych projektów SVG: aplikacje, fioletowe foldery, szklisty Start,
+59 oryginalnych projektów SVG: aplikacje, fioletowe foldery, szklisty Start,
 kontrolki sieci, dźwięku, multimediów i sesji. Wspólne materiały i oświetlenie,
 indywidualne sylwetki zamiast jednakowych kafelków. Ikony skalują się od 16 do
 512 px; nie wymagają fontów ani zewnętrznych obrazków.
 
-`manifest.json` przypisuje 209 nazw ikon, identyfikatorów desktopowych i klas
-okien do projektów z `build.py`. Pokrywa wszystkie 58 obecnie zainstalowanych
+`manifest.json` przypisuje 218 nazw ikon, identyfikatorów desktopowych i klas
+okien do projektów z `build.py`. Pokrywa wszystkie 61 obecnie zainstalowanych
 wpisów `.desktop`, w tym Kitty, Helium, Nemo, Signal, Ferdium, Thunderbird,
-T3 Code, Neovim, KeePassXC, GIMP, Inkscape, Rnote, Prism, mpv, imv, Zathurę,
-SMath, Tectonic, Yazi, btop, Deluge, Transmission, Nicotine+, Syncthing i narzędzia
-systemowe. Programy terminalowe otrzymują ikonę wpisu uruchamiającego je w GUI.
+T3 Code, Neovim, KeePassXC, GIMP, Inkscape, Rnote, VectorCraft, FigCraft, PhotoCraft,
+Prism, mpv, imv, Zathurę, SMath, Tectonic, Yazi, btop, Deluge, Transmission, Nicotine+,
+Syncthing i narzędzia systemowe. Programy terminalowe otrzymują ikonę wpisu
+uruchamiającego je w GUI.
 
 Motyw jest instalowany przez moduł GTK oraz dostępny jako `aero-icons` we flake.
 GTK 2/3/4, Qt 5/6 i Quickshell używają tej samej nazwy `Amethyst-Aero`.

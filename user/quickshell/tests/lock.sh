@@ -38,6 +38,9 @@ exit($response eq "test-correct-password" ? 0 : 1);
 PERL
 chmod +x "$test_dir/check-password"
 printf 'auth required %s/pam_exec.so expose_authtok %s/check-password\n' "$PAM_MODULE_DIR" "$test_dir" > "$test_dir/pam/aero-lock"
+# The locker switches to the password-only profile when the user types while
+# the fingerprint reader is (or would be) waiting.
+printf 'auth required %s/pam_exec.so expose_authtok %s/check-password\n' "$PAM_MODULE_DIR" "$test_dir" > "$test_dir/pam/aero-lock-password"
 printf 'output * mode 1440x900\nseat seat0 fallback true\n' > "$test_dir/sway.conf"
 unset WAYLAND_DISPLAY SWAYSOCK HYPRLAND_INSTANCE_SIGNATURE
 export XDG_RUNTIME_DIR="$test_dir/runtime"
