@@ -33,6 +33,7 @@
           "adbusers"
           "libvirtd"
           "kvm"
+          "docker"
         ];
         uid = 1000;
       };

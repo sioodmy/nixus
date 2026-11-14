@@ -125,7 +125,14 @@ hl.bind(MOD .. " + CTRL + Right", hl.dsp.window.resize({ x = 80, y = 0, relative
 hl.bind(MOD .. " + Home", hl.dsp.layout("focus l"))
 hl.bind(MOD .. " + End",  hl.dsp.layout("focus r"))
 
-hl.bind(MOD .. " + Q", hl.dsp.window.kill())
+-- Close the focused window politely: `window.close()` maps to killactive,
+-- which asks the client to shut down (WM_DELETE_WINDOW), so the app can save
+-- state and exit on its own. `window.kill()` is the forceful variant -- it
+-- SIGKILLs the client, which is what used to make SUPER+Q look like a total
+-- app kill instead of a window close. Force-kill is still reachable on
+-- MOD + SHIFT + Q for hung clients.
+hl.bind(MOD .. " + Q", hl.dsp.window.close())
+hl.bind(MOD .. " + SHIFT + Q", hl.dsp.window.kill())
 hl.bind(MOD .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
 -- NOTE: niri's "switch focus between floating and tiling" has no direct

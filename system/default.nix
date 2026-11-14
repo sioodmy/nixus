@@ -11,6 +11,7 @@
     ./wayland
     ./nix
     ./services
+    ./virtualisation
   ];
 
   systemd = {

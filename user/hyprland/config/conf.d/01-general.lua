@@ -81,6 +81,17 @@ hl.config({
         key_press_enables_dpms = true,
         mouse_move_enables_dpms = true,
 
+        focus_on_activate = true,
+        middle_click_paste = true,
+        enable_swallow = false,
+
+        -- niri's `prefer-no-csd` plus clients that draw their own chrome.
+        initial_workspace_tracking = 1,
+    },
+
+    -- Formerly misc:layers_hog_keyboard_focus; Hyprland 0.57 moved it into its
+    -- own `layers` category and warns about the old location.
+    layers = {
         -- MUST stay false. When true, any layer surface with Exclusive
         -- keyboard focus (dock calendar/polkit island, stuck launcher,
         -- fullscreen media) swallows ALL keyboard input and mouse clicks no
@@ -90,13 +101,6 @@ hl.config({
         -- HyprlandFocusGrab on the shell side, so the global hog only adds a
         -- way to brick the session when a layer gets stuck open.
         layers_hog_keyboard_focus = false,
-
-        focus_on_activate = true,
-        middle_click_paste = true,
-        enable_swallow = false,
-
-        -- niri's `prefer-no-csd` plus clients that draw their own chrome.
-        initial_workspace_tracking = 1,
     },
 
     xwayland = {
