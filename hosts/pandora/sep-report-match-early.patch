@@ -1,0 +1,93 @@
+--- a/drivers/soc/apple/bio.rs
++++ b/drivers/soc/apple/bio.rs
+@@ -330,6 +330,7 @@
+ pub(crate) const IOC_REARM: u32 = _IOW::<Rearm>(MAGIC, 0x0f);
+ pub(crate) const IOC_REQUIRE_PASSWORD: u32 = _IO(MAGIC, 0x10);
+ 
++#[derive(Clone)]
+ pub(crate) struct MatchEvidence {
+     identity: [u8; UUID_LEN],
+ }
+@@ -340,6 +341,7 @@
+     }
+ }
+ 
++#[derive(Clone)]
+ pub(crate) enum VerifyOutcome {
+     Failed(u32),
+     NoMatch,
+--- a/drivers/soc/apple/sbio.rs
++++ b/drivers/soc/apple/sbio.rs
+@@ -2826,12 +2826,14 @@
+                 VERIFY_RETRY_LIMIT
+             );
+         }
+-        // macOS hands a no-match to LocalAuthentication as soon as the touch
+-        // is finished (MATCH_POLICY and the image cleanup done), and saves the
++        // macOS hands a result to LocalAuthentication as soon as the touch is
++        // finished (MATCH_POLICY and the image cleanup done), and saves the
+         // lockout record and collects the background result after it, while
+         // the person lifts the finger. Do the same: the next verify waits for
+         // this worker, so the bookkeeping below still precedes its capture.
+-        let reported_early = matches!(outcome, bio::VerifyOutcome::NoMatch);
++        // A no-match has nothing to persist. A match is reported below, once
++        // MATCH_CANCEL and the unlock evaluation are done.
++        let mut reported_early = matches!(outcome, bio::VerifyOutcome::NoMatch);
+         if reported_early {
+             self.finish_verify(bio::VerifyOutcome::NoMatch, token_bytes);
+         }
+@@ -2875,6 +2877,20 @@
+                 self.key_touch_after_close(&evaluation);
+             }
+         }
++        // A match is reported as soon as the enclave matched and the unlock
++        // evaluation is satisfied, before the lockout record and the template
++        // persistence, as macOS hands it to LocalAuthentication at that point.
++        // The worker still completes both below, and the next verify waits for
++        // it; a failure sets persistence_owed so it precedes the next capture.
++        // /dev/sep-key results stay with their job: its signature is not done.
++        if !key_mode && matches!(outcome, bio::VerifyOutcome::Matched(_)) {
++            dev_info_ratelimited!(
++                self.dev,
++                "verify: the match is reported before the post-result state is persisted\n"
++            );
++            reported_early = true;
++            self.finish_verify(outcome.clone(), token_bytes);
++        }
+         // macOS saves the enclave's lockout record once after every answered
+         // result (SAVE_LOCKOUT, kept on disk for the boot's LOAD_LOCKOUT),
+         // after MATCH_CANCEL when the prompt ends there and before it collects
+@@ -2895,12 +2911,21 @@
+             bio::VerifyOutcome::Matched(_) | bio::VerifyOutcome::NoMatch | bio::VerifyOutcome::Failed(ENROL_STATUS_LOCKOUT)
+         ) {
+             // A template update must be persisted (user, then master) before a
+-            // match is reported.
++            // match is reported, unless the match has already been handed to
++            // userspace; then the next verify persists it before its capture.
+             if !self.await_and_handle_bg_ops(c"after a match result", BG_OPS_WAIT_MS)
+                 && matches!(outcome, bio::VerifyOutcome::Matched(_))
+             {
+-                dev_err_ratelimited!(self.dev, "verify: the background result was not handled; not reporting this verify as a match\n");
+-                outcome = bio::VerifyOutcome::Failed(ENROL_STATUS_RETRY);
++                if reported_early {
++                    dev_err_ratelimited!(
++                        self.dev,
++                        "verify: the background result after the reported match was not handled; the next verify persists it before the capture\n"
++                    );
++                    self.persistence_owed.store(true, Relaxed);
++                } else {
++                    dev_err_ratelimited!(self.dev, "verify: the background result was not handled; not reporting this verify as a match\n");
++                    outcome = bio::VerifyOutcome::Failed(ENROL_STATUS_RETRY);
++                }
+             }
+         }
+         // Keep the sensor up for the next verify unless the sensor itself
+@@ -2976,7 +3001,7 @@
+                 if reported_early {
+                     dev_err_ratelimited!(
+                         self.dev,
+-                        "verify: the state after the reported no-match was not persisted; the next verify persists it first\n"
++                        "verify: the state after the reported result was not persisted; the next verify persists it first\n"
+                     );
+                     self.persistence_owed.store(true, Relaxed);
+                 } else {

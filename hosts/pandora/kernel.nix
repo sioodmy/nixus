@@ -94,6 +94,18 @@
       patch = ./tools-u128.patch;
     }
     {
+      # The SEP driver waits for the post-match template persistence (user,
+      # then master catacomb, plus the keybag snapshot) before it reports a
+      # match to userspace, so every Touch ID unlock pays about two seconds
+      # after the enclave has already matched. Report a satisfied match as
+      # soon as MATCH_CANCEL and the unlock evaluation are done, as macOS
+      # does; the verify worker still persists everything while the person
+      # lifts the finger, and the next verify either waits for that worker or
+      # persists the owed state before its capture.
+      name = "sep-report-match-early";
+      patch = ./sep-report-match-early.patch;
+    }
+    {
       # Small config additions on top of Aurora's validated ALARM snapshot.
       # Everything else (btrfs, dm-crypt, zram, Tailscale, Bluetooth audio,
       # the Apple drivers and the ANE accel node) is already enabled there.
