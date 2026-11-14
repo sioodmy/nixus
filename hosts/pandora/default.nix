@@ -93,6 +93,13 @@ in
       };
     };
 
+  # fprintd is D-Bus activated, so the first lock-screen unlock after boot
+  # pays for starting the daemon. Start it as soon as the SEP is usable
+  # instead. aurora-sep-ready.service runs at boot and fprintd is already
+  # ordered after it, so this pulls the daemon into the boot transaction
+  # without making the boot target wait for the reader to become usable.
+  systemd.services.fprintd.wantedBy = [ "aurora-sep-ready.service" ];
+
   hardware.asahi = {
     enable = true;
     # Aurora's firmware module extracts this Mac's vendor firmware from the
@@ -207,6 +214,11 @@ in
     binfmt.emulatedSystems = [ "x86_64-linux" ];
     loader = {
       systemd-boot.enable = true;
+      # The ESP is 476 MB and also carries the vendor firmware, the Asahi
+      # firmware and m1n1. Every generation adds an initrd of about 45 MB, so
+      # the default ten generations fill it and a rebuild cannot write a new
+      # kernel. Keep the current generation and two rollbacks.
+      systemd-boot.configurationLimit = lib.mkForce 3;
       efi.canTouchEfiVariables = lib.mkForce false;
     };
 
