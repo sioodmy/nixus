@@ -21,6 +21,17 @@ in
       "discard"
     ];
   };
+
+  # The SEP driver keeps its host-state store, catacombs, lockout record and
+  # xART bookkeeping directly under /var/lib. With the tmpfs root those files
+  # vanished on every reboot, so Touch ID forgot every enrolment. Persist the
+  # directory itself: bind-mounting the individual files would make the initrd
+  # pre-create empty placeholders that the driver refuses as corrupt. Mount it
+  # from the initrd, too, so the uid/gid maps under /var/lib/nixos are writable
+  # before activation runs.
+  staypls.dirs = [ "/var/lib" ];
+  fileSystems."/var/lib".neededForBoot = true;
+
   imports = [
     inputs.apple-silicon-support.nixosModules.apple-silicon-support
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -90,19 +101,24 @@ in
     setupAsahiSound = true;
   };
 
-  # The /var/lib keybag and refkey live on the tmpfs root until the staypls
-  # bind mounts are active on the next boot. Seed /persist once from the
-  # running system before that reboot.
+  # Before /var/lib lives on the persistent disk, seed the SEP key store from
+  # the running tmpfs root. Once /var/lib is a mountpoint this is a no-op.
+  # Catacombs and the host-state store are not copied live: the driver may be
+  # mid-write, and a copy made under it can be refused as inconsistent.
   system.activationScripts.aurora-sep-persist = {
     text = ''
-      install -d -m 700 /persist/var/lib/aurora-sep
-      for f in aurora-sep-keybag.bin aurora-sep-refkey.bin; do
-        if [ -s "/var/lib/$f" ] && [ ! -s "/persist/var/lib/$f" ]; then
-          install -Dm600 "/var/lib/$f" "/persist/var/lib/$f"
+      if ! ${pkgs.util-linux}/bin/mountpoint -q /var/lib; then
+        install -d -m 700 /persist/var/lib/aurora-sep
+        for f in aurora-sep-keybag.bin aurora-sep-refkey.bin; do
+          if [ -s "/var/lib/$f" ] && [ ! -s "/persist/var/lib/$f" ] \
+            && ! ${pkgs.util-linux}/bin/mountpoint -q "/var/lib/$f"; then
+            install -Dm600 "/var/lib/$f" "/persist/var/lib/$f"
+          fi
+        done
+        if [ -d /var/lib/aurora-sep ] \
+          && ! ${pkgs.util-linux}/bin/mountpoint -q /var/lib/aurora-sep; then
+          cp -an /var/lib/aurora-sep/. /persist/var/lib/aurora-sep/
         fi
-      done
-      if [ -d /var/lib/aurora-sep ]; then
-        cp -an /var/lib/aurora-sep/. /persist/var/lib/aurora-sep/
       fi
     '';
   };

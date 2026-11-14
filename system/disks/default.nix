@@ -18,12 +18,6 @@
       "/var/lib/postgresql"
       "/var/lib/tailscale"
       "/var/cache/tailscale"
-      # SEP identity keybag and per-device Touch ID calibration/rollback.
-      "/var/lib/aurora-sep"
-    ];
-    files = [
-      "/var/lib/aurora-sep-keybag.bin"
-      "/var/lib/aurora-sep-refkey.bin"
     ];
   };
 
