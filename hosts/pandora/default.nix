@@ -11,6 +11,10 @@ let
   # local MLX Chat / serve CLIs. aarch64-only (cp314 linux_aarch64 wheel),
   # so it stays host-local instead of user/packages.nix.
   mlx-omarchy = pkgs.callPackage ../../user/mlx-omarchy { };
+
+  sepHostStateRepair = pkgs.writers.writePython3Bin "aurora-sep-host-state-repair" { } (
+    builtins.readFile ./sep-host-state-repair.py
+  );
 in
 {
   fileSystems."/boot" = {
@@ -99,6 +103,45 @@ in
   # ordered after it, so this pulls the daemon into the boot transaction
   # without making the boot target wait for the reader to become usable.
   systemd.services.fprintd.wantedBy = [ "aurora-sep-ready.service" ];
+
+  # A power cut while the SEP driver writes its host-state store can leave a
+  # prefix of the file. The driver refuses any size but the full 72-block
+  # store and does not reinitialise it, because the prefix may be the only
+  # copy of the host state; Touch ID then stays dead until someone looks at
+  # the file. This runs before aurora-sep.service loads apple_sep: a short
+  # file with an intact superblock and all referenced slots is zero-extended
+  # back to the full size, and anything else is moved to
+  # /var/lib/aurora-sep-quarantine so the driver starts with a fresh store.
+  # A full-size store is never touched.
+  systemd.services.aurora-sep-host-state-repair = {
+    description = "Recover a truncated SEP host-state store";
+    wantedBy = [ "aurora-sep.service" ];
+    before = [ "aurora-sep.service" ];
+    after = [ "local-fs.target" ];
+    unitConfig = {
+      RequiresMountsFor = "/var/lib";
+      ConditionPathExists = "/var/lib/aurora-sep-host-state.bin";
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${sepHostStateRepair}/bin/aurora-sep-host-state-repair";
+      UMask = "0077";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectHome = true;
+      ProtectSystem = "strict";
+      ReadWritePaths = [ "/var/lib" ];
+      ProtectKernelTunables = true;
+      ProtectKernelModules = true;
+      ProtectControlGroups = true;
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      LockPersonality = true;
+      SystemCallArchitectures = "native";
+    };
+  };
 
   hardware.asahi = {
     enable = true;
